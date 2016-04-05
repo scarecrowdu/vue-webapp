@@ -11,12 +11,17 @@
       <a v-link="{ path: '/nofound' }">404</a>
     </nav>
 
+    <Nav-bar></Nav-bar>
+
     <router-view class="app-view" :transition="effect" ></router-view>
     
   </div>
 </template>
 
 <script>
+ 
+  import NavBar from './views/Navbar.vue'
+
 
   export default {
      data() {
@@ -30,6 +35,8 @@
      }
 
   }
+
+ 
 
 </script>
 
