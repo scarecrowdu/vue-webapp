@@ -1,0 +1,39 @@
+卷 文档 的文件夹 PATH 列表
+卷序列号为 000E-76AA
+E:.
+│  .gitattributes
+│  .gitignore
+│  favicon.ico
+│  index.html
+│  index.tpl
+│  package.json
+│  README.md
+│  tree.txt
+│  webpack.config.js
+│  
+├─src
+│  │  app.js
+│  │  App.vue
+│  │  routers.js
+│  │  
+│  ├─assets
+│  │  ├─css
+│  │  ├─images
+│  │  │      logo.png
+│  │  │      
+│  │  └─scss
+│  │          common.scss
+│  │          
+│  ├─components
+│  │      Hello.vue
+│  │      
+│  ├─view
+│  │      Home.vue
+│  │      
+│  └─views
+│          home.vue
+│          not_found.vue
+│          
+└─test
+        test.js
+        
