@@ -23,7 +23,6 @@
       return {
         effect: 'fade',
       }
-
      },
      components:{
      },
