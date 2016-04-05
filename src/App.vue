@@ -11,12 +11,6 @@
       <a v-link="{ path: '/nofound' }">404</a>
     </nav>
 
-    <nav class="app-menu">
-      <a class="test-btn" @click.prevent="openConfirm()">confirm</a>
-      <a class="test-btn" @click.prevent="openConfirm2()">confirm2</a>
-      <a class="test-btn" @click.prevent="showGlobalModal">全局弹窗自定义</a>
-    </nav>
-
     <router-view class="app-view" :transition="effect" ></router-view>
     
   </div>

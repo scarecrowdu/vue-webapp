@@ -19,7 +19,9 @@ export default function(router) {
 		// },
 		// not found handler
 	    '*': {
-	      component: not_found
+	      component:function(resolve){
+				require(['./views/not_found.vue'],resolve)
+			}
 	    }
 	});
 
