@@ -19,6 +19,52 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin'); //自动生成带hash的HTML 文件
 var ExtractTextPlugin = require("extract-text-webpack-plugin");   //独立样式文件
+var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;  //混淆压缩
+var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin; //检测重用模块
+ 
+// 在命令行 输入  “PRODUCTION=1 webpack --progress” 就会打包压缩，并且注入md5戳 到 d.html里面
+var production = process.env.PRODUCTION;
+
+
+var plugins = [
+    // Avoid publishing files when compilation fails
+    new webpack.NoErrorsPlugin(),
+
+    // 使用 ProvidePlugin 加载使用率高的依赖库
+    new webpack.ProvidePlugin({
+      $: 'webpack-zepto'
+    }),
+
+    //会将所有的样式文件打包成一个单独的style.css
+    new ExtractTextPlugin( production ? "style.[hash].css" : "style.css", {
+       disable: false,
+       allChunks: true  //所有独立样式打包成一个css文件
+    }),
+
+ 
+   //new ExtractTextPlugin("[name].css" )
+   //自动分析重用的模块并且打包成单独的文件
+   new CommonsChunkPlugin(production ? "vendor.[hash].js" : "vendor.js" ),
+
+];
+
+
+//发布编译时，压缩，版本控制
+if (process.env.PRODUCTION) {
+
+    //压缩
+    plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false } }));
+
+    plugins.push(new HtmlWebpackPlugin({
+        filename:'../d.html',//会生成d.html在根目录下,并注入脚本
+        template:'index.tpl',
+        inject:true //此参数必须加上，不加不注入
+    }))
+
+}
+
+
+
 
 module.exports = {
 
@@ -29,9 +75,12 @@ module.exports = {
     output: {
         // 输出路径是
         path: path.join(__dirname, '/dist'),
-        publicPath: 'dist/',
-        filename: '[name].[hash].js',
+        // publicPath: 'dist/',
+        // filename: '[name].[hash].js',
         // chunkFilename: '[id].[chunkhash].js'
+
+        publicPath: production ? "/util/vue/dist/":"dist/",
+        filename: production ? "build.[hash].js" : "build.js"//"build.[hash].js"//[hash]MD5戳   解决html的资源的定位可以使用 webpack提供的HtmlWebpackPlugin插件来解决这个问题  见：http://segmentfault.com/a/1190000003499526 资源路径切换
     },
 
     // 添加的module属性
@@ -72,32 +121,7 @@ module.exports = {
     // },
 
     // 插件项
-    plugins: [
-        // Avoid publishing files when compilation fails
-        new webpack.NoErrorsPlugin(),
-        /*
-        版本控制
-        模块是把生成的带有md5戳的文件，插入到index.html中。
-        通过index.tpl模板，最后在根目录下生成一个index.html
-       */
-        new HtmlWebpackPlugin({
-            filename: '../index.html', //会生成d.html在根目录下,并注入脚本
-            template: path.resolve(__dirname, './index.tpl'),
-            inject: true //此参数必须加上，不加不注入
-        }),
-
-        //会将所有的样式文件打包成一个单独的style.css
-        new ExtractTextPlugin("style.[hash].css" , {
-           disable: false,
-           allChunks: true  //所有独立样式打包成一个css文件
-        }),
-
-        // 使用 ProvidePlugin 加载使用率高的依赖库
-        new webpack.ProvidePlugin({
-          $: 'webpack-zepto'
-        })
-
-    ],
+    plugins:plugins,
 
     stats: {
         // Nice colored output
