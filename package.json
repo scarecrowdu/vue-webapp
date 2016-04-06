@@ -4,7 +4,12 @@
   "description": "this is a webapp",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --progress --profile --colors --inline ",
+    "port": "webpack-dev-server --progress --colors --inline --port 9090 ",
+    "hot": "webpack-dev-server --progress --colors --inline --hot",
+    "cp": "cp -r index.html ./build/ d:/wamp/www/vue",
+    "ip": "webpack-dev-server  --progress --colors --hot --host=0.0.0.0  --port 9000",
+    "ips": "webpack-dev-server --host 192.168.1.104 --devtool eval --progress --colors --hot "
   },
   "devDependencies": {
     "babel-core": "^6.0.20",
