@@ -8,15 +8,27 @@ export default function(router) {
 				require(['./views/Home.vue'],resolve)
 			}
 		},
-		// 'async_loading':{
-		// 	//http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
-		// 	name:'async_loading',
-		// 	component: function(reslove){
-		// 		//异步加载，
-		// 		//例子
-		// 		return require(['./views/async_loading.vue'],reslove)
-		// 	}
-		// },
+		'/announced':{
+			name:'announced',
+			component:function(resolve){
+				require(['./views/Announced.vue'],resolve)
+			}
+		},
+
+		'/cart':{
+			name:'cart',
+			component:function(resolve){
+				require(['./views/Cart.vue'],resolve)
+			}
+		},
+
+		'/me':{
+			name:'me',
+			component:function(resolve){
+				require(['./views/Me.vue'],resolve)
+			}
+		},
+		
 		// not found handler
 	    '*': {
 	      component:function(resolve){

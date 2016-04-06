@@ -28,7 +28,7 @@
 
 
 <style lang="sass">
-   .not_found{
+   /* .not_found{
    	  display:table;
    	  height: 150px;
    	  width: 100%;
@@ -38,6 +38,6 @@
    	  	vertical-align: middle;
    	  	text-align: center;
    	  }
-   }
+   } */
 	
 </style>

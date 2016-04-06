@@ -8,19 +8,19 @@
              </div>
              <p class="weui_tabbar_label">首页</p>
       	 </a>
-         <a class="weui_tabbar_item" v-link="{ path: '/nofound' }">
+         <a class="weui_tabbar_item" v-link="{ path: '/announced' }">
              <div class="weui_tabbar_icon">
                 <i class="icon">&#xe603;</i>
              </div>
              <p class="weui_tabbar_label">最新揭晓</p>
          </a>
-         <a class="weui_tabbar_item" v-link="{ name: 'home', exact: true }">
+         <a class="weui_tabbar_item" v-link="{ name: 'cart', exact: true }">
              <div class="weui_tabbar_icon">
                 <i class="icon">&#xe602;</i>
              </div>
              <p class="weui_tabbar_label">清单</p>
          </a>
-         <a class="weui_tabbar_item" v-link="{ path: '/nofound' }">
+         <a class="weui_tabbar_item" v-link="{ path: '/me' }">
             <div class="weui_tabbar_icon">
                 <i class="icon">&#xe601;</i>
              </div>

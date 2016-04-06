@@ -1,4 +1,6 @@
+require('./assets/scss/weui.scss');
 require('./assets/scss/common.scss');
+require('./assets/scss/base.scss');
 
 import Vue from 'vue'; //vue
 import VueRouter from 'vue-router'; //vue-router路由

@@ -1,27 +1,18 @@
 <template>
   <div class="app">
 
-    <div class="app-title">
-      <h1 v-text="header">App Header</h1>
-      <p>当前路径: {{$route.path}}</p>
-    </div>
-
-    <nav class="app-nav">
-      <a v-link="{ name: 'home', exact: true }">首页</a>
-      <a v-link="{ path: '/nofound' }">404</a>
-    </nav>
-
-    <Nav-bar></Nav-bar>
-
+    <!-- vue View -->
     <router-view class="app-view" :transition="effect" ></router-view>
+
+    <!-- app导航 -->
+    <nav-bar></nav-bar>
     
   </div>
 </template>
 
 <script>
  
-  import NavBar from './views/Navbar.vue'
-
+  import Navbar from './views/common/Navbar.vue';
 
   export default {
      data() {
@@ -30,13 +21,12 @@
       }
      },
      components:{
+       navBar:Navbar
      },
      methods:{
      }
 
   }
-
- 
 
 </script>
 
@@ -45,41 +35,18 @@
   display: none;
 }
 
-/* 标题 */
-.app-title{
-  margin:20px 10px;
-}
 
-.custom-active-class{
-  color: #f13f3f !important;
-  border:1px solid #f13f3f !important;
-}
-
-
-/*导航烂*/
-.app-nav{
-  clear: both;
-  margin:10px;
-   
-  >a{
-    display: inline-block;
-    border:1px solid #ddd;
-    border-radius:3px; 
-    padding: 5px 10px;
-    margin-right: 5px;
-    margin-top: 5px;
-    text-align: center;
-    color: #333;
-  } 
-}
-  
 .app-view {
   transition: all .3s ease;
   position: absolute;
   width: 100%;
   left:0;
+  top:0;
+  overflow: auto;
 }
 
+
+/* 过渡动画 */
 .fade-enter, .fade-leave {
   opacity: 0;
   transform: translate3d(0, 0, 0);

@@ -31,7 +31,7 @@ module.exports = {
         path: path.join(__dirname, '/dist'),
         publicPath: 'dist/',
         filename: '[name].[hash].js',
-        chunkFilename: '[id].[chunkhash].js'
+        // chunkFilename: '[id].[chunkhash].js'
     },
 
     // 添加的module属性
@@ -81,7 +81,6 @@ module.exports = {
         通过index.tpl模板，最后在根目录下生成一个index.html
        */
         new HtmlWebpackPlugin({
-            title: 'My VueDemo',
             filename: '../index.html', //会生成d.html在根目录下,并注入脚本
             template: path.resolve(__dirname, './index.tpl'),
             inject: true //此参数必须加上，不加不注入
@@ -92,6 +91,11 @@ module.exports = {
            disable: false,
            allChunks: true  //所有独立样式打包成一个css文件
         }),
+
+        // 使用 ProvidePlugin 加载使用率高的依赖库
+        new webpack.ProvidePlugin({
+          $: 'webpack-zepto'
+        })
 
     ],
 
