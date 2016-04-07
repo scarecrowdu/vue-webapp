@@ -1,29 +1,21 @@
 
 <template>
     <nav class="app-nav">
-      <div class=" weui_tabbar">
-      	 <a class="weui_tabbar_item" v-link="{ name: 'home', exact: true }">
-      	 	  <div class="weui_tabbar_icon">
-      	 	    <i class="icon">&#xe600;</i>
-             </div>
-             <p class="weui_tabbar_label">首页</p>
+      <div class="tab-bar">
+      	 <a class="bar-item" v-link="{ name: 'home', exact: true }">
+      	 	  <i class="icon">&#xe600;</i>
+            <p class="bar-label">首页</p>
       	 </a>
-         <a class="weui_tabbar_item" v-link="{ path: '/announced' }">
-              <div class="weui_tabbar_icon">
-                <i class="icon">&#xe603;</i>
-              </div>
-             <p class="weui_tabbar_label">最新揭晓</p>
+         <a class="bar-item" v-link="{ path: '/announced' }">
+             <i class="icon">&#xe603;</i>
+             <p class="bar-label">最新揭晓</p>
          </a>
-         <a class="weui_tabbar_item" v-link="{ name: 'cart', exact: true }">
-             <div class="weui_tabbar_icon">
-                <i class="icon">&#xe602;</i>
-             </div>
-             <p class="weui_tabbar_label">清单</p>
+         <a class="bar-item" v-link="{ name: 'cart', exact: true }">
+             <i class="icon">&#xe602;</i>
+             <p class="bar-label">清单</p>
          </a>
-         <a class="weui_tabbar_item" v-link="{ path: '/me' }">
-            <div class="weui_tabbar_icon">
-                <i class="icon">&#xe601;</i>
-             </div>
+         <a class="bar-item" v-link="{ path: '/me' }">
+             <i class="icon">&#xe601;</i>
              <p class="weui_tabbar_label">我的</p>
          </a>
       </div>
@@ -33,12 +25,49 @@
 <style lang="sass">
 	/*导航烂*/
 	.app-nav{
-    >.weui_tabbar{ background: #fff; }
-	  a{color: #333;}
-	  .icon{ font-size: 20px;color:#555; }
+        z-index: 999;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 55px;
+        width: 100%;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        background: #fff;
+        border-top: 1px solid #E7E7E7;
+
+
+        .tab-bar{
+          padding-top: 4px;
+          width: 100%;
+          text-align: center;
+          display: -webkit-box;
+          display: -moz-box;
+          display: -o-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+          justify-content: space-between;
+
+              a{
+                color: #5D656B;
+                -webkit-box-flex: 1;
+                -moz-box-flex: 1;
+                -webkit-flex: 1;
+                -ms-flex: 1;
+                flex: 1;
+                text-align: center;
+                box-sizing: border-box;
+                display: block;
+                font-size: 14px;
+
+                .icon{
+                  font-size: 16px;
+                }
+              }
+        }
 	}
-	  
-	.custom-active-class{
-	  p,.icon{ color: #ff6666 !important;}
-	}
+	.custom-active{color: #ff6666 !important;}
 </style>

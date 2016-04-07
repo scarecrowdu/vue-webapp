@@ -4,38 +4,32 @@
 	box-sizing:border-box;
 	-moz-box-sizing:border-box; 
 	-webkit-box-sizing:border-box;
+    -webkit-font-smoothing: antialiased;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 html,body{
 	height:100%;
 	margin: 0;
   	padding: 0;
-}
-html{
-	font-family:"Helvetica Neue",Helvetica,STHeiTi,Arial,sans-serif;
-	-ms-text-size-adjust:100%;
-	-webkit-text-size-adjust:100%;
-	font-size: 14px;
+  	font-size: 14px;
 }
 body{
+	font-family:"Helvetica Neue",Helvetica,STHeiTi,Arial,sans-serif;
 	color:#333;
 	background-color:#f8f8f8;
-	overflow: hidden; /* this is important to prevent the whole page to bounce */
+	overflow-x: hidden;
 }
 
 /** 设置默认字体   **/
-body,h1, h2, h3, h4, h5, h6 { 
-	font-size: 100%; 
-}
+body,h1, h2, h3, h4, h5, h6 { font-size: 100%; }
 /** 重置列表元素   **/
 ul, ol ,li{ list-style: none; }
-
-
 /** 重置文本格式元素 **/
-a ,a:hover { 
-	text-decoration: none; 
-}
-
+a ,a:hover { text-decoration: none; }
 /** 重置表单元素 **/
 fieldset, img { border: 0; } /* img 搭车：让链接里的 img 无边框 */
 button, input, select, textarea { font-size: 100%; } /* 使得表单元素在 ie 下能继承字体大小 */

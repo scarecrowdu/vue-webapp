@@ -1,89 +1,91 @@
 <template>
-  <div class="app-container">
-      <app-header>
-         <p slot="title">最新揭晓</p>
-      </app-header>
+  <div class="indiana">
+     <div class="mainArea">
+        <app-header>
+           <p slot="title">最新揭晓</p>
+        </app-header>
 
-      <section class="announced-container">
-          <ul class="floatBox">
-              <li>
-                <a href="#">
-                   <img src="../assets/images/logo.png">
-                   <div class="info">
-                      <p class="title">小米电视</p>
-                      <p class="issue">期号：123456789101</p>
-                      <p class="state">
-                        <span class="btn">即将揭晓</span>
-                      </p>
-                      <p class="msg">
-                          <span class="time">15:15:0</span>
-                      </p>
-                   </div>
-                  </a>
-              </li>
-               <li>
-                <a href="#">
-                   <img src="../assets/images/logo.png">
-                   <div class="info">
-                      <p class="title">小米电视</p>
-                      <p class="issue">期号：123456789101</p>
-                      <p class="state">
-                        <span class="txt">获得者：小林</span>
-                        <span class="txt">参与人数：20</span>
-                      </p>
-                      <p class="msg">
-                        <span class="txt">幸运号码：1026262266</span>
-                        <span class="txt">揭晓时间：今天12：00</span>
-                      </p>
-                   </div>
-                  </a>
-              </li>
-              <li>
-                <a href="#">
-                   <img src="../assets/images/logo.png">
-                   <div class="info">
-                      <p class="title">小米电视</p>
-                      <p class="issue">期号：123456789101</p>
-                      <p class="state">
-                        <span class="txt">获得者：小林</span>
-                        <span class="txt">参与人数：20</span>
-                      </p>
-                      <p class="msg">
-                        <span class="match">计算中，请稍等...</span>
-                      </p>
-                   </div>
-                  </a>
-              </li>
-               <li>
-                <a href="#">
-                   <img src="../assets/images/logo.png">
-                   <div class="info">
-                      <p class="title">小米电视</p>
-                      <p class="issue">期号：123456789101</p>
-                      <p class="state">即将揭晓</p>
-                      <p class="msg">15:15:0</p>
-                   </div>
-                  </a>
-              </li>
-               <li>
-                <a href="#">
-                   <img src="../assets/images/logo.png">
-                   <div class="info">
-                      <p class="title">小米电视</p>
-                      <p class="issue">期号：123456789101</p>
-                      <p class="state">
-                        <span class="txt">获得者：小林</span>
-                        <span class="txt">参与人数：20</span>
-                      </p>
-                      <p class="msg">
-                        <span class="txt">幸运号码：1026262266</span>
-                        <span class="txt">揭晓时间：今天12：00</span>
-                      </p>
-                   </div>
-                  </a>
-              </li>
-          </ul>
-      </section>
+        <section class="announced-container">
+            <ul class="floatBox">
+                <li>
+                  <a href="#">
+                     <img src="../assets/images/logo.png">
+                     <div class="info">
+                        <p class="title">小米电视</p>
+                        <p class="issue">期号：123456789101</p>
+                        <p class="state">
+                          <span class="btn">即将揭晓</span>
+                        </p>
+                        <p class="msg">
+                            <span class="time">15:15:0</span>
+                        </p>
+                     </div>
+                    </a>
+                </li>
+                 <li>
+                  <a href="#">
+                     <img src="../assets/images/logo.png">
+                     <div class="info">
+                        <p class="title">小米电视</p>
+                        <p class="issue">期号：123456789101</p>
+                        <p class="state">
+                          <span class="txt">获得者：小林</span>
+                          <span class="txt">参与人数：20</span>
+                        </p>
+                        <p class="msg">
+                          <span class="txt">幸运号码：1026262266</span>
+                          <span class="txt">揭晓时间：今天12：00</span>
+                        </p>
+                     </div>
+                    </a>
+                </li>
+                <li>
+                  <a href="#">
+                     <img src="../assets/images/logo.png">
+                     <div class="info">
+                        <p class="title">小米电视</p>
+                        <p class="issue">期号：123456789101</p>
+                        <p class="state">
+                          <span class="txt">获得者：小林</span>
+                          <span class="txt">参与人数：20</span>
+                        </p>
+                        <p class="msg">
+                          <span class="match">计算中，请稍等...</span>
+                        </p>
+                     </div>
+                    </a>
+                </li>
+                 <li>
+                  <a href="#">
+                     <img src="../assets/images/logo.png">
+                     <div class="info">
+                        <p class="title">小米电视</p>
+                        <p class="issue">期号：123456789101</p>
+                        <p class="state">即将揭晓</p>
+                        <p class="msg">15:15:0</p>
+                     </div>
+                    </a>
+                </li>
+                 <li>
+                  <a href="#">
+                     <img src="../assets/images/logo.png">
+                     <div class="info">
+                        <p class="title">小米电视</p>
+                        <p class="issue">期号：123456789101</p>
+                        <p class="state">
+                          <span class="txt">获得者：小林</span>
+                          <span class="txt">参与人数：20</span>
+                        </p>
+                        <p class="msg">
+                          <span class="txt">幸运号码：1026262266</span>
+                          <span class="txt">揭晓时间：今天12：00</span>
+                        </p>
+                     </div>
+                    </a>
+                </li>
+            </ul>
+        </section>
+      </div>
   </div>
 </template>
 
@@ -110,19 +112,15 @@
 </script>
 
 
-<style lang="sass" scoped>
-  .app-view {
-    bottom: 55px;
-  }
- body{
-  background: #f8f8f8;
- }
+<style lang="sass" >
+
 .floatBox{
     margin: 0 10px;
-    >li:nth-child(odd){
-      a{
+
+     >li:nth-child(odd){
+       a{
         margin-right: 5px;
-      }
+       }
     }
     >li:nth-child(even){
       a{

@@ -1,5 +1,4 @@
 
-
 export default function(router) {
     router.map({
 		'/':{
@@ -31,8 +30,8 @@ export default function(router) {
 		
 		// not found handler
 	    '*': {
-	      component:function(resolve){
-				require(['./views/not_found.vue'],resolve)
+	        component:function(resolve){
+			    require(['./views/error/not_found.vue'],resolve)
 			}
 	    }
 	});
@@ -89,6 +88,3 @@ export default function(router) {
 
 
 }
-
-
-

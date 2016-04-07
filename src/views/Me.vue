@@ -1,6 +1,6 @@
 <template>
 
-  <div class="page" transition="page" >
+  <div>
       
       <div class="user-header">
 
@@ -74,7 +74,6 @@
 </template>
 
 <script>
-    // import Flexbox from '../components/flexbox'
     export default {
         data() {
          return{
@@ -98,16 +97,6 @@
 
 <style lang="sass">
 
-
-.page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    background: #f8f8f8;
-}
   /* 变量 */
   $color-primary: #27c4fe;
   $color-danger: #ff6666;
@@ -254,5 +243,4 @@
        }
      }
   }
-  
 </style>

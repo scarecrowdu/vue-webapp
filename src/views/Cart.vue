@@ -1,16 +1,18 @@
 <template>
-  <div class="app-container">
+  <div class="cart">
+
     <app-header>
        <p slot="title">清单</p>
     </app-header>
        
     <div class="cart-msg">
-          <i class="cart-icon icon">&#xe602;</i>
-          <p>空空如也~</p>
-          <div class="btn-gruop">
-              <a class="go-indiana">前往夺宝</a>
-          </div>
+      <i class="cart-icon icon">&#xe602;</i>
+      <p>空空如也~</p>
+      <div class="btn-gruop">
+          <a class="go-indiana">前往夺宝</a>
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -34,7 +36,6 @@
             transition.next();
           }
         },
-
     }
 </script>
 
@@ -56,14 +57,11 @@
           margin: 0 auto;
           border-radius:3px;
           color:#fff;
-
         }
      }
-
      >p{
-      margin-top: -30px;
+        margin-top: -30px;
      }
-
      .cart-icon{
        font-size: 120px;
        color:#ddd;

@@ -2,7 +2,8 @@
   <div class="app">
 
     <!-- 缓存路由切换的页面 -->
-    <router-view class="app-view" keep-alive></router-view>
+    <router-view class="app-view"  ></router-view>
+    <!-- :transition="effect" -->
 
     <!-- app导航 -->
     <nav-bar></nav-bar>
@@ -13,6 +14,7 @@
 <script>
  
   import Navbar from './views/common/Navbar.vue';
+  
   export default {
      data() {
       return {
@@ -25,28 +27,54 @@
      methods:{
      }
   }
+  
 </script>
 
 <style lang="sass">
-  [v-cloak] {
-    display: none;
-  }
-  #app{
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
+  .app{
       height: 100%;
+      position: relative;
       box-sizing: border-box;
-      background: #f8f8f8;
   }
-  .app-view {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right:0;
-    bottom: 55px;
-    overflow: auto;
+  .mainArea{
+    position: relative;
+    width: 100%!important;
+    height: 100%!important;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
     -webkit-overflow-scrolling: touch;
   }
+
+  .app-view {
+    transition: all .3s ease;
+  }
+
+
+  .fade-enter, .fade-leave {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  .fade-enter{
+    opacity: 1;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  .fade-leave {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+
+  .back-enter {
+    opacity: 1;
+    -webkit-transform: translate3d(-110%, 0, 0);
+            transform: translate3d(-110%, 0, 0);
+  }
+  .back-leave{
+    opacity: 0;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+
 </style>
