@@ -1,9 +1,7 @@
 <template>
-  <div>
 
-    <div class="app-container">
+  <div class="page" transition="page" >
       
-
       <div class="user-header">
 
         <div class="u-top">
@@ -32,7 +30,6 @@
             </div>
         </div>
       </div> 
-
 
       <div class="weui_cells">
         <a class="weui_cell" href="#">
@@ -73,21 +70,18 @@
         </a>
       </div>
 
-
-    </div>
   </div>
 </template>
 
 <script>
     // import Flexbox from '../components/flexbox'
-
     export default {
         data() {
          return{
            title:'个人中心',
+           // effect: 'page',
          }
         },
-
         components: {
           // Flexbox
         },
@@ -98,23 +92,30 @@
             transition.next();
           }
         },
-
     }
 </script>
 
 
 <style lang="sass">
 
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: #f8f8f8;
+}
   /* 变量 */
   $color-primary: #27c4fe;
   $color-danger: #ff6666;
   $color-warning: #fead11;
   $color-success: #4cd964;
-
   .primary{ color: $color-primary; }
   .danger{ color: $color-danger; }
   .warning{ color: $color-warning; }
-
   .weui_cell{ color: #333; }
   .weui_cells{ font-size: 14px; }
   .weui_cell_ft.with_arrow:after {
@@ -133,11 +134,9 @@
     margin-left: .3em;
   }
   .c-icon { font-size: 20px;padding-right: 8px;}
-
   .user-header+.weui_cells {
       margin-top: 0;
   }
-
   .user-header{
     position: relative;
     width: 100%;
@@ -156,7 +155,6 @@
       box-sizing: border-box;
       padding:5px 20px;
     }
-
     .u-middle{
       position: absolute;
       left: 0;
@@ -165,8 +163,6 @@
       text-align: center;
       transform: translate(0,-50%);
     }
-
-
     .u-bottom{
       position: absolute;
       left: 0;
@@ -180,16 +176,12 @@
       box-sizing: border-box;
       padding:0 15px;
     }
-
   }
-
   .u-bottom{
-
      .content{
         float: left;
         width: 70%;
         color:#fff;
-
         strong{
           display: inline-block;
           margin: 0 5px;
@@ -197,11 +189,9 @@
           color:#ff6666;
         }
      }
-
      .btn{
         float: right;
         width: 30%;
-
         >a{
           float: right;
           display: block;
@@ -216,47 +206,37 @@
         }
      }
   }
-
   .u-top{
-
     .u-icon{
       float: left;
       width: 50%;
-
       .icon{
         font-size: 20px;
         color: #fff;
       }
     }
-
     .u-icon:nth-child(2){
       text-align:right;
     }
   }
-
   .u-middle{
      
      .img{
-
       img{
         width: 80px;
         height: 80px;
         overflow: hidden;
         border-radius: 100%;
         background: #fff;
-
       }
      }
-
      .content{
         margin: 10px 0;
-
        a{
         display: inline-block;
         color: #fff;
         font-weight: 600;
        }
-
        span{
         position: relative;
         margin: 0 10px;
@@ -274,9 +254,5 @@
        }
      }
   }
-
   
 </style>
-
-
-

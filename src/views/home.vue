@@ -1,13 +1,11 @@
 <template>
-  <div>
+  <div class="app-container">
 
-    <app-header>
-       <p slot="title">积分购</p>
-    </app-header>
+      <app-header>
+         <p slot="title">积分购</p>
+      </app-header>
 
-    <div class="app-container">
-
-       <div class="swiper-container" id="app-swiper">
+      <div class="swiper-container" id="app-swiper">
           <div class="swiper-wrapper">
               <div class="swiper-slide"><img src="../assets/images/logo.png"></div>
               <div class="swiper-slide"><img src="../assets/images/logo.png"></div>
@@ -105,22 +103,16 @@
                   </div>
               </li>
           </ul>
-       </section>
-
-
-    </div>
-
+      </section>
 
   </div>
 </template>
 
 <script>
-
     require('../assets/css/swiper.min.css');
     
     import Header from './common/Header.vue';
     import Swiper from 'swiper';
-
     export default {
         data() {
          return{
@@ -129,7 +121,6 @@
         },
         components:{
           appHeader:Header
-
         },
         route:{
           activate:function(transition){
@@ -144,14 +135,12 @@
               paginationClickable: true,
           });
         }
-
     }
 </script>
 <style lang="sass" scoped>
     .app-view {
     bottom: 55px;
   }
-
     .swiper-container {
         width:100%;
     }
@@ -172,7 +161,6 @@
         bottom:5px !important;
         padding-right: 10px;
         text-align:right;
-
         >span{
           width: 25px;
           height: 5px;
@@ -181,24 +169,18 @@
           margin: 0 2px !important;
         }
     }
-
-
-
     .floatBox{
       margin: 0 10px;
-
       >li:nth-child(odd){
         div{
           margin-right: 5px;
         }
       }
-
       >li:nth-child(even){
         >div{
           margin-left: 5px;
         }
       }
-
       >li{
         width: 50%;
         -webkit-box-sizing: border-box;
@@ -206,7 +188,6 @@
         -o-box-sizing: border-box;
         box-sizing: border-box;
         float: left;
-
         >div{
           display: block;
           color: #333;
@@ -214,15 +195,11 @@
           padding: 5px;
           margin-top: 10px;
         }
-
        img{ width: 100%; }
-
        .info{
          background: #fff;
-
         .title{font-weight: 600;}
        }
-
        .msg{
           width: 100%;
           text-align: center;
@@ -234,7 +211,6 @@
           -webkit-box-align: center;
           -webkit-align-items: center;
           padding:8px 0;
-
           .state{
             -moz-box-flex: 1;
             -webkit-box-flex: 1;
@@ -242,9 +218,7 @@
             -ms-flex: 1;
             flex: 1;
             text-align:left;
-
             .percentage{ font-size: 12px; }
-
             .progress{
               overflow: hidden;
               display: block;
@@ -252,7 +226,6 @@
               height: 6px;
               background: #ddd;
               border-radius:3px;
-
               .ongoing{
                 display: block;
                 width: 50%;
@@ -261,7 +234,6 @@
               }
             }
           }
-
           .btn{
             .add{
               display: block;
@@ -274,9 +246,7 @@
               color: #ff6666;
             }
           }
-
        }
-
       }
     
     }

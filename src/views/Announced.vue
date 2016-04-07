@@ -1,12 +1,10 @@
 <template>
-  <div>
+  <div class="app-container">
+      <app-header>
+         <p slot="title">最新揭晓</p>
+      </app-header>
 
-    <app-header>
-       <p slot="title">最新揭晓</p>
-    </app-header>
-
-    <div class="app-container">
-       <section class="announced-container">
+      <section class="announced-container">
           <ul class="floatBox">
               <li>
                 <a href="#">
@@ -85,13 +83,11 @@
                   </a>
               </li>
           </ul>
-       </section>
-    </div>
+      </section>
   </div>
 </template>
 
 <script>
-
     import Header from './common/Header.vue';
     
     export default {
@@ -110,7 +106,6 @@
             transition.next();
           }
         },
-
     }
 </script>
 
@@ -122,22 +117,18 @@
  body{
   background: #f8f8f8;
  }
-
 .floatBox{
     margin: 0 10px;
-
     >li:nth-child(odd){
       a{
         margin-right: 5px;
       }
     }
-
     >li:nth-child(even){
       a{
         margin-left: 5px;
       }
     }
-
     >li{
       width: 50%;
       -webkit-box-sizing: border-box;
@@ -146,7 +137,6 @@
       box-sizing: border-box;
       float: left;
       
-
       a{
         display: block;
         color: #333;
@@ -154,30 +144,24 @@
         padding: 10px;
         margin-top: 10px;
       }
-
      img{
       width: 100%;
      }
-
      .info{
        background: #fff;
-
       .title{
         font-weight: 600;
-
       }
       .issue{
         font-size: 12px;
       }
       .state{
         height: 30px;
-
         .txt{
           display: block;
           font-size: 12px;
           line-height: 1.2;
         }
-
         .btn{
           position: relative;
           display: inline-block;
@@ -188,9 +172,7 @@
           font-size: 12px;
           text-align: center;
           border-radius: 3px;
-
         }
-
       }
       .msg{
         height: 30px;
@@ -204,7 +186,6 @@
           font-weight: 600;
           line-height: 25px;
         }
-
         .txt{
           display:block;
           font-size: 12px;
@@ -212,8 +193,6 @@
         }
       }
      }
-    }
-    
+    } 
 }
-
 </style>
