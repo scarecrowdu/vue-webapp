@@ -12,15 +12,25 @@ let App = Vue.extend(AppVue);
 
 Vue.use(VueRouter);
 
+Vue.transition('next', {
+  beforeEnter: function (el) {
+    //设置body样式overflow-y:hidden;
+    console.log(1111)
+    document.body.style.overflowY = "hidden";
+  },
+  afterEnter: function (el) {
+    //再清除上面的样式;
+    console.log(2222)
+    document.body.style.overflowY = "auto";
+  }
+});
+
 
 let router = new VueRouter({
-    hashbang: true, //为true的时候 example.com/#!/foo/bar ， false的时候 example.com/#/foo/bar
-    //abstract:true,  //地址栏不会有变化
-    //以下设置需要服务端设置
-    //history: false,   //当使用 HTML5 history 模式时，服务器需要被正确配置 以防用户在直接访问链接时会遇到404页面。
-    //saveScrollPosition: false
-    linkActiveClass: 'custom-active' //全局设置连接匹配时的类名 参考http://vuejs.github.io/vue-router/en/link.html
+    hashbang: true, 
+    linkActiveClass: 'custom-active' 
 });
+
 
 RouterMap(router);
 

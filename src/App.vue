@@ -2,7 +2,7 @@
   <div class="app">
 
     <!-- 缓存路由切换的页面 -->
-    <router-view class="app-view"  ></router-view>
+    <router-view class="app-view"  :transition="effect"></router-view>
     <!-- :transition="effect" -->
 
     <!-- app导航 -->
@@ -47,34 +47,49 @@
   }
 
   .app-view {
-    transition: all .3s ease;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    position: absolute;
+      top:0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    background: #f8f8f8;
   }
 
 
-  .fade-enter, .fade-leave {
-    opacity: 0;
-    transform: translate3d(0, 0, 0);
-  }
-  .fade-enter{
-    opacity: 1;
-    transform: translate3d(100%, 0, 0);
-  }
+/* 过渡动画 */
+.fade-enter, .fade-leave {
+  opacity: 0.5;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.fade-enter{
+  opacity: 1;
+  -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+}
 
-  .fade-leave {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-  }
+.fade-leave {
+  opacity: 0.5;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
 
-  .back-enter {
-    opacity: 1;
-    -webkit-transform: translate3d(-110%, 0, 0);
-            transform: translate3d(-110%, 0, 0);
-  }
-  .back-leave{
-    opacity: 0;
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-  }
+.back-enter {
+  opacity: 1;
+  -webkit-transform: translate3d(-110%, 0, 0);
+          transform: translate3d(-110%, 0, 0);
 
+}
+.back-leave{
+  opacity: 0.5;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+
+
+ 
 </style>
