@@ -12,18 +12,29 @@ let App = Vue.extend(AppVue);
 
 Vue.use(VueRouter);
 
+
+//过渡代码放到最下面的时候，有时候并不会执行钩子函数的方法，放到这里就可以了。
 Vue.transition('next', {
   beforeEnter: function (el) {
-    //设置body样式overflow-y:hidden;
-    console.log(1111)
-    document.body.style.overflowY = "hidden";
+    router.app.changePage = true;
+  },
+  enter:function(){
   },
   afterEnter: function (el) {
-    //再清除上面的样式;
-    console.log(2222)
-    document.body.style.overflowY = "auto";
+    router.app.changePage = false;
   }
 });
+Vue.transition('prev', {
+  beforeEnter: function (el) {
+    router.app.changePage = true;
+  },
+  enter:function(){
+  },
+  afterEnter: function (el) {
+    router.app.changePage = false;
+  }
+});
+
 
 
 let router = new VueRouter({

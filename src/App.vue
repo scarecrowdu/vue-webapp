@@ -1,8 +1,8 @@
 <template>
-  <div class="app">
+  <div class="app" :class="{'change-page':changePage}">
 
     <!-- 缓存路由切换的页面 -->
-    <router-view class="app-view"  :transition="effect"></router-view>
+    <router-view class="app-view v"  :transition="effect" keep-alive></router-view>
     <!-- :transition="effect" -->
 
     <!-- app导航 -->
@@ -18,7 +18,8 @@
   export default {
      data() {
       return {
-        effect: 'fade',
+          effect:'next',
+          changePage:false
       }
      },
      components:{
@@ -49,16 +50,28 @@
   .app-view {
     transition: all .5s ease;
     -webkit-transition: all .5s ease;
-    position: absolute;
-      top:0;
-    left: 0;
-    width: 100%;
-    min-height: 100%;
-    overflow: hidden;
+    // position: absolute;
+    //   top:0;
+    // left: 0;
+    // width: 100%;
+    // min-height: 100%;
+    // overflow: hidden;
     background: #f8f8f8;
   }
 
-
+html,body{
+      height: 100%;
+      overflow-x:hidden;
+    }
+    body{
+      margin:0;
+    }
+    #app{
+      height: 100%;
+    }
+    .v{
+      min-height:calc(100vh - 50px);
+    }
 /* 过渡动画 */
 .fade-enter, .fade-leave {
   opacity: 0.5;
@@ -90,6 +103,131 @@
 }
 
 
+ /*场景切换*/
+    .next-enter {
+        z-index: 1002;
+        -webkit-animation: pageFromRightToCenter 800ms forwards;
+        animation: pageFromRightToCenter 800ms forward
+    }
+    .next-leave {
+        z-index: 1001;
+        -webkit-animation: pageFromCenterToLeft 800ms forwards;
+        animation: pageFromCenterToLeft 800ms forwards
+    }
+    .prev-enter {
+        z-index: 1001;
+        -webkit-animation: pageFromLeftToCenter 400ms forwards;
+        animation: pageFromLeftToCenter 400ms forward
+    }
+    .prev-leave {
+        z-index: 1002;
+        -webkit-animation: pageFromCenterToRight 400ms forwards;
+        animation: pageFromCenterToRight 400ms forwards;
+    }
 
+    @-webkit-keyframes pageFromRightToCenter {
+      from {
+        -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+        opacity: .9;
+      }
+      to {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
+    @keyframes pageFromRightToCenter {
+      from {
+        -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+        opacity: .9;
+      }
+      to {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
+    @-webkit-keyframes pageFromCenterToRight {
+      from {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+      to {
+        -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+        opacity: .9;
+      }
+    }
+    @keyframes pageFromCenterToRight {
+      from {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+      to {
+        -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+        opacity: .9;
+      }
+    }
+    .page-from-center-to-left {
+      -webkit-animation: pageFromCenterToLeft 400ms forwards;
+              animation: pageFromCenterToLeft 400ms forwards;
+    }
+    .page-from-left-to-center  {
+      -webkit-animation: pageFromLeftToCenter 400ms forwards;
+              animation: pageFromLeftToCenter 400ms forwards;
+    }
+    @-webkit-keyframes pageFromCenterToLeft {
+      from {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+      }
+      to {
+        opacity: 0.5;
+        -webkit-transform: translate3d(-20%, 0, 0);
+                transform: translate3d(-20%, 0, 0);
+      }
+    }
+    @keyframes pageFromCenterToLeft {
+      from {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+      }
+      to {
+        opacity: 0.5;
+        -webkit-transform: translate3d(-20%, 0, 0);
+                transform: translate3d(-20%, 0, 0);
+      }
+    }
+    @-webkit-keyframes pageFromLeftToCenter {
+      from {
+        opacity: .5;
+        -webkit-transform: translate3d(-20%, 0, 0);
+                transform: translate3d(-20%, 0, 0);
+      }
+      to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+      }
+    }
+    @keyframes pageFromLeftToCenter {
+      from {
+        opacity: .5;
+        -webkit-transform: translate3d(-20%, 0, 0);
+                transform: translate3d(-20%, 0, 0);
+      }
+      to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+      }
+    }
  
 </style>
