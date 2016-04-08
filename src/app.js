@@ -39,7 +39,10 @@ Vue.transition('prev', {
 
 let router = new VueRouter({
     hashbang: true, 
-    linkActiveClass: 'custom-active' 
+    history: false,
+    saveScrollPosition: true,
+    transitionOnLoad: true,
+    linkActiveClass: 'custom-active',
 });
 
 

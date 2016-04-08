@@ -4,19 +4,19 @@
       <div class="tab-bar">
       	 <a class="bar-item" v-link="{ name: 'home', exact: true }">
       	 	  <i class="icon">&#xe600;</i>
-            <p class="bar-label">首页</p>
+              <p>首页</p>
       	 </a>
          <a class="bar-item" v-link="{ path: '/announced' }">
              <i class="icon">&#xe603;</i>
-             <p class="bar-label">最新揭晓</p>
+             <p>最新揭晓</p>
          </a>
          <a class="bar-item" v-link="{ name: 'cart', exact: true }">
              <i class="icon">&#xe602;</i>
-             <p class="bar-label">清单</p>
+             <p>清单</p>
          </a>
          <a class="bar-item" v-link="{ path: '/me' }">
              <i class="icon">&#xe601;</i>
-             <p class="weui_tabbar_label">我的</p>
+             <p>我的</p>
          </a>
       </div>
     </nav>
@@ -25,7 +25,7 @@
 <style lang="sass">
 	/*导航烂*/
 	.app-nav{
-        z-index: 999;
+        z-index: 99999;
         position: fixed;
         bottom: 0;
         left: 0;

@@ -1,110 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="user-scalable=0, width=device-width, initial-scale=1, maximum-scale=1">
-    <title></title>
-     <link rel="stylesheet" href="./dist/style.css">
-     <style>
-        .page-enter {
-            z-index: 2002;
-            -webkit-animation: pageFromRightToCenter 400ms forwards;
-            -o-animation: pageFromRightToCenter 400ms forwards;
-            animation: pageFromRightToCenter 400ms forward
-        }
-        
-        .page-leave {
-            z-index: 2002;
-            -webkit-animation: pageFromCenterToRight 400ms forwards;
-            -o-animation: pageFromCenterToRight 400ms forwards;
-            animation: pageFromCenterToRight 400ms forwards
-        }
-
-       @-webkit-keyframes pageFromRightToCenter {
-          from {
-            opacity: .9;
-            -webkit-transform: translate3d(100%,0,0);
-            transform: translate3d(100%,0,0)
-          }
-
-          to {
-            opacity: 1;
-            -webkit-transform: translate3d(0,0,0);
-            transform: translate3d(0,0,0)
-          }
-        }
-
-        @-o-keyframes pageFromRightToCenter {
-          from {
-            opacity: .9;
-            transform: translate3d(100%,0,0)
-          }
-
-          to {
-            opacity: 1;
-            transform: translate3d(0,0,0)
-          }
-        }
-
-        @keyframes pageFromRightToCenter {
-          from {
-            opacity: .9;
-            -webkit-transform: translate3d(100%,0,0);
-            transform: translate3d(100%,0,0)
-          }
-
-          to {
-            opacity: 1;
-            -webkit-transform: translate3d(0,0,0);
-            transform: translate3d(0,0,0)
-          }
-        }
-
-
-        @-webkit-keyframes pageFromCenterToRight {
-          from {
-            opacity: 1;
-            -webkit-transform: translate3d(0,0,0);
-            transform: translate3d(0,0,0)
-          }
-
-          to {
-            opacity: .9;
-            -webkit-transform: translate3d(100%,0,0);
-            transform: translate3d(100%,0,0)
-          }
-        }
-
-        @-o-keyframes pageFromCenterToRight {
-          from {
-            opacity: 1;
-            transform: translate3d(0,0,0)
-          }
-
-          to {
-            opacity: .9;
-            transform: translate3d(100%,0,0)
-          }
-        }
-
-        @keyframes pageFromCenterToRight {
-          from {
-            opacity: 1;
-            -webkit-transform: translate3d(0,0,0);
-            transform: translate3d(0,0,0)
-          }
-
-          to {
-            opacity: .9;
-            -webkit-transform: translate3d(100%,0,0);
-            transform: translate3d(100%,0,0)
-          }
-        }
-    </style>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script src="./dist/vendor.js"></script>
-    <script src="./dist/build.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=0, width=device-width, initial-scale=1, maximum-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./dist/style.css"></head>
+<body>
+  <div id="app"></div>
+  <script src="./dist/vendor.js"></script>
+  <script src="./dist/build.js"></script>
+</body>
 </html>

@@ -137,6 +137,7 @@
         }
     }
 </script>
+
 <style lang="sass">
 
     .swiper-container {
@@ -244,5 +245,4 @@
     }
     }
     }
-
 </style>
