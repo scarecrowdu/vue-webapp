@@ -29,10 +29,10 @@
 
 <style lang="sass">
 
-.header-table{
-  background-color: #eee !important;
-  color:#333 !important;
-}
+    body .header-table{
+      background-color: #eee;
+      color:#333;
+    }
    .app-header{
       position: relative;
       padding: 0 10px;
@@ -46,7 +46,7 @@
       .h-left,.h-right{
         position: absolute;
         top:0;
-        z-index: 10;
+        z-index: 100;
         width: 60px;
         text-align: center;
       }

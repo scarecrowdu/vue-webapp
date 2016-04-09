@@ -2,8 +2,8 @@
   <div class="app page">
 
     <!-- 缓存路由切换的页面 -->
-    <router-view class="app-view" keep-alive :transition="effect" :class="{'change-page':changePage}"></router-view>
-
+    <router-view class="app-view" keep-alive :class="{'change-page':changePage}"></router-view>
+<!--  :transition="effect" -->
     <!-- app导航 -->
     <nav-bar v-if="isIndex"></nav-bar>
     

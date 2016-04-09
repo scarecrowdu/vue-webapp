@@ -39,7 +39,7 @@
 
 
         .tab-bar{
-          padding-top: 4px;
+          padding-top: 2px;
           width: 100%;
           text-align: center;
           display: -webkit-box;
@@ -64,7 +64,7 @@
                 font-size: 14px;
 
                 .icon{
-                  font-size: 16px;
+                  font-size: 18px;
                 }
               }
         }

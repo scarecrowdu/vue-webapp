@@ -27,6 +27,23 @@ export default function(router) {
 				require(['./views/Me.vue'],resolve)
 			},
 			subRoutes: {
+	            '/msg': {
+	                component: require('./views/center/Personal.vue')
+	            },
+	            '/register': {
+	                component: require('./views/user/Register.vue')
+	            },
+	            '/PhoneBind': {
+	                component: require('./views/user/PhoneBind.vue')
+	            }
+            }
+		},
+		'/user':{
+			name:'user',
+			component:function(resolve){
+				require(['./views/user/User.vue'],resolve)
+			},
+			subRoutes: {
 	            '/login': {
 	                component: require('./views/user/Login.vue')
 	            },

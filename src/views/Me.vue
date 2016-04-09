@@ -10,14 +10,14 @@
             </div>
 
             <div class="u-icon">
-               <i class="icon">&#xe609;</i>
+               <a v-link="{ path: '/me/msg' }"><i class="icon">&#xe609;</i></a>
             </div>
         </div>
 
         <div class="u-middle">
                 <div class="img"><img src="../assets/images/logo.png"></div>
                 <div class="content">
-                  <p><a v-link="{ path: '/me/login' }">登陆</a><span></span><a v-link="{ path: '/me/register' }"> 注册</a></p>
+                  <p><a v-link="{ path: '/user/login' }">登陆</a><span></span><a v-link="{ path: '/user/register' }"> 注册</a></p>
                 </div>
         </div>
 
@@ -165,6 +165,7 @@
       -o-box-sizing: border-box;
       box-sizing: border-box;
       padding:5px 20px;
+      z-index: 10;
     }
     .u-middle{
       position: absolute;
@@ -173,6 +174,7 @@
       width: 100%;
       text-align: center;
       transform: translate(0,-50%);
+      z-index: 1;
     }
     .u-bottom{
       position: absolute;
@@ -186,6 +188,7 @@
       -o-box-sizing: border-box;
       box-sizing: border-box;
       padding:0 15px;
+      z-index: 10;
     }
   }
   .u-bottom{
