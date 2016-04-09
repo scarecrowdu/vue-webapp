@@ -26,7 +26,7 @@
 	/*导航烂*/
 	.app-nav{
         z-index: 99999;
-        position: fixed;
+        position: absolute;
         bottom: 0;
         left: 0;
         right: 0;

@@ -1,9 +1,7 @@
 <template>
-  <div class="cart">
+  <div class="cart app-content">
 
-    <app-header>
-       <p slot="title">清单</p>
-    </app-header>
+    <app-header title="清单"></app-header>
        
     <div class="cart-msg">
       <i class="cart-icon icon">&#xe602;</i>

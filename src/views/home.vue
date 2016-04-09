@@ -1,9 +1,8 @@
 <template>
-    <div class="homepage">
+    <div class="homepage app-content">
         <div class="mainArea">
-            <app-header>
-                <p slot="title">积分购</p>
-            </app-header>
+
+            <app-header title="积分购"></app-header>
 
             <div class="swiper-container" id="app-swiper">
                 <div class="swiper-wrapper">
@@ -139,7 +138,9 @@
 </script>
 
 <style lang="sass">
-
+    .homepage {
+        bottom: 55px;
+      }
     .swiper-container {
         width:100%;
     }

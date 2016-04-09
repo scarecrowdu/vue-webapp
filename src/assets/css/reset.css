@@ -1,0 +1,119 @@
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Helvetica Neue",Helvetica,STHeiTi,Arial,sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font-size: 14px;
+  background: #eee;
+  color: #333;
+  overflow: hidden;
+}
+
+a, input, textarea, select, button {
+  outline: 0;
+}
+
+*, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+a:active {
+  color: #333;
+}
+/** 设置默认字体   **/
+body,h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+}
+/** 重置列表元素   **/
+ul, ol ,li {
+  list-style: none;
+}
+/** 重置文本格式元素 **/
+a ,a:hover {
+  text-decoration: none;
+}
+/** 重置表单元素 **/
+fieldset, img {
+  border: 0;
+} /* img 搭车：让链接里的 img 无边框 */
+button, input, select, textarea {
+  font-size: 100%;
+} /* 使得表单元素在 ie 下能继承字体大小 */
+button {
+  -webkit-appearance: none;
+  border: 0;
+  background: 0 0;
+}
+/* 取消表单项聚焦时产生的黄色边框  */
+input,button,select,textarea {
+  outline: none;
+}
+
+a,input,textarea,select {
+  outline: 0;
+}
+/* 取消滚动条 */  
+::-webkit-scrollbar {
+  width: 0px;
+} 
+/*输入提示文字*/
+::-webkit-input-placeholder {
+  font-size: 16px;
+  font-family: "Microsoft YaHei";
+  color: #cfcfcf;
+}
+/** 重置表格元素 **/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/** 重置图片 **/
+img {
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: middle;
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #eee;
+  z-index: 2000;
+}
+
+.app-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #f8f8f8;
+}

@@ -1,12 +1,10 @@
 
 <template>
-    <header class="app-header app-header-table">
+    <header class="app-header" :style="{background:headerBg,color:titleColor}" :class="{ 'header-table': titleBg}">
       <p class="h-left">
       	<slot name="left"></slot>
       </p>
-      <h1 class="app-title">
-      	<slot name="title"></slot>
-      </h1>
+      <h1 class="app-title">{{title}}</h1>
       <p class="h-right">
       	<slot name="right"></slot>
       </p>
@@ -19,11 +17,22 @@
          return{
            isB :true,
          }
+        },
+        props:{
+          title:String,
+          titleColor:String,
+          headerBg:String,
+          titleBg:Boolean
         }
     }
 </script>
 
 <style lang="sass">
+
+.header-table{
+  background-color: #eee !important;
+  color:#333 !important;
+}
    .app-header{
       position: relative;
       padding: 0 10px;
@@ -34,13 +43,20 @@
       background:#ff6666;
       color:#fff;
 
-      .h-left{
-        float: left;
+      .h-left,.h-right{
+        position: absolute;
+        top:0;
+        z-index: 10;
+        width: 60px;
         text-align: center;
       }
 
+      .h-left{
+        left: 0;
+      }
+
       .h-right{
-        float: right;
+        right: 0;
       }
 
       .app-title{

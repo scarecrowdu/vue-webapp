@@ -25,7 +25,18 @@ export default function(router) {
 			name:'me',
 			component:function(resolve){
 				require(['./views/Me.vue'],resolve)
-			}
+			},
+			subRoutes: {
+	            '/login': {
+	                component: require('./views/user/Login.vue')
+	            },
+	            '/register': {
+	                component: require('./views/user/Register.vue')
+	            },
+	            '/PhoneBind': {
+	                component: require('./views/user/PhoneBind.vue')
+	            }
+            }
 		},
 		
 		// not found handler
@@ -42,27 +53,37 @@ export default function(router) {
 	window.routeList = [];
 	router.beforeEach(function(transition){
 		console.log('-----before-----');
-        
-        window.scrollTo(0,0);
 
-	    if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]){
+	    if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
 	        router.app.effect='prev';//返回
 	        routeList.splice(routeList.length-1,1);
 	        setTimeout(function(){
 	            //这里加上延迟是要在afterEach之后在执行
 	          transition.next()
-	        },15);
-	        return;
+	        },150);
+	        // return;
+	    } else {
+	    	router.app.effect='next';//前进
+		    routeList.push({
+				name : transition.to.name,
+				path : transition.to.path,
+				query : transition.to.query,
+				params : transition.to.params,
+				timer: +new Date
+			});
+
+			transition.next();
 	    }
-	    router.app.effect='next';//前进
-	    routeList.push({
-			name : transition.to.name,
-			path : transition.to.path,
-			query : transition.to.query,
-			params : transition.to.params,
-			timer: +new Date
-		});
-	    transition.next();
+
+	    
+		//使底部菜单栏在一级路由切换时一直保持显示
+		//在二级页时隐藏
+	    var toPath = transition.to.path;
+	    if(toPath.replace(/[^/]/g,"").length>1){
+	        router.app.isIndex = false;
+	    }else{
+	        router.app.isIndex = true;
+	    }   
 	});
     
     //可以记录访问路径
@@ -76,6 +97,5 @@ export default function(router) {
 			console.log(routeList[i].name);
 		};
 	});
-
 
 }

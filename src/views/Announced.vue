@@ -1,9 +1,8 @@
 <template>
-  <div class="indiana">
+  <div class="indiana app-content">
      <div class="mainArea">
-        <app-header>
-           <p slot="title">最新揭晓</p>
-        </app-header>
+
+        <app-header title="最新揭晓"></app-header>
 
         <section class="announced-container">
             <ul class="floatBox">

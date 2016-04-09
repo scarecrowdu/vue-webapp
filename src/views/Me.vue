@@ -1,6 +1,6 @@
 <template>
 
-  <div>
+  <div class="me app-content">
       
       <div class="user-header">
 
@@ -17,7 +17,7 @@
         <div class="u-middle">
                 <div class="img"><img src="../assets/images/logo.png"></div>
                 <div class="content">
-                  <p><a>登陆</a><span></span><a> 注册</a></p>
+                  <p><a v-link="{ path: '/me/login' }">登陆</a><span></span><a v-link="{ path: '/me/register' }"> 注册</a></p>
                 </div>
         </div>
 
@@ -70,6 +70,12 @@
         </a>
       </div>
 
+
+
+      <!-- 缓存二级路由切换的页面 -->
+      <router-view transition="page"> </router-view>
+           
+
   </div>
 </template>
 
@@ -78,7 +84,7 @@
         data() {
          return{
            title:'个人中心',
-           // effect: 'page',
+           isIndex:true
          }
         },
         components: {
@@ -96,6 +102,22 @@
 
 
 <style lang="sass">
+
+.page-enter {
+    z-index: 2002;
+    -webkit-animation: pageFromRightToCenter 600ms forwards;
+    -o-animation: pageFromRightToCenter 600ms forwards;
+    animation: pageFromRightToCenter 600ms forward
+}
+.page-leave {
+    z-index: 2002;
+    -webkit-animation: pageFromCenterToRight 600ms forwards;
+    -o-animation: pageFromCenterToRight 600ms forwards;
+    animation: pageFromCenterToRight 600ms forwards
+}
+
+
+
 
   /* 变量 */
   $color-primary: #27c4fe;
@@ -224,7 +246,6 @@
        a{
         display: inline-block;
         color: #fff;
-        font-weight: 600;
        }
        span{
         position: relative;
@@ -234,8 +255,8 @@
             content:"";
             display: inline-block;
             position: absolute;
-            top:-4px;
-            width: 2px;
+            top:-2px;
+            width: 1px;
             height: 15px;
             margin-top: 5px;
             background: #fff;
