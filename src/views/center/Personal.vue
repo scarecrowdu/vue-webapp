@@ -47,7 +47,7 @@
             <input class="weui_input" placeholder="I'm placeholder" type="text">
           </p>
         </div>
-        <div class="weui_cell">
+        <a class="weui_cell" v-link="{ path: '/me/addressList' }">
           <p class="weui_cell_hd">
              <label class="weui_label" style="width: 4.5em;">地址管理</label>
           </p>
@@ -55,7 +55,7 @@
            
           </p>
            <div class="weui_cell_ft with_arrow"></div>
-        </div>
+        </a>
 
     </div>    
         

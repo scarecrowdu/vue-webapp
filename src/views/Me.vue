@@ -41,7 +41,7 @@
           </div>
           <div class="weui_cell_ft with_arrow"></div>
         </a>
-        <a class="weui_cell" href="#">
+        <a class="weui_cell" v-link="{ path: '/me/winRecord' }">
           <div class="weui_cell_hd">
             <span class="icon c-icon warning">&#xe604;</span>
           </div>
@@ -50,7 +50,7 @@
           </div>
           <div class="weui_cell_ft with_arrow"></div>
         </a>
-        <a class="weui_cell" href="#">
+        <a class="weui_cell" v-link="{ path: '/me/redPackets' }">
           <div class="weui_cell_hd">
             <span class="icon c-icon danger">&#xe605;</span>
           </div>
@@ -111,12 +111,27 @@
 }
 .page-leave {
     z-index: 2002;
-    -webkit-animation: pageFromCenterToRight 600ms forwards;
-    -o-animation: pageFromCenterToRight 600ms forwards;
-    animation: pageFromCenterToRight 600ms forwards
+    -webkit-animation: opacityLeave 600ms forwards;
+    -o-animation: opacityLeave 600ms forwards;
+    animation: opacityLeave 600ms forwards
 }
 
-
+@-webkit-keyframes opacityLeave {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes opacityLeave {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 
 
   /* 变量 */

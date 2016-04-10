@@ -27,7 +27,7 @@ $color-success: #4cd964;
 
 
 /* 弹性布局 */
-.flexbox{
+.v-flexbox{
   width: 100%;
   text-align: center;
   display: -webkit-box;
@@ -39,7 +39,7 @@ $color-success: #4cd964;
   -webkit-align-items: center;
 }
 
-.flexbox .flexbox-item{
+.v-flexbox .v-flexbox-item{
   -moz-box-flex: 1;
   -webkit-box-flex: 1;
   -o-box-flex: 1;

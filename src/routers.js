@@ -1,43 +1,70 @@
 
 export default function(router) {
     router.map({
+
+    	// 首页
 		'/':{
 			name:'home',
 			component:function(resolve){
 				require(['./views/Home.vue'],resolve)
 			}
 		},
+
+		// 最新揭晓
 		'/announced':{
 			name:'announced',
 			component:function(resolve){
 				require(['./views/Announced.vue'],resolve)
 			}
 		},
-
+        
+        // 清单
 		'/cart':{
 			name:'cart',
 			component:function(resolve){
 				require(['./views/Cart.vue'],resolve)
 			}
-		},
+		}, 
 
+        // 个人中心
 		'/me':{
 			name:'me',
 			component:function(resolve){
 				require(['./views/Me.vue'],resolve)
 			},
 			subRoutes: {
+				// 个人资料
 	            '/msg': {
 	                component: require('./views/center/Personal.vue')
 	            },
-	            '/register': {
-	                component: require('./views/user/Register.vue')
+	            // 地址列表
+	            '/addressList': {
+	                component: require('./views/center/Addresslist.vue')
 	            },
-	            '/PhoneBind': {
-	                component: require('./views/user/PhoneBind.vue')
+
+	            // 添加地址
+	            '/addressEdit': {
+	                component: require('./views/center/Addressedit.vue')
+	            },
+
+	            // 我的红包
+	            '/redPackets': {
+	                component: require('./views/center/Redpackets.vue')
+	            },
+
+	            // 中奖记录
+	            '/winRecord': {
+	                component: require('./views/center/Winrecord.vue')
+	            },
+
+	            // 中奖确认
+	            '/winConfirm': {
+	                component: require('./views/center/Winconfirm.vue')
 	            }
             }
 		},
+
+		// 登陆注册手机绑定
 		'/user':{
 			name:'user',
 			component:function(resolve){
@@ -50,13 +77,13 @@ export default function(router) {
 	            '/register': {
 	                component: require('./views/user/Register.vue')
 	            },
-	            '/PhoneBind': {
+	            '/phonebind': {
 	                component: require('./views/user/PhoneBind.vue')
 	            }
             }
 		},
 		
-		// not found handler
+		// 404
 	    '*': {
 	        component:function(resolve){
 			    require(['./views/error/not_found.vue'],resolve)
