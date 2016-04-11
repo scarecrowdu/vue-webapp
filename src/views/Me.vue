@@ -32,7 +32,7 @@
       </div> 
 
       <div class="weui_cells">
-        <a class="weui_cell" href="#">
+        <a class="weui_cell" v-link="{ path: '/me/allRecord' }">
           <div class="weui_cell_hd">
             <span class="icon c-icon danger">&#xe606;</span>
           </div>
@@ -59,7 +59,7 @@
           </div>
           <div class="weui_cell_ft with_arrow"></div>
         </a>
-        <a class="weui_cell" href="#">
+        <a class="weui_cell" v-link="{ path: '/me/rechargeRecord' }">
           <div class="weui_cell_hd">
             <span class="icon c-icon primary">&#xe608;</span>
           </div>

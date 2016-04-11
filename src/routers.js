@@ -52,6 +52,12 @@ export default function(router) {
 	                component: require('./views/center/Redpackets.vue')
 	            },
 
+	            // 全部参与记录
+	            '/allRecord': {
+	                component: require('./views/center/Allrecord.vue')
+	            },
+
+
 	            // 中奖记录
 	            '/winRecord': {
 	                component: require('./views/center/Winrecord.vue')
@@ -60,6 +66,16 @@ export default function(router) {
 	            // 中奖确认
 	            '/winConfirm': {
 	                component: require('./views/center/Winconfirm.vue')
+	            },
+
+	            // 充值
+	            '/recharge': {
+	                component: require('./views/center/Recharge.vue')
+	            },
+
+	            // 充值记录
+	            '/rechargeRecord': {
+	                component: require('./views/center/Rechargerecord.vue')
 	            }
             }
 		},

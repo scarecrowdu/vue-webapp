@@ -19,7 +19,7 @@
                         <div>
                             <img src="../assets/images/logo.png">
                             <div class="info">
-                                <p class="title nowrap">小米电视</p>
+                                <p class="title nowrap-multi">小米电视小米电视小米电视小米电视</p>
                             </div>
                             <div class="msg">
                                 <p class="state">
@@ -36,7 +36,7 @@
                         <div>
                             <img src="../assets/images/logo.png">
                             <div class="info">
-                                <p class="title nowrap">小米电视</p>
+                                <p class="title nowrap-multi">小米电视小米电视小米电视小米电视</p>
                             </div>
                             <div class="msg">
                                 <p class="state">
@@ -53,7 +53,7 @@
                         <div>
                             <img src="../assets/images/logo.png">
                             <div class="info">
-                                <p class="title nowrap">小米电视</p>
+                                <p class="title nowrap-multi">小米电视小米电视小米电视小米电视小米电视小米电视小米电视小米电视</p>
                             </div>
                             <div class="msg">
                                 <p class="state">
@@ -70,7 +70,7 @@
                         <div>
                             <img src="../assets/images/logo.png">
                             <div class="info">
-                                <p class="title nowrap">小米电视</p>
+                                <p class="title nowrap-multi">小米电视</p>
                             </div>
                             <div class="msg">
                                 <p class="state">
@@ -87,7 +87,7 @@
                         <div>
                             <img src="../assets/images/logo.png">
                             <div class="info">
-                                <p class="title nowrap">小米电视</p>
+                                <p class="title nowrap-multi">小米电视</p>
                             </div>
                             <div class="msg">
                                 <p class="state">
@@ -195,7 +195,8 @@
         img{ width: 100%; }
         .info{
             background: #fff;
-        .title{font-weight: 600;}
+            height: 45px;
+           .title{font-weight: 600;font-size:14px;}
         }
         .msg{
             width: 100%;
