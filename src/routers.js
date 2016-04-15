@@ -58,7 +58,6 @@ export default function(router) {
 	                component: require('./views/center/Allrecord.vue')
 	            },
 
-
 	            // 中奖记录
 	            '/winRecord': {
 	                component: require('./views/center/Winrecord.vue')
@@ -84,7 +83,9 @@ export default function(router) {
 		// 地址列表
         '/addressList': {
         	name:'addressList',
-            component: require('./views/center/Addresslist.vue')
+            component:function(resolve){
+				require(['./views/center/Addresslist.vue'],resolve)
+			},
         },
 
 

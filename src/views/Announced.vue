@@ -4,7 +4,8 @@
 
         <app-header title="最新揭晓"></app-header>
 
-        <section class="announced-container">
+         <div v-if="$loadingRouteData">Loading ...</div>
+         <section class="announced-container" v-if="!$loadingRouteData">
             <ul class="floatBox">
                 <li v-for="item in lists" >
                   <a href="#">
@@ -123,16 +124,16 @@
         route:{
           data (transition) {
             var _self = this;
-            _self.getAjaxData();
+            _self.getAjaxData(transition);
             
           },
           deactivate (transition){
                transition.next();
-            }
+          }
         },
         methods:{
             /*请求数据*/
-            getAjaxData:function(){
+            getAjaxData:function(transition){
                 var _self = this;
                 $.ajax({
                     type: "GET",
@@ -141,8 +142,9 @@
                     dataType:"json",
                     success :function(json){
                         if(json.retcode==1){
-                           _self.lists = json.data.rows;
-                         
+                           setTimeout(function(){
+                              transition.next({lists:json.data.rows});
+                           },2000)
                         }
                     }
                 });
@@ -159,32 +161,68 @@
 }
 
 .floatBox{
-    margin: 0 10px;
+   /*  margin: 0 10px; */
 
      >li:nth-child(odd){
+
        a{
-        margin-right: 5px;
+        /* margin-right: 5px; */
        }
     }
     >li:nth-child(even){
+      &:after {
+          content: " ";
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1px;
+          height: 100%;
+          border-right: 1px solid #d9d9d9;
+          color: #d9d9d9;
+          -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+          -webkit-transform: scaleX(.5);
+          transform: scaleX(.5);
+          left: 0;
+      }
       a{
-        margin-left: 5px;
+       /*  margin-left: 5px; */
       }
     }
     >li{
+      position: relative;
       width: 50%;
       -webkit-box-sizing: border-box;
       -ms-box-sizing: border-box;
       -o-box-sizing: border-box;
       box-sizing: border-box;
       float: left;
+
+
+      &:before {
+          content: " ";
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 1px;
+          border-top: 1px solid #d9d9d9;
+          color: #d9d9d9;
+          -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+          -webkit-transform: scaleY(.5);
+          transform: scaleY(.5);
+          left: 0;
+      }
+
+      
       
       a{
         display: block;
         color: #333;
         background: #fff;
         padding: 10px;
-        margin-top: 10px;
+        /* margin-top: 10px; */
       }
      img{
       width: 100%;

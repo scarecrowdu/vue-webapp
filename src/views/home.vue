@@ -16,88 +16,63 @@
             <section class="main-container">
                 <ul class="itemBox">
                     <li class="item">
-                        <div>
-                            <img src="../assets/images/logo.png">
-                            <div class="info">
-                                <p class="title nowrap-multi">小米电视小米电视小米电视小米电视</p>
-                            </div>
-                            <div class="msg">
-                                <p class="state">
-                                    <span class="percentage">开奖进度80%</span>
-                                    <span class="progress"><i class="ongoing"></i></span>
-                                </p>
-                                <p class="btn">
-                                    <span class="add">+清单</span>
-                                </p>
-                            </div>
+                        <img src="../assets/images/logo.png">
+                        <div class="info">
+                            <p class="title nowrap-multi">小米电视小米电视小米电视小米电视</p>
+                        </div>
+                        <div class="msg">
+                            <p class="state">
+                                <span class="percentage">开奖进度80%</span>
+                                <span class="progress"><i class="ongoing"></i></span>
+                            </p>
+                            <p class="btn">
+                                <span class="add">+清单</span>
+                            </p>
                         </div>
                     </li>
                     <li class="item">
-                        <div>
-                            <img src="../assets/images/logo.png">
-                            <div class="info">
-                                <p class="title nowrap-multi">小米电视小米电视小米电视小米电视</p>
-                            </div>
-                            <div class="msg">
-                                <p class="state">
-                                    <span class="percentage">开奖进度80%</span>
-                                    <span class="progress"></span>
-                                </p>
-                                <p class="btn">
-                                    <span class="add">+清单</span>
-                                </p>
-                            </div>
+                        <img src="../assets/images/logo.png">
+                        <div class="info">
+                            <p class="title nowrap-multi">小米电视小米电视小米电视小米电视</p>
+                        </div>
+                        <div class="msg">
+                            <p class="state">
+                                <span class="percentage">开奖进度80%</span>
+                                <span class="progress"><i class="ongoing"></i></span>
+                            </p>
+                            <p class="btn">
+                                <span class="add">+清单</span>
+                            </p>
                         </div>
                     </li>
-                    <li class="item">
-                        <div>
-                            <img src="../assets/images/logo.png">
-                            <div class="info">
-                                <p class="title nowrap-multi">小米电视小米电视小米电视小米电视小米电视小米电视小米电视小米电视</p>
-                            </div>
-                            <div class="msg">
-                                <p class="state">
-                                    <span class="percentage">开奖进度80%</span>
-                                    <span class="progress"></span>
-                                </p>
-                                <p class="btn">
-                                    <span class="add">+清单</span>
-                                </p>
-                            </div>
+                     <li class="item">
+                        <img src="../assets/images/logo.png">
+                        <div class="info">
+                            <p class="title nowrap-multi">小米电视小米电视小米电视小米电视</p>
+                        </div>
+                        <div class="msg">
+                            <p class="state">
+                                <span class="percentage">开奖进度80%</span>
+                                <span class="progress"><i class="ongoing"></i></span>
+                            </p>
+                            <p class="btn">
+                                <span class="add">+清单</span>
+                            </p>
                         </div>
                     </li>
-                    <li class="item">
-                        <div>
-                            <img src="../assets/images/logo.png">
-                            <div class="info">
-                                <p class="title nowrap-multi">小米电视</p>
-                            </div>
-                            <div class="msg">
-                                <p class="state">
-                                    <span class="percentage">开奖进度80%</span>
-                                    <span class="progress"><i class="ongoing"></i></span>
-                                </p>
-                                <p class="btn">
-                                    <span class="add">+清单</span>
-                                </p>
-                            </div>
+                     <li class="item">
+                        <img src="../assets/images/logo.png">
+                        <div class="info">
+                            <p class="title nowrap-multi">小米电视小米电视小米电视小米电视</p>
                         </div>
-                    </li>
-                    <li class="item">
-                        <div>
-                            <img src="../assets/images/logo.png">
-                            <div class="info">
-                                <p class="title nowrap-multi">小米电视</p>
-                            </div>
-                            <div class="msg">
-                                <p class="state">
-                                    <span class="percentage">开奖进度80%</span>
-                                    <span class="progress"></span>
-                                </p>
-                                <p class="btn">
-                                    <span class="add">+清单</span>
-                                </p>
-                            </div>
+                        <div class="msg">
+                            <p class="state">
+                                <span class="percentage">开奖进度80%</span>
+                                <span class="progress"><i class="ongoing"></i></span>
+                            </p>
+                            <p class="btn">
+                                <span class="add">+清单</span>
+                            </p>
                         </div>
                     </li>
                 </ul>
@@ -173,78 +148,112 @@
     }
 
     .itemBox{
-         margin: 0 10px;
+        
 
-        .item:nth-child(odd) > div{ margin-right: 5px; }
-        .item:nth-child(even) >div{ margin-left: 5px;  }
+        .item:nth-child(even){ 
+            &:after {
+                content: " ";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 1px;
+                height: 100%;
+                border-right: 1px solid #d9d9d9;
+                color: #d9d9d9;
+                -webkit-transform-origin: 0 0;
+                transform-origin: 0 0;
+                -webkit-transform: scaleX(.5);
+                transform: scaleX(.5);
+                left: 0;
+            }
+         }
         .item{
-           width: 50%;
-           float: left;
+            position: relative;
+            width: 50%;
+            float: left;
            -webkit-box-sizing: border-box;
            -ms-box-sizing: border-box;
            -o-box-sizing: border-box;
            box-sizing: border-box;
+           background: #fff;
+           padding:10px;
+
+            &:before {
+              content: " ";
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 1px;
+              border-top: 1px solid #d9d9d9;
+              color: #d9d9d9;
+              -webkit-transform-origin: 0 0;
+              transform-origin: 0 0;
+              -webkit-transform: scaleY(.5);
+              transform: scaleY(.5);
+              left: 0;
+            }
              
-            >div{
-                 display: block;
-                 color: #333;
-                 background: #fff;
-                 padding: 5px;
-                 margin-top: 10px;
+
+            img{ width: 100%; }
+
+            .info{
+                background: #fff;
+                height: 40px;
+               .title{font-size: 14px;line-height: 1.4;}
+            }
+
+            .msg{
+                width: 100%;
+                text-align: center;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -o-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-align: center;
+                -webkit-align-items: center;
+                padding:6px 0;
+
+
+               .state{
+                    -moz-box-flex: 1;
+                    -webkit-box-flex: 1;
+                    -o-box-flex: 1;
+                    -ms-flex: 1;
+                    flex: 1;
+                    text-align:left;
+
+                        .percentage{ font-size: 12px; }
+                        .progress{
+                            overflow: hidden;
+                            display: block;
+                            width: 80%;
+                            height: 6px;
+                            background: #ddd;
+                            border-radius:3px;
+                        }    
+                        .ongoing{
+                            display: block;
+                            width: 50%;
+                            height: 6px;
+                            background:#ff6666;
+                        }
+                    }
+            }
+
+            .btn{
+                .add{
+                    display: block;
+                    width: 60px;
+                    padding:2px 0;
+                    border-style: solid;
+                    border-width: 1px;
+                    border-color: #ff6666;
+                    border-radius:3px;
+                    color: #ff6666;
+                }
              }
-        img{ width: 100%; }
-        .info{
-            background: #fff;
-            height: 45px;
-           .title{font-weight: 600;font-size:14px;}
         }
-        .msg{
-            width: 100%;
-            text-align: center;
-            display: -webkit-box;
-            display: -moz-box;
-            display: -o-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            padding:8px 0;
-        .state{
-            -moz-box-flex: 1;
-            -webkit-box-flex: 1;
-            -o-box-flex: 1;
-            -ms-flex: 1;
-            flex: 1;
-            text-align:left;
-        .percentage{ font-size: 12px; }
-        .progress{
-            overflow: hidden;
-            display: block;
-            width: 80%;
-            height: 6px;
-            background: #ddd;
-            border-radius:3px;
-        .ongoing{
-            display: block;
-            width: 50%;
-            height: 6px;
-            background:#ff6666;
-        }
-      }
-    }
-    .btn{
-        .add{
-            display: block;
-            width: 60px;
-            padding:2px 0;
-            border-style: solid;
-            border-width: 1px;
-            border-color: #ff6666;
-            border-radius:3px;
-            color: #ff6666;
-        }
-     }
-    }
-    }
     }
 </style>
