@@ -43,7 +43,8 @@ export default function(router) {
 	            },
 
 	            // 添加地址
-	            '/addressEdit': {
+	            '/addressEdit/': {
+	            	name: 'addressEdit',
 	                component: require('./views/center/Addressedit.vue')
 	            },
 
@@ -79,6 +80,13 @@ export default function(router) {
 	            }
             }
 		},
+
+		// 地址列表
+        '/addressList': {
+        	name:'addressList',
+            component: require('./views/center/Addresslist.vue')
+        },
+
 
 		// 登陆注册手机绑定
 		'/user':{
@@ -116,6 +124,7 @@ export default function(router) {
 
 	    if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
 	        router.app.effect='prev';//返回
+	        router.app.isIndex = true;
 	        routeList.splice(routeList.length-1,1);
 	        setTimeout(function(){
 	            //这里加上延迟是要在afterEach之后在执行
@@ -124,6 +133,7 @@ export default function(router) {
 	        // return;
 	    } else {
 	    	router.app.effect='next';//前进
+	    	router.app.isIndex = false;
 		    routeList.push({
 				name : transition.to.name,
 				path : transition.to.path,

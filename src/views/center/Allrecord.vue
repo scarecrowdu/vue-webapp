@@ -1,5 +1,5 @@
 <template>
-  <div class="allRecord  app-content">
+  <div class="allRecord  app-content" transition="page">
 
     <app-header title="全部参与记录" :title-bg="true" header-bg="#fff">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
@@ -103,6 +103,7 @@
         data() {
          return{
            title:'全部参与记录',
+            isIndex:true
          }
         },
         components:{

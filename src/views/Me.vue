@@ -73,7 +73,7 @@
 
 
       <!-- 缓存二级路由切换的页面 -->
-      <router-view transition="page"> </router-view>
+      <router-view> </router-view>
            
 
   </div>
@@ -102,7 +102,6 @@
 
 
 <style lang="sass">
-
 .page-enter {
     z-index: 2002;
     -webkit-animation: pageFromRightToCenter 600ms forwards;
@@ -111,10 +110,11 @@
 }
 .page-leave {
     z-index: 2002;
-    -webkit-animation: opacityLeave 600ms forwards;
-    -o-animation: opacityLeave 600ms forwards;
-    animation: opacityLeave 600ms forwards
+    -webkit-animation: pageFromCenterToRight 600ms forwards;
+    -o-animation: pageFromCenterToRight 600ms forwards;
+    animation: pageFromCenterToRight 600ms forwards
 }
+
 
 @-webkit-keyframes opacityLeave {
   from {

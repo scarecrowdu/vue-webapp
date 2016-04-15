@@ -31,7 +31,7 @@
               <p>参与人次</p>
               <div class="edit-quantity">
                 <p class="btn-minus" @click="minusNum(item.id)" ><a class="btn minus icon">&#xe60d;</a></p> 
-                <p class="btn-input"><input type="tel" v-model="item.buycount" v-on:keyup="inpNum(item.id)" number></p>
+                <p class="btn-input"><input type="tel" v-model="item.buycount | numFormat" v-on:keyup="inpNum(item.id)" number></p>
                 <p class="btn-plus" @click="plusNum(item.id)" ><a class="btn plus icon">&#xe60c;</a></p>
               </div>
 
@@ -39,7 +39,6 @@
          </div>
       </div>
     </div>
-    <span>Checked names: {{ list | json }}</span>
     <div class="cartEdit">
         <div class="chk">
             <input type="checkbox" class="check" v-model="" value="2asdsd211">
@@ -58,75 +57,14 @@
 
 <script>
 
-    var cartData = {
-        "retcode": 1,
-        "retmsg": "查看清单成功",
-        "data": {
-            "ishopList": [
-                {
-                    "id": 1,
-                    "mid": 1,
-                    "shopid": 1,
-                    "sid": 1,
-                    "shopname": "Xoopar XP61044 章鱼吸盘式移动电源 4000毫安",
-                    "shopimg": "http://pic.pedaily.cn/201503/20150324100853205320.jpg",
-                    "productid": 100,
-                    "price": 1,
-                    "buycount": 666,
-                    "standard": null,
-                    "totalmember": 119,
-                    "remainmember": 119,
-                    "period": 100000001,
-                    "itemno": null,
-                    "providers": null
-                },
-                {
-                    "id": 2,
-                    "mid": 1,
-                    "shopid": 2,
-                    "sid": 1,
-                    "shopname": "章鱼吸盘式移动电源 4000毫安Xoopar XP61044 ",
-                    "shopimg": "http://img1.gtimg.com/ninja/0/ninja141074803812010.jpg",
-                    "productid": 200,
-                    "price": 1,
-                    "buycount": 10,
-                    "standard": null,
-                    "totalmember": 319,
-                    "remainmember": 219,
-                    "period": 100000001,
-                    "itemno": null,
-                    "providers": null
-                },
-                {
-                    "id": 3,
-                    "mid": 1,
-                    "shopid": 3,
-                    "sid": 1,
-                    "shopname": "Xoopa 章鱼吸盘式移动电源 4000毫安",
-                    "shopimg": "http://img1.qq.com/tech/pics/6241/6241197.jpg",
-                    "productid": 300,
-                    "price": 1,
-                    "buycount": 1,
-                    "standard": null,
-                    "totalmember": 1119,
-                    "remainmember": 1000,
-                    "period": 100000001,
-                    "itemno": null,
-                    "providers": null
-                }
-            ]
-        }
-    }
-
 
     import Header from './common/Header.vue';
-    
     export default {
         data() {
          return{
            title:'清单',
            list: [],
-           ishopList:cartData.data.ishopList
+           ishopList:[]
          }
         },
         components:{
@@ -134,12 +72,38 @@
         },
         route:{
           activate:function(transition){
-            document.title = this.title;
+            // document.title = this.title;
             this.$root.$set('header',this.title);
             transition.next();
+          },
+          data:function(transition){
+             var _self = this;
+             _self.getAjaxData(transition);
           }
         },
+        ready(){
+           console.log(1)
+        },
         methods:{
+
+            //请求当前用户购物车数据
+            getAjaxData:function(transition){
+                var _self = this;
+
+                $.ajax({
+                    type: "GET",
+                    url:'../../src/data/cart.json',
+                    data:{},
+                    dataType:"json",
+                    success :function(json){
+
+                        if(json.retcode==1){
+
+                            transition.next({ ishopList:json.data.ishopList });
+                        }
+                    }
+                });
+            },
 
             selectAll: function() {
               this.ishopList  = this.ishopList.map(function(item){
@@ -183,37 +147,27 @@
                 } 
             },
 
-            // inpNum:function(id){
-            //     let index = this.findIndex(id);
-
-            //     if (index !== -1) {
-            //         var item = this.ishopList[index];
-            //         var num  = item.buycount;
-
-
-            //         if(isNaN(item.buycount)){
-            //             item.buycount = 0;
-            //             return;
-            //         }
-                    
-            //     } 
-            // }
-        },
-        computed: {
-            inpNum: function () {
+            inpNum:function(id){
                 let index = this.findIndex(id);
+
                 if (index !== -1) {
                     var item = this.ishopList[index];
                     var num  = item.buycount;
+
 
                     if(isNaN(item.buycount)){
                         item.buycount = 0;
                         return;
                     }
-                        
+                    
                 } 
             }
-        }
+        },
+        computed: {
+            fullName: function () {
+              
+            }
+          }
 
     }
 </script>

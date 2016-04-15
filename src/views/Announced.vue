@@ -6,22 +6,38 @@
 
         <section class="announced-container">
             <ul class="floatBox">
-                <li>
+                <li v-for="item in lists" >
                   <a href="#">
-                     <img src="../assets/images/logo.png">
+                     <img :src="item.cover">
                      <div class="info">
-                        <p class="title">小米电视</p>
-                        <p class="issue">期号：123456789101</p>
-                        <p class="state">
-                          <span class="btn">即将揭晓</span>
-                        </p>
-                        <p class="msg">
-                            <span class="time">15:15:0</span>
-                        </p>
-                     </div>
+                        <p class="title">{{item.title}}</p>
+                        <p class="issue">期号：{{item.periods}}</p>
+                        
+                        <!-- Caipiaotype: 开奖状态(0进行中;1倒计时;2已揭晓) -->
+
+                        <div class="msg" v-if="item.caipiaotype == 2">
+                            <span class="txt" v-for="(key, val) in item.wuser | jsonFormat" >
+                                <label v-if="key == 'nickname'">获得者：</label>
+                                <label v-if="key == 'buycount'">参与人次：</label>
+                                <label v-if="key == 'bingocode'">幸运号码：</label>
+                                {{val}}
+                            </span>
+                            <span class="txt">揭晓时间：{{item.publishtime | timeago }}</span>
+                        </div>
+
+                        <div class="msg" v-if="item.caipiaotype == 1">
+                            <span class="btn reds">即将揭晓</span>
+                            <span class="time">{{item.downtime}}</span>
+                        </div>
+
+                        <div class="msg" v-if="item.caipiaotype == 0">
+                            <span class="btn greens">正在揭晓</span>
+                            <span class="time" id="{{item.id}}" ->{{item.downtime }}</span>
+                        </div>
+                      </div>
                     </a>
                 </li>
-                 <li>
+                <!--  <li>
                   <a href="#">
                      <img src="../assets/images/logo.png">
                      <div class="info">
@@ -71,17 +87,19 @@
                      <div class="info">
                         <p class="title">小米电视</p>
                         <p class="issue">期号：123456789101</p>
-                        <p class="state">
+                       <p class="state">
                           <span class="txt">获得者：小林</span>
                           <span class="txt">参与人数：20</span>
                         </p>
                         <p class="msg">
+                          <span class="txt">获得者：小林</span>
+                          <span class="txt">参与人数：20</span>
                           <span class="txt">幸运号码：1026262266</span>
                           <span class="txt">揭晓时间：今天12：00</span>
                         </p>
                      </div>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </section>
       </div>
@@ -95,23 +113,50 @@
         data() {
          return{
            title:'最新揭晓',
+           lists:[]
+
          }
         },
         components:{
            appHeader:Header
         },
         route:{
-          activate:function(transition){
-            document.title = this.title;
-            this.$root.$set('header',this.title);
-            transition.next();
-          }
+          data (transition) {
+            var _self = this;
+            _self.getAjaxData();
+            
+          },
+          deactivate (transition){
+               transition.next();
+            }
         },
+        methods:{
+            /*请求数据*/
+            getAjaxData:function(){
+                var _self = this;
+                $.ajax({
+                    type: "GET",
+                    url:'../../src/data/list.json',
+                    data:{},
+                    dataType:"json",
+                    success :function(json){
+                        if(json.retcode==1){
+                           _self.lists = json.data.rows;
+                         
+                        }
+                    }
+                });
+            }
+        }
     }
 </script>
 
 
 <style lang="sass" >
+
+.indiana{
+    bottom:55px;
+}
 
 .floatBox{
     margin: 0 10px;
@@ -147,37 +192,42 @@
      .info{
        background: #fff;
       .title{
-        font-weight: 600;
+        font-size: 14px;line-height: 1.4;
       }
       .issue{
         font-size: 12px;
       }
-      .state{
-        height: 30px;
-        .txt{
-          display: block;
-          font-size: 12px;
-          line-height: 1.2;
-        }
-        .btn{
-          position: relative;
-          display: inline-block;
-          border-style: solid;
-          border-width: 1px;
-          border-color: #000;
-          width: 65px;
-          font-size: 12px;
-          text-align: center;
-          border-radius: 3px;
-        }
-      }
+      
       .msg{
-        height: 30px;
+        height:60px;
         .time{
           display: block;
           font-weight: 600;
           font-size: 18px;
         }
+
+        .btn{
+          position: relative;
+          display: inline-block;
+          border-style: solid;
+          border-width: 1px;
+          // border-color: #000;
+          width: 65px;
+          padding:2px 0;
+          font-size: 12px;
+          text-align: center;
+          border-radius: 3px;
+        }
+
+        .btn.reds{
+           color:#ff6666;
+           border-color:#ff6666;
+        }
+        .btn.greens{
+           color:#39b939;
+           border-color:#39b939;
+        }
+
         .match{
           display: block;
           font-weight: 600;
@@ -192,4 +242,5 @@
      }
     } 
 }
+
 </style>

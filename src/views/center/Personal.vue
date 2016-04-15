@@ -1,5 +1,5 @@
 <template>
-  <div class="login app-content">
+  <div class="login app-content" transition="page">
 
     <app-header title="个人资料" :title-bg=true header-bg="#fff">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
@@ -47,7 +47,7 @@
             <input class="weui_input" placeholder="I'm placeholder" type="text">
           </p>
         </div>
-        <a class="weui_cell" v-link="{ path: '/me/addressList' }">
+        <a class="weui_cell" v-link="{ path: '/addressList' }">
           <p class="weui_cell_hd">
              <label class="weui_label" style="width: 4.5em;">地址管理</label>
           </p>
@@ -70,6 +70,7 @@
         data() {
          return{
            title:'个人资料',
+           isIndex:true,
            titleColor:'red'
          }
         },

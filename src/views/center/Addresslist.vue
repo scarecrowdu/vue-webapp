@@ -1,5 +1,5 @@
 <template>
-  <div class="adsList app-content">
+  <div class="adsList app-content"  transition="page">
 
     <app-header title="地址管理" :title-bg="true" header-bg="#fff">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
@@ -8,29 +8,16 @@
 
 
     <div class="ads-list">
-        <div class="adsItem">
+        <a class="adsItem" v-link="{ name:'addressEdit', query:{adsId:item.aid} }" v-for="item in lists">
            <div class="adsheader">
-             <p class="name">习大大</p>
-             <p class="mobile">15521387308</p>
+             <p class="name">{{item.name}}</p>
+             <p class="mobile">{{item.mobile}}</p>
            </div>
            <div class="adsinfo">
-             <p class="msg"><label>[默认]</label>北京天安门广场总部大厦1106号</p>
+             <p class="msg"><label v-if="item.isdefault == 1">[默认]</label>{{item.province}}{{item.city}}{{item.address}}</p>
            </div>
-        </div>
-
-        <div class="adsItem">
-           <div class="adsheader">
-             <p class="name">习大大</p>
-             <p class="mobile">15521387308</p>
-           </div>
-           <div class="adsinfo">
-             <p class="msg">北京天安门广场总部大厦1106号</p>
-           </div>
-        </div>
+        </a>
     </div>
-
-
-        
   </div>
 </template>
 
@@ -43,19 +30,41 @@
         data() {
          return{
            title:'地址管理',
+           isIndex:true,
+           lists:[]
          }
         },
         components:{
            appHeader:Header
         },
         route:{
-          activate:function(transition){
-            document.title = this.title;
-            this.$root.$set('header',this.title);
-            transition.next();
-
-          }
+          data (transition) {
+            var _self = this;
+            _self.getAjaxData();
+            
+          },
+          deactivate (transition){
+               transition.next();
+            }
         },
+        methods:{
+            /*请求数据*/
+            getAjaxData:function(){
+                var _self = this;
+                $.ajax({
+                    type: "GET",
+                    url:'../../src/data/address.json',
+                    data:{},
+                    dataType:"json",
+                    success :function(json){
+                        if(json.retcode == 1){
+                           _self.lists = json.data.addressList;
+                         
+                        }
+                    }
+                });
+            }
+        }
     }
 </script>
 
@@ -65,6 +74,7 @@
   font-size: 14px;
   
   .adsItem{
+    display: block;
     background:#fff;
     padding:10px 15px;
     margin-top: 10px;

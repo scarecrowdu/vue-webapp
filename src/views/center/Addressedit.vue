@@ -6,7 +6,6 @@
         <p slot="right" >保存</p>
     </app-header>
 
-
     <div class="weui_cells">
         <div class="weui_cell">
           <p class="weui_cell_hd">
@@ -46,10 +45,8 @@
         </div>
     </div>
 
-    <div class="weui_cells">
-        <div class="weui_cell">
-         删除地址
-        </div>
+    <div class="weui_cells" v-if="adsId != undefined">
+        <div class="weui_cell" @click="delAddress(adsId)">删除地址</div>
     </div>    
 
 
@@ -65,12 +62,12 @@
     export default {
         data() {
          return{
-           title:'添加地址',
+           adsId:this.$route.query.adsId,
            title: '默认为北京',
-		   value: [],
-		   title2: '手动设定',
-		   value2: ['广东省', '深圳市', '南山区'],
-		   addressData: AddressChinaData
+    		   value: [],
+    		   title2: '手动设定',
+    		   value2: ['广东省', '深圳市', '南山区'],
+    		   addressData: AddressChinaData
          }
         },
         components:{
@@ -79,13 +76,48 @@
            Address
         },
         route:{
-          activate:function(transition){
-            document.title = this.title;
-            this.$root.$set('header',this.title);
+          data (transition) {
+            var _self = this;
+            // _self.getAjaxData();
+            console.log(this.adsId);
+          },
+          deactivate (transition){
             transition.next();
-
           }
         },
+        methods:{
+           /*请求数据*/
+            getAjaxData:function(){
+                var _self = this;
+                $.ajax({
+                    type: "GET",
+                    url:'../../src/data/address.json',
+                    data:{},
+                    dataType:"json",
+                    success :function(json){
+                        if(json.retcode == 1){
+                           _self.lists = json.data.addressList;
+                         
+                        }
+                    }
+                });
+            },
+
+            /*删除*/
+            delAddress:function(id){
+                var _self = this;
+                $.ajax({
+                    type: "GET",
+                    url:'../../src/data/address.json',
+                    data:{ids:id},
+                    dataType:"json",
+                    success :function(json){
+                          
+                    }
+                });
+            }
+
+        }
     }
 </script>
 
