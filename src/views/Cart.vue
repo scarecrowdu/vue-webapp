@@ -1,7 +1,12 @@
 <template>
   <div class="cart app-content">
 
-    <app-header title="清单"></app-header>
+    <app-header title="清单">
+       <p slot="right" v-on:click="isedit = !isedit">
+           <span v-show="!isedit">编辑</span>
+           <span v-show="isedit">取消</span>
+       </p>
+    </app-header>
        
     <div class="cart-msg">
       <i class="cart-icon icon">&#xe602;</i>
@@ -14,11 +19,11 @@
     
     <div class="cartBox">
       <div class="cartItem ui-border-t" v-for="item in ishopList">
-         <div class="checklist">
-           <input type="checkbox" class="check"  v-model="item.finished" >
+         <div class="checklist" v-show="isedit">
+           <span class="check" :class="{checked:item.checked}" @click="chk($index)" ></span>
          </div>
          <div class="imglist ui-border">
-            <img src="{{item.shopimg}}">
+            <img :src="item.shopimg" >
          </div>
          <div class="prtlist">
             <p class="gname nowrap-multi">{{item.shopname}}</p>
@@ -30,9 +35,9 @@
             <div class="num">
               <p>参与人次</p>
               <div class="edit-quantity">
-                <p class="btn-minus" @click="minusNum(item.id)" ><a class="btn minus icon">&#xe60d;</a></p> 
-                <p class="btn-input"><input type="tel" v-model="item.buycount | numFormat" v-on:keyup="inpNum(item.id)" number></p>
-                <p class="btn-plus" @click="plusNum(item.id)" ><a class="btn plus icon">&#xe60c;</a></p>
+                <p class="btn-minus" @touchstart="minusNum($index)"><a class="btn minus icon">&#xe60d;</a></p> 
+                <p class="btn-input"><input type="tel" v-model="item.buycount | numFormat" v-on:keyup="inpNum($index)" number></p>
+                <p class="btn-plus" @touchstart="plusNum($index)" ><a class="btn plus icon">&#xe60c;</a></p>
               </div>
 
             </div>
@@ -40,15 +45,18 @@
       </div>
     </div>
     <div class="cartEdit">
-        <div class="chk">
-            <input type="checkbox" class="check" v-model="" value="2asdsd211">
+        <div class="chk" v-show="isedit">
+            <span class="check" :class="{checked:checkedAll}" @click="chkAll()" ></span>
             <span>全选</span>
         </div>
-        <div class="info">
-            总计<span>10</span>积分
+        <div class="info" >
+            <p v-show="!isedit">总计<span>{{totalQuantity()}}</span>积分</p>
         </div>
-        <div class="btn">
+        <div class="btn" v-show="!isedit">
            <a class="weui_btn weui_btn_warn">结算</a>
+        </div>
+        <div class="btn" v-show="isedit">
+           <a class="weui_btn weui_btn_warn" v-show="isedit" v-on:click="delCart()">删除</a>
         </div>
     </div>
 
@@ -57,13 +65,16 @@
 
 <script>
 
-
     import Header from './common/Header.vue';
+ 
+
     export default {
         data() {
          return{
            title:'清单',
-           list: [],
+           isedit:false,
+           checkedAll:false,
+           isSelectALL:false,
            ishopList:[]
          }
         },
@@ -71,25 +82,19 @@
            appHeader:Header
         },
         route:{
-          activate:function(transition){
-            // document.title = this.title;
-            this.$root.$set('header',this.title);
+          activate(transition){
             transition.next();
           },
-          data:function(transition){
+          data(transition){
              var _self = this;
              _self.getAjaxData(transition);
           }
         },
-        ready(){
-           console.log(1)
-        },
         methods:{
 
             //请求当前用户购物车数据
-            getAjaxData:function(transition){
+            getAjaxData(transition){
                 var _self = this;
-
                 $.ajax({
                     type: "GET",
                     url:'../../src/data/cart.json',
@@ -98,77 +103,137 @@
                     success :function(json){
 
                         if(json.retcode==1){
+                            var list  = json.data.ishopList
 
-                            transition.next({ ishopList:json.data.ishopList });
+                            for (var i = 0; i < list.length; i++) {
+                                list[i].checked = false;
+                            }
+                            transition.next({ ishopList:list});
                         }
                     }
                 });
             },
 
-            selectAll: function() {
-              this.ishopList  = this.ishopList.map(function(item){
-                item.finished = true
-                return item;
-              })
+            // 判断单商品是否全选了
+            checked(item) { 
+                if(item.checked) 
+                    return true;
+                else
+                    return false;
             },
 
-            //找一个元素的索引
-            findIndex:function (id) {
-                let index = -1;
+            // 选择商品动作
+            chk(index) {
+                this.ishopList[index].checked = !this.ishopList[index].checked;
 
-                this.ishopList.forEach(function (item, key) {
-                    if (item.id === id) {
-                        index = key;
-                        return;
-                    }
-                });
-
-                return index;
-            },
-
-            // 添加一个数量
-            plusNum:function(id){
-                let index = this.findIndex(id);
-
-                if (index !== -1) {
-                    ++this.ishopList[index].buycount;
+                let r = this.ishopList.every(this.checked);
+                if(r){
+                    this.checkedAll = true;
+                   console.log("all true");
+                }else{ 
+                    this.checkedAll = false;
+                    console.log("not all true");
                 }
             },
+            
+            // 全选商品动作
+            chkAll(){
+                this.checkedAll = !this.checkedAll;
 
-            // 减少一个数量
-            minusNum:function(id){
-                let index = this.findIndex(id);
+                for (let i = 0; i < this.ishopList.length; i++) {
+                    if (this.checkedAll === true) 
+                       this.ishopList[i].checked = true;
+                    else
+                       this.ishopList[i].checked = false;
+                } 
+            },
 
+            // 当前商品添加数量
+            plusNum(index){
+                let item = this.ishopList[index];
+                let limitNum = item.remainmember;
+                let buyCount = item.buycount;
+
+                if (index !== -1){
+                    if (limitNum <= buyCount){ 
+                        alert("超过了限制范围");
+                        return
+                    }else{
+                       ++item.buycount; 
+                      this.updateCart(item.id,item.buycount) 
+                    }
+                }        
+            },
+
+            // 当前商品添加减少数量
+            minusNum(index){
                 if (index !== -1) {
-                    var item = this.ishopList[index];
+                    let item = this.ishopList[index];
                     if(item.buycount > 1){
                        --item.buycount;
+                       this.updateCart(item.id,item.buycount);
                     }  
                 } 
             },
-
-            inpNum:function(id){
-                let index = this.findIndex(id);
+            
+            // 当前商品输入限制判断
+            inpNum(index){
+                let item = this.ishopList[index];
+                let limitNum = item.remainmember;
+                let buyCount = item.buycount;
 
                 if (index !== -1) {
-                    var item = this.ishopList[index];
-                    var num  = item.buycount;
-
-
-                    if(isNaN(item.buycount)){
+                    if(isNaN(buyCount)){
                         item.buycount = 0;
                         return;
+                    }else{
+                        if (limitNum <= buyCount){ 
+                           item.buycount = limitNum;
+                        }
+                        this.updateCart(item.id,item.buycount);
                     }
-                    
                 } 
-            }
-        },
-        computed: {
-            fullName: function () {
-              
-            }
-          }
+            },
+            
+            //计算总积分
+            totalQuantity() {
+                let total = 0;
+                this.ishopList.forEach(function (item) {
+                    total += parseInt(item.buycount);
+                })
+                return total;
+            },
 
+            // 删除商品
+            delCart(){
+                let idsArr = [];
+
+                this.ishopList.forEach(function (item) {
+                   if (item.checked)
+                      idsArr.push(item.id)
+
+                   return idsArr;
+                })
+
+                if(idsArr.length <= 0){
+                   alert("请选择需要删除的商品")
+                }else{}
+                // $.ajax({
+                //     type: "GET",
+                //     url:'../../src/data/cart.json',
+                //     data:{},
+                //     dataType:"json",
+                //     success :function(json){
+                //     }
+                // });
+            },
+
+            updateCart(id,buycount){
+                console.log(id, buycount);
+            }
+
+
+        }
     }
 </script>
 
@@ -230,6 +295,7 @@
       margin-top: 25px;
       text-align: center;
 
+
     }
     .imglist{
       width: 100px;
@@ -281,10 +347,11 @@
             -o-box-flex: 1;
             -ms-flex: 1;
             flex: 1;
-           font-size:13px;
+            font-size:13px;
         }
 
         .edit-quantity{
+            max-width:150px;
             border: 1px solid #ddd;
             border-radius:3px;
             overflow: hidden;
@@ -292,12 +359,16 @@
             >p{display: inline-block;float:left;}
 
             .btn-input {
-                width: 42%;
+                width: 40%;
                 cursor: pointer;
                 border-left: 1px solid #ddd;
                 border-right: 1px solid #ddd;
 
                 input{
+                    webkit-box-sizing: border-box;
+                    -ms-box-sizing: border-box;
+                    -o-box-sizing: border-box;
+                    box-sizing: border-box;
                     width: 100%;
                     border: none;
                     background-color: transparent;
@@ -308,10 +379,11 @@
                     text-align: center;
                     height: 35px;
                     line-height: 35px;
+                    padding:5px;
                 }
             }
 
-            .btn-minus,.btn-plus{ width:29%;cursor: pointer; }
+            .btn-minus,.btn-plus{ width:30%;cursor: pointer; }
 
             .btn {
                 display: block;
@@ -355,7 +427,7 @@
         margin-right: 10px;
     }
     .btn{
-        a{padding: 0 20px;}
+        a{padding: 0 30px;}
     }
 
 }
@@ -386,7 +458,7 @@
   }
 }
 
-.check:checked{
+.checked{
 
   &:after{
     content: "\EA06";
