@@ -24,7 +24,25 @@ export default function(router) {
 			component:function(resolve){
 				require(['./views/Cart.vue'],resolve)
 			}
-		}, 
+		},
+
+		// 订单支付
+		'/orderPay':{
+			name:'orderPay',
+			component:function(resolve){
+				require(['./views/list/Orderpay.vue'],resolve)
+			}
+		},
+
+
+		// 订单支付
+		'/payResults':{
+			name:'payResults',
+			component:function(resolve){
+				require(['./views/list/Payresults.vue'],resolve)
+			}
+		},
+
 
         // 个人中心
 		'/me':{

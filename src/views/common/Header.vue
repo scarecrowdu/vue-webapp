@@ -67,6 +67,9 @@
         padding:0 60px;
         text-align: center;
         font-size: 18px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
       }
    }

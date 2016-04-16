@@ -4,8 +4,8 @@
 
         <app-header title="最新揭晓"></app-header>
 
-         <div v-if="$loadingRouteData">Loading ...</div>
-         <section class="announced-container" v-if="!$loadingRouteData">
+        
+         <section class="announced-container">
             <ul class="floatBox">
                 <li v-for="item in lists" >
                   <a href="#">
@@ -104,22 +104,29 @@
             </ul>
         </section>
       </div>
-  </div>
+   </div>
+   <app-loading  :show="loading.show" :title="loading.showTxt" ></app-loading>
 </template>
 
 <script>
     import Header from './common/Header.vue';
+    import Loading from '../components/Loading.vue';
     
     export default {
         data() {
          return{
            title:'最新揭晓',
-           lists:[]
+           lists:[],
+           loading:{
+                show:true,
+                showTxt:'二维码识别中'
+            }
 
          }
         },
         components:{
-           appHeader:Header
+           appHeader:Header,
+           appLoading:Loading
         },
         route:{
           data (transition) {
@@ -144,6 +151,7 @@
                         if(json.retcode==1){
                            setTimeout(function(){
                               transition.next({lists:json.data.rows});
+                              _self.loading.show = false;
                            },2000)
                         }
                     }
@@ -161,14 +169,6 @@
 }
 
 .floatBox{
-   /*  margin: 0 10px; */
-
-     >li:nth-child(odd){
-
-       a{
-        /* margin-right: 5px; */
-       }
-    }
     >li:nth-child(even){
       &:after {
           content: " ";
@@ -184,9 +184,6 @@
           -webkit-transform: scaleX(.5);
           transform: scaleX(.5);
           left: 0;
-      }
-      a{
-       /*  margin-left: 5px; */
       }
     }
     >li{
@@ -215,17 +212,14 @@
           left: 0;
       }
 
-      
-      
       a{
         display: block;
         color: #333;
         background: #fff;
         padding: 10px;
-        /* margin-top: 10px; */
       }
      img{
-      width: 100%;
+      width: 100%;min-height:125px;
      }
      .info{
        background: #fff;

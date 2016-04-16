@@ -25,7 +25,7 @@
 <style lang="sass">
 	/*导航烂*/
 	.app-nav{
-        z-index: 99999;
+        z-index: 9999;
         position: absolute;
         bottom: 0;
         left: 0;
@@ -35,7 +35,22 @@
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
         background: #fff;
-        border-top: 1px solid #E7E7E7;
+
+        &:before {
+          content: " ";
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 1px;
+          border-top: 1px solid #d9d9d9;
+          color: #d9d9d9;
+          -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+          -webkit-transform: scaleY(.5);
+          transform: scaleY(.5);
+          left: 0;
+        }
 
 
         .tab-bar{

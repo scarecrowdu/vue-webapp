@@ -1,6 +1,5 @@
 <template>
     <div class="homepage app-content">
-        <div class="mainArea">
 
             <app-header title="积分购"></app-header>
 
@@ -77,8 +76,6 @@
                     </li>
                 </ul>
             </section>
-
-        </div>
     </div>
 </template>
 
@@ -86,6 +83,7 @@
     require('../assets/css/swiper.min.css');
 
     import Header from './common/Header.vue';
+    import Loading from '../components/Loading.vue';
     import Swiper from 'swiper';
     export default {
         data() {
@@ -94,7 +92,8 @@
             }
         },
         components:{
-            appHeader:Header
+            appHeader:Header,
+            appLoading :Loading
         },
         route:{
             activate:function(transition){
@@ -148,25 +147,25 @@
     }
 
     .itemBox{
-        
-
+    
         .item:nth-child(even){ 
             &:after {
-                content: " ";
                 position: absolute;
-                left: 0;
                 top: 0;
+                left: 0;
+                left: 0;
                 width: 1px;
                 height: 100%;
                 border-right: 1px solid #d9d9d9;
                 color: #d9d9d9;
-                -webkit-transform-origin: 0 0;
-                transform-origin: 0 0;
+                content: " ";
                 -webkit-transform: scaleX(.5);
                 transform: scaleX(.5);
-                left: 0;
+                -webkit-transform-origin: 0 0;
+                transform-origin: 0 0;
             }
          }
+
         .item{
             position: relative;
             width: 50%;
@@ -179,19 +178,19 @@
            padding:10px;
 
             &:before {
-              content: " ";
               position: absolute;
-              left: 0;
               top: 0;
+              left: 0;
+              left: 0;
               width: 100%;
               height: 1px;
               border-top: 1px solid #d9d9d9;
               color: #d9d9d9;
-              -webkit-transform-origin: 0 0;
-              transform-origin: 0 0;
+              content: " ";
               -webkit-transform: scaleY(.5);
               transform: scaleY(.5);
-              left: 0;
+              -webkit-transform-origin: 0 0;
+              transform-origin: 0 0;
             }
              
 
@@ -224,32 +223,32 @@
                     flex: 1;
                     text-align:left;
 
-                        .percentage{ font-size: 12px; }
-                        .progress{
-                            overflow: hidden;
-                            display: block;
-                            width: 80%;
-                            height: 6px;
-                            background: #ddd;
-                            border-radius:3px;
-                        }    
-                        .ongoing{
-                            display: block;
-                            width: 50%;
-                            height: 6px;
-                            background:#ff6666;
-                        }
+                    .percentage{ font-size: 12px; }
+                    .progress{
+                        display: block;
+                        overflow: hidden;
+                        width: 80%;
+                        height: 6px;
+                        border-radius:3px;
+                        background: #ddd;
+                    }    
+                    .ongoing{
+                        display: block;
+                        width: 50%;
+                        height: 6px;
+                        background:#ff6666;
                     }
+                }
             }
 
             .btn{
                 .add{
                     display: block;
-                    width: 60px;
                     padding:2px 0;
+                    width: 60px;
+                    border-color: #ff6666;
                     border-style: solid;
                     border-width: 1px;
-                    border-color: #ff6666;
                     border-radius:3px;
                     color: #ff6666;
                 }
