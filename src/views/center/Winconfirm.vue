@@ -1,5 +1,5 @@
 <template>
-  <div class="login app-content">
+  <div class="login app-content" transition="page">
 
     <app-header title="中奖确认" :title-bg="true" header-bg="#fff">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>

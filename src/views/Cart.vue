@@ -7,58 +7,106 @@
            <span v-show="isedit">取消</span>
        </p>
     </app-header>
-       
-    <div class="cart-msg">
-      <i class="cart-icon icon">&#xe602;</i>
-      <p>空空如也~</p>
-      <div class="btn-gruop">
-          <a class="go-indiana">立即积分夺宝</a>
-      </div>
-    </div>
 
     
-    <div class="cartBox">
-      <div class="cartItem ui-border-t" v-for="item in ishopList">
-         <div class="checklist" v-show="isedit">
-           <span class="check" :class="{checked:item.checked}" @click="chk($index)" ></span>
-         </div>
-         <div class="imglist ui-border">
-            <img :src="item.shopimg" >
-         </div>
-         <div class="prtlist">
-            <p class="gname nowrap-multi">{{item.shopname}}</p>
-            <div class="info">
-              <p>总需：{{item.totalmember}}人次</p>
-              <p>剩余：<span>{{item.remainmember}}</span>人次</p>
-            </div>
+    <!-- 清单无数据 -->
+    <section class="cartNull">
+        <div class="cart-msg">
+          <i class="cart-icon icon">&#xe602;</i>
+          <p>空空如也~</p>
+          <div class="btn-gruop">
+              <a class="go-indiana">立即积分夺宝</a>
+          </div>
+        </div>
 
-            <div class="num">
-              <p>参与人次</p>
-              <div class="edit-quantity">
-                <p class="btn-minus" @touchstart="minusNum($index)"><a class="btn minus icon">&#xe60d;</a></p> 
-                <p class="btn-input"><input type="tel" v-model="item.buycount | numFormat" v-on:keyup="inpNum($index)" number></p>
-                <p class="btn-plus" @touchstart="plusNum($index)" ><a class="btn plus icon">&#xe60c;</a></p>
-              </div>
-
+        <div class="cart-like">
+            <p class="titleB">猜你喜欢</p>
+            <div class="swiper-container" id="likeSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <div class="like-item">
+                        <img src="http://pic.pedaily.cn/201503/20150324100853205320.jpg">
+                        <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
+                        <p class="progress"><i class="ongoing"></i></p>
+                     </div> 
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="like-item">
+                        <img src="http://img1.gtimg.com/ninja/0/ninja141074803812010.jpg">
+                        <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
+                        <p class="progress"><i class="ongoing"></i></p>
+                     </div> 
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="like-item">
+                        <img src="http://img1.qq.com/tech/pics/6241/6241197.jpg">
+                        <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
+                        <p class="progress"><i class="ongoing"></i></p>
+                     </div> 
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="like-item">
+                        <img src="../assets/images/logo.png">
+                        <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
+                        <p class="progress"><i class="ongoing"></i></p>
+                     </div> 
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="like-item">
+                        <img src="../assets/images/logo.png">
+                        <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
+                        <p class="progress"><i class="ongoing"></i></p>
+                     </div> 
+                    </div>
             </div>
-         </div>
-      </div>
-    </div>
-    <div class="cartEdit">
-        <div class="chk" v-show="isedit">
-            <span class="check" :class="{checked:checkedAll}" @click="chkAll()" ></span>
-            <span>全选</span>
         </div>
-        <div class="info" >
-            <p v-show="!isedit">总计<span>{{totalQuantity()}}</span>积分</p>
+    </section>
+       
+    
+    
+    <!-- 清单主内容 -->
+    <section class="catContainer" style="display:none">
+        <div class="cartBox">
+          <div class="cartItem ui-border-t" v-for="item in ishopList">
+             <div class="checklist" v-show="isedit">
+               <span class="check" :class="{checked:item.checked}" @click="chk($index)" ></span>
+             </div>
+             <div class="imglist ui-border">
+                <img :src="item.shopimg" >
+             </div>
+             <div class="prtlist">
+                <p class="gname nowrap-multi">{{item.shopname}}</p>
+                <div class="info">
+                  <p>总需：{{item.totalmember}}人次</p>
+                  <p>剩余：<span>{{item.remainmember}}</span>人次</p>
+                </div>
+                <div class="num">
+                  <p>参与人次</p>
+                  <div class="edit-quantity">
+                    <p class="btn-minus" @touchstart="minusNum($index)"><a class="btn minus icon">&#xe60d;</a></p> 
+                    <p class="btn-input"><input type="tel" v-model="item.buycount | numFormat" v-on:keyup="inpNum($index)" number></p>
+                    <p class="btn-plus" @touchstart="plusNum($index)" ><a class="btn plus icon">&#xe60c;</a></p>
+                  </div>
+                </div>
+             </div>
+          </div>
         </div>
-        <div class="btn" v-show="!isedit">
-           <a class="weui_btn weui_btn_warn">结算</a>
+        <div class="cartEdit">
+            <div class="chk" v-show="isedit">
+                <span class="check" :class="{checked:checkedAll}" @click="chkAll()" ></span>
+                <span>全选</span>
+            </div>
+            <div class="info" >
+                <p v-show="!isedit">总计<span>{{totalQuantity()}}</span>积分</p>
+            </div>
+            <div class="btn" v-show="!isedit">
+               <a class="weui_btn weui_btn_warn">结算</a>
+            </div>
+            <div class="btn" v-show="isedit">
+               <a class="weui_btn weui_btn_warn" v-show="isedit" v-on:click="delCart()">删除</a>
+            </div>
         </div>
-        <div class="btn" v-show="isedit">
-           <a class="weui_btn weui_btn_warn" v-show="isedit" v-on:click="delCart()">删除</a>
-        </div>
-    </div>
+    </section>
 
   </div>
 </template>
@@ -66,6 +114,7 @@
 <script>
 
     import Header from './common/Header.vue';
+    import Swiper from 'swiper';
  
 
     export default {
@@ -89,6 +138,17 @@
              var _self = this;
              _self.getAjaxData(transition);
           }
+        },
+        ready(){
+            var swiper = new Swiper('#likeSwiper', {
+                slidesPerView: 3,
+                spaceBetween: 10
+            });
+
+            let sildeW = $(".swiper-slide").width();
+            $(".swiper-slide").find('img').css({'width':sildeW,'height':sildeW})
+            console.log(sildeW)
+
         },
         methods:{
 
@@ -231,23 +291,18 @@
             updateCart(id,buycount){
                 console.log(id, buycount);
             }
-
-
         }
     }
+
 </script>
 
 <style lang="sass">
 
-  .cart{
-    background:#eee;
-
-  }
   .cart-msg{
      width: 100%;
      text-align: center;
      margin-top: 30px;
-     display: none;
+     // display: none;
 
      .btn-gruop{
         margin-top: 10px;
@@ -269,6 +324,47 @@
        font-size: 120px;
        color:#ddd;
      }
+  }
+
+  .cart-like{
+    position: absolute;
+    bottom:55px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+
+    .titleB{
+        padding:10px;
+        font-size:14px;
+    }
+
+    #likeSwiper{
+        padding:0 10px;
+       
+        .swiper-slide{}
+        .like-item{
+            // padding: 10px;
+
+           img{width:100%;height:80px;}
+           .title{font-size:12px;}
+           .progress {
+                display: block;
+                overflow: hidden;
+                width: 100%;
+                height: 6px;
+                border-radius: 3px;
+                background: #ddd;
+                margin: 5px auto;
+            }
+            .ongoing {
+                display: block;
+                width: 50%;
+                height: 6px;
+                background: #ff6666;
+            }
+       }
+
+    }
   }
 
   .cartBox{

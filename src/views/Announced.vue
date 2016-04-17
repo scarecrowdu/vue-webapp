@@ -1,11 +1,9 @@
 <template>
   <div class="indiana app-content">
-     <div class="mainArea">
 
         <app-header title="最新揭晓"></app-header>
 
-        
-         <section class="announced-container">
+        <section class="announced-container">
             <ul class="floatBox">
                 <li v-for="item in lists" >
                   <a href="#">
@@ -103,9 +101,10 @@
                 </li> -->
             </ul>
         </section>
-      </div>
+
+       <!-- <app-loading  :show="loading.show" :title="loading.showTxt" ></app-loading> -->
+
    </div>
-   <app-loading  :show="loading.show" :title="loading.showTxt" ></app-loading>
 </template>
 
 <script>

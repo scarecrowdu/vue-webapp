@@ -3,7 +3,7 @@
 
             <app-header title="积分购"></app-header>
 
-            <div class="swiper-container" id="app-swiper">
+            <div class="swiper-container" id="appSwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><img src="../assets/images/logo.png"></div>
                     <div class="swiper-slide"><img src="../assets/images/logo.png"></div>
@@ -97,8 +97,6 @@
         },
         route:{
             activate:function(transition){
-                document.title = this.title;
-                this.$root.$set('header',this.title);
                 transition.next();
             }
         },
@@ -115,10 +113,10 @@
     .homepage {
         bottom: 55px;
       }
-    .swiper-container {
+    #appSwiper {
         width:100%;
     }
-    .swiper-slide {
+    #appSwiper .swiper-slide {
         text-align: center;
         background: #fff;
         display: flex;

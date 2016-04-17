@@ -3,7 +3,7 @@
 
     <!-- 缓存路由切换的页面 -->
     <router-view class="app-view"  keep-alive :class="{'change-page':changePage}"></router-view>
-<!--  :transition="effect" -->
+    <!--  :transition="effect" -->
     <!-- app导航 -->
     <nav-bar v-if="isIndex"></nav-bar>
     

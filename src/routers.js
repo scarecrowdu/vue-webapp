@@ -43,7 +43,6 @@ export default function(router) {
 			}
 		},
 
-
         // 个人中心
 		'/me':{
 			name:'me',
@@ -66,37 +65,40 @@ export default function(router) {
 	                component: require('./views/center/Addressedit.vue')
 	            },
 
-	            // 我的红包
-	            '/redPackets': {
-	                component: require('./views/center/Redpackets.vue')
-	            },
-
-	            // 全部参与记录
-	            '/allRecord': {
-	                component: require('./views/center/Allrecord.vue')
-	            },
-
-	            // 中奖记录
-	            '/winRecord': {
-	                component: require('./views/center/Winrecord.vue')
-	            },
-
+	            
 	            // 中奖确认
 	            '/winConfirm': {
 	                component: require('./views/center/Winconfirm.vue')
 	            },
 
-	            // 充值
-	            '/recharge': {
-	                component: require('./views/center/Recharge.vue')
-	            },
-
-	            // 充值记录
-	            '/rechargeRecord': {
-	                component: require('./views/center/Rechargerecord.vue')
-	            }
+	            
             }
 		},
+
+		// 全部参与记录
+        '/allRecord': {
+        	name:'allRecord',
+            component: require('./views/center/Allrecord.vue')
+        },
+
+        // 中奖记录
+        '/winRecord': {
+        	name:'winRecord',
+            component: require('./views/center/Winrecord.vue')
+        },
+
+        // 我的红包
+        '/redPackets': {
+        	name:'redPackets',
+            component: require('./views/center/Redpackets.vue')
+        },
+
+        // 充值记录
+        '/rechargeRecord': {
+        	name:'rechargeRecord',
+            component: require('./views/center/Rechargerecord.vue')
+        },
+
 
 		// 地址列表
         '/addressList': {
@@ -105,7 +107,6 @@ export default function(router) {
 				require(['./views/center/Addresslist.vue'],resolve)
 			},
         },
-
 
 		// 登陆注册手机绑定
 		'/user':{
@@ -138,12 +139,13 @@ export default function(router) {
 
 	//全局放一个routlist
 	window.routeList = [];
+	window.pageList =['home','announced','cart','me'];
+
 	router.beforeEach(function(transition){
-		console.log('-----before-----');
+		// console.log('-----before-----');
 
 	    if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
 	        router.app.effect='prev';//返回
-	        router.app.isIndex = true;
 	        routeList.splice(routeList.length-1,1);
 	        setTimeout(function(){
 	            //这里加上延迟是要在afterEach之后在执行
@@ -152,7 +154,6 @@ export default function(router) {
 	        // return;
 	    } else {
 	    	router.app.effect='next';//前进
-	    	router.app.isIndex = false;
 		    routeList.push({
 				name : transition.to.name,
 				path : transition.to.path,
@@ -163,16 +164,16 @@ export default function(router) {
 
 			transition.next();
 	    }
-
+     
 	    
 		//使底部菜单栏在一级路由切换时一直保持显示
 		//在二级页时隐藏
-	    var toPath = transition.to.path;
-	    if(toPath.replace(/[^/]/g,"").length>1){
-	        router.app.isIndex = false;
-	    }else{
-	        router.app.isIndex = true;
-	    }   
+	    // var toPath = transition.to.path;
+	    // if(toPath.replace(/[^/]/g,"").length>1){
+	    //     router.app.isIndex = false;
+	    // }else{
+	    //     router.app.isIndex = true;
+	    // }   
 	});
     
     //可以记录访问路径
@@ -181,9 +182,9 @@ export default function(router) {
 	    //当你浏览顺序为，首页->页面二->页面三
 	    //此时点击页面二正常返回，然后再次选择页面三，本应该是前进，结果还是返回。
 	    router.app.effect='next';//重置前进
-	    console.log('-----after-----');
+	    // console.log('-----after-----');
 		for (var i = 0; i < routeList.length; i++) {
-			console.log(routeList[i].name);
+			// console.log(routeList[i].name);
 		};
 	});
 

@@ -102,8 +102,8 @@
     export default {
         data() {
          return{
-           title:'全部参与记录',
-            isIndex:true
+            title:'全部参与记录',
+            isIndex:false
          }
         },
         components:{
