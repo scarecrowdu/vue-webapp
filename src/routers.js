@@ -35,7 +35,7 @@ export default function(router) {
 		},
 
 
-		// 订单支付
+		// 订单结果
 		'/payResults':{
 			name:'payResults',
 			component:function(resolve){
@@ -50,15 +50,7 @@ export default function(router) {
 				require(['./views/Me.vue'],resolve)
 			},
 			subRoutes: {
-				// 个人资料
-	            '/msg': {
-	                component: require('./views/center/Personal.vue')
-	            },
-	            // 地址列表
-	            '/addressList': {
-	                component: require('./views/center/Addresslist.vue')
-	            },
-
+			
 	            // 添加地址
 	            '/addressEdit/': {
 	            	name: 'addressEdit',
@@ -74,6 +66,11 @@ export default function(router) {
 	            
             }
 		},
+
+		// 个人资料
+        '/msg': {
+            component: require('./views/center/Personal.vue')
+        },
 
 		// 全部参与记录
         '/allRecord': {

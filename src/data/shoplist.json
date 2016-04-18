@@ -1,0 +1,103 @@
+{
+    "retcode": 1,
+    "retmsg": "查询成功",
+    "data": {
+        "total": 2,
+        "records": 15,
+        "page": 1,
+        "rows": [
+            {
+                "id": 13,
+                "sid": 13,
+                "remainmember": 50,
+                "joinedmember": 50,
+                "totalmember": 100,
+                "title": "Kickstarter 3Doodler2.0 3D画笔",
+                "cover": "http://bs.baidu.com/dulife/562df13b07703.png"
+            },
+            {
+                "id": 14,
+                "sid": 13,
+                "remainmember": 50,
+                "joinedmember": 100,
+                "totalmember": 995,
+                "title": "WeCoach Pro智能运动私教",
+                "cover": "http://bs.baidu.com/dulife/557654e01de3e.jpg"
+            },
+            {
+                "id": 15,
+                "sid": 13,
+                "remainmember": 595,
+                "joinedmember":150,
+                "totalmember": 995,
+                "title": "Kickstarter 3Doodler2.0 3D画笔",
+                "cover": "http://bs.baidu.com/dulife/562dff05f1360.png"
+            },
+            {
+                "id": 16,
+                "sid": 13,
+                "remainmember": 365,
+                "joinedmember": 0,
+                "totalmember": 995,
+                "title": "睿讴rrioo office1 ocup智能水杯",
+                "cover": "http://bs.baidu.com/dulife/54d9c790f0903.jpg"
+            },
+            {
+                "id": 17,
+                "sid": 13,
+                "remainmember": 195,
+                "joinedmember": 10,
+                "totalmember": 995,
+                "title": "Kickstarter 3Doodler2.0 3D画笔",
+                "cover": "http://bs.baidu.com/dulife/55d17681397d6.jpg"
+            },
+            {
+                "id": 19,
+                "sid": 18,
+                "remainmember": 595,
+                "joinedmember": 20,
+                "totalmember": 995,
+                "title": "WeCoach Pro智能运动私教",
+                "cover": "http://bs.baidu.com/dulife/562dff05f1360.png"
+            },
+            {
+                "id": 20,
+                "sid": 13,
+                "remainmember": 495,
+                "joinedmember": 200,
+                "totalmember": 995,
+                "title": "睿讴rrioo office1 ocup智能水杯",
+                "cover": "http://bs.baidu.com/dulife/55d17681397d6.jpg"
+            },
+            {
+                "id": 12,
+                "sid": 13,
+                "remainmember": 995,
+                "joinedmember": 100,
+                "totalmember": 995,
+                "title": "Kickstarter 3Doodler2.0 3D画笔",
+                "cover": "http://bs.baidu.com/dulife/54d9c790f0903.jpg"
+            },
+            {
+                "id": 11,
+                "sid": 13,
+                "remainmember": 515,
+                "joinedmember": 0,
+                "totalmember": 995,
+                "title": "WeCoach Pro智能运动私教",
+                "cover": "http://bs.baidu.com/dulife/562dff05f1360.png"
+            },
+            {
+                "id": 10,
+                "sid": 13,
+                "remainmember": 333,
+                "joinedmember": 90,
+                "totalmember": 995,
+                "title": "睿讴rrioo office1 ocup智能水杯",
+                "cover": "http://bs.baidu.com/dulife/54d9c790f0903.jpg"
+            }
+
+
+        ]
+    }
+}

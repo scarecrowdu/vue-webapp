@@ -1,81 +1,48 @@
 <template>
     <div class="homepage app-content">
 
-            <app-header title="积分购"></app-header>
+        <app-header title="积分购"></app-header>
 
-            <div class="swiper-container" id="appSwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="../assets/images/logo.png"></div>
-                    <div class="swiper-slide"><img src="../assets/images/logo.png"></div>
-                    <div class="swiper-slide"><img src="../assets/images/logo.png"></div>
-                </div>
-                <div class="swiper-pagination app-pagination"></div>
+        <div class="swiper-container appSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="../assets/images/logo.png"></div>
+                <div class="swiper-slide">
+                    <img src="../assets/images/logo.png"></div>
+                <div class="swiper-slide">
+                    <img src="../assets/images/logo.png"></div>
             </div>
+            <div class="swiper-pagination app-pagination"></div>
+        </div>
 
-            <section class="main-container">
-                <ul class="itemBox">
-                    <li class="item">
-                        <img src="../assets/images/logo.png">
-                        <div class="info">
-                            <p class="title nowrap-multi">小米电视小米电视小米电视小米电视</p>
-                        </div>
-                        <div class="msg">
-                            <p class="state">
-                                <span class="percentage">开奖进度80%</span>
-                                <span class="progress"><i class="ongoing"></i></span>
-                            </p>
-                            <p class="btn">
-                                <span class="add">+清单</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li class="item">
-                        <img src="../assets/images/logo.png">
-                        <div class="info">
-                            <p class="title nowrap-multi">小米电视小米电视小米电视小米电视</p>
-                        </div>
-                        <div class="msg">
-                            <p class="state">
-                                <span class="percentage">开奖进度80%</span>
-                                <span class="progress"><i class="ongoing"></i></span>
-                            </p>
-                            <p class="btn">
-                                <span class="add">+清单</span>
-                            </p>
-                        </div>
-                    </li>
-                     <li class="item">
-                        <img src="../assets/images/logo.png">
-                        <div class="info">
-                            <p class="title nowrap-multi">小米电视小米电视小米电视小米电视</p>
-                        </div>
-                        <div class="msg">
-                            <p class="state">
-                                <span class="percentage">开奖进度80%</span>
-                                <span class="progress"><i class="ongoing"></i></span>
-                            </p>
-                            <p class="btn">
-                                <span class="add">+清单</span>
-                            </p>
-                        </div>
-                    </li>
-                     <li class="item">
-                        <img src="../assets/images/logo.png">
-                        <div class="info">
-                            <p class="title nowrap-multi">小米电视小米电视小米电视小米电视</p>
-                        </div>
-                        <div class="msg">
-                            <p class="state">
-                                <span class="percentage">开奖进度80%</span>
-                                <span class="progress"><i class="ongoing"></i></span>
-                            </p>
-                            <p class="btn">
-                                <span class="add">+清单</span>
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
+        <ul class="tab-menu v-flexbox">
+            <li class="v-flexbox-item tab-item"  v-for="item in tablist"  @click="sordBy(item.key)" :class="[{active:$index === activeIndex}]" >
+                <a href="javascript:void(0)"  v-if="$index >
+                    2"  @click.prevent="activeIndex=$index"  :class="{ markUp: mark.up, markDown: mark.down }"> {{item.title}}
+                </a>
+                <a href="javascript:void(0)"  v-else  @click.prevent="activeIndex=$index">{{item.title}}</a>
+            </li>
+        </ul>
+        <section class="main-container">
+            <ul class="itemBox">
+                <li class="item" v-for="item in shoplist">
+                    <img :src="item.cover">
+                    <div class="info">
+                        <p class="title nowrap-multi">{{item.title}}</p>
+                    </div>
+                    <div class="msg">
+                        <p class="state">
+                            <span class="percentage">开奖进度{{progress($index)}}</span>
+                            <span class="progress"> <i class="ongoing" v-bind:style="{width:progress($index)}"></i>
+                            </span>
+                        </p>
+                        <p class="btn">
+                            <span class="add">+清单</span>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </section>
     </div>
 </template>
 
@@ -85,26 +52,132 @@
     import Header from './common/Header.vue';
     import Loading from '../components/Loading.vue';
     import Swiper from 'swiper';
+
+
     export default {
         data() {
             return{
-                title:'Home',
+                mark:{up:false,down:false},
+                isflag:false,
+                activeIndex: 0,
+                scroll:true,
+                tablist:[
+                   {title:"默认",key:'1'},
+                   {title:"销量",key:'2'},
+                   {title:"上新",key:'3'},
+                   {title:"价格",key:'4'},
+                ],
+                shoplist:[]
             }
         },
         components:{
             appHeader:Header,
-            appLoading :Loading
+            appLoading :Loading,
+            tabs : require('../components/tabset.vue'),
+            tab  : require('../components/tab.vue')
+
         },
         route:{
-            activate:function(transition){
-                transition.next();
+            data (transition) {
+                var _self = this;
+                _self.getAjaxData(transition);
+
+
+                //滚动加载
+                $('.itemBox').on('scroll', () => {
+                    console.log(111)
+                    console.log($(this).scrollTop())
+                    this.getScrollData();
+                });
+
+                
             }
         },
+
+        deactivate (transition){
+           $(window).off('scroll');
+           transition.next();
+
+        },
         ready:function(){
-            new Swiper('#app-swiper', {
+            new Swiper('.appSwiper', {
                 pagination: '.swiper-pagination',
                 paginationClickable: true,
             });
+
+
+
+        },
+        methods:{
+
+
+            //请求数据
+            getAjaxData(transition){
+                let _self = this;
+                $.ajax({
+                    type: "GET",
+                    url:'../../src/data/shoplist.json',
+                    data:{},
+                    dataType:"json",
+                    success :function(json){
+                        _self.scroll = true;
+                        if(json.retcode==1){
+                            transition.next({shoplist:json.data.rows});
+                        }
+                    }
+                });
+            },
+
+             //滚动加载数据
+            getScrollData (){
+                if(this.scroll){
+                    let totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+                    if ($(document).height() <= totalheight + 200) {
+                         this.scroll = false;
+
+                         this.shoplist.concart(json.data.rows)
+                    }
+                }
+            },
+
+            // 计算开奖进度
+            progress(index){
+                let _self = this;
+                let totalprogress = 0,
+                    remainmember = _self.shoplist[index].remainmember,
+                    totalmember = _self.shoplist[index].totalmember;
+
+                totalprogress   = Math.round(remainmember/totalmember*100)+'%';
+               
+                return  totalprogress; 
+            },
+
+            sordBy(key){
+                let _self = this;
+
+                if (key == 4) {
+                    _self.isflag = !_self.isflag;
+                    
+                    if (this.isflag) {
+                        _self.mark.up = true;
+                        _self.mark.down = false;
+                        alert('up')
+                    }else{
+                        alert('down')
+                        _self.mark.down = true;
+                        _self.mark.up = false;
+                    }
+
+                }else{
+
+                  _self.mark.up =  _self.mark.down = false; 
+
+                }
+                
+
+
+            }
+
         }
     }
 </script>
@@ -113,10 +186,10 @@
     .homepage {
         bottom: 55px;
       }
-    #appSwiper {
+    .appSwiper {
         width:100%;
     }
-    #appSwiper .swiper-slide {
+    .appSwiper .swiper-slide {
         text-align: center;
         background: #fff;
         display: flex;
@@ -128,6 +201,69 @@
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
+    }
+
+    .tab-menu{
+        position: relative;
+        padding:10px 0;
+        background: #fff;
+
+        .active a{color:#ff6666;}
+
+        &:before {
+              position: absolute;
+              top: 0;
+              left: 0;
+              left: 0;
+              width: 100%;
+              height: 1px;
+              border-top: 1px solid #d9d9d9;
+              color: #d9d9d9;
+              content: " ";
+              -webkit-transform: scaleY(.5);
+              transform: scaleY(.5);
+              -webkit-transform-origin: 0 0;
+              transform-origin: 0 0;
+        }
+
+        .tab-item:last-child a{
+            position: relative;
+            display: block;
+
+            &:before {
+                content:"";
+                display: block;
+                position: absolute;
+                top:4px;
+                right:20%;
+                width: 0;
+                height: 0;
+                border-left: 4px solid transparent;
+                border-right: 4px solid transparent;
+                border-bottom: 7px solid #555;
+            }
+
+            &:after{
+                content:"";
+                display: block;
+                position: absolute;
+                bottom:4px;
+                right:20%;
+                width: 0;
+                height: 0;
+                border-left: 4px solid transparent;
+                border-right: 4px solid transparent;
+                border-top: 7px solid #555;
+            }
+        }
+
+        .markUp{
+            &:before {border-bottom: 7px solid #ff6666 !important;}
+        }
+         .markDown{
+            &:after {border-top: 7px solid #ff6666 !important;}
+        }
+
     }
 
     .app-pagination{
@@ -144,13 +280,17 @@
          }
     }
 
+    .main-container{
+        position: relative;
+        width: 100%;
+    }
     .itemBox{
+        overflow: hidden;
     
         .item:nth-child(even){ 
             &:after {
                 position: absolute;
                 top: 0;
-                left: 0;
                 left: 0;
                 width: 1px;
                 height: 100%;
@@ -179,7 +319,6 @@
               position: absolute;
               top: 0;
               left: 0;
-              left: 0;
               width: 100%;
               height: 1px;
               border-top: 1px solid #d9d9d9;
@@ -192,7 +331,7 @@
             }
              
 
-            img{ width: 100%; }
+            img{ width: 100%;height: 100%; }
 
             .info{
                 background: #fff;
@@ -232,7 +371,7 @@
                     }    
                     .ongoing{
                         display: block;
-                        width: 50%;
+                        // width: 50%;
                         height: 6px;
                         background:#ff6666;
                     }

@@ -19,7 +19,7 @@
           </div>
         </div>
 
-        <div class="cart-like">
+        <div class="likeContainer">
             <p class="titleB">猜你喜欢</p>
             <div class="swiper-container" id="likeSwiper">
                 <div class="swiper-wrapper">
@@ -326,7 +326,7 @@
      }
   }
 
-  .cart-like{
+  .likeContainer{
     position: absolute;
     bottom:55px;
     left: 0;
