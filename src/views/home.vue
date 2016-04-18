@@ -1,5 +1,5 @@
 <template>
-    <div class="homepage app-content">
+    <div class="homepage ">
 
         <app-header title="积分购"></app-header>
 
@@ -61,6 +61,7 @@
                 isflag:false,
                 activeIndex: 0,
                 scroll:true,
+                page:0,
                 tablist:[
                    {title:"默认",key:'1'},
                    {title:"销量",key:'2'},
@@ -84,10 +85,8 @@
 
 
                 //滚动加载
-                $('.itemBox').on('scroll', () => {
-                    console.log(111)
-                    console.log($(this).scrollTop())
-                    this.getScrollData();
+                $('.app-content').on('scroll', (transition) => {
+                    this.getScrollData(transition);
                 });
 
                 
@@ -122,20 +121,31 @@
                     success :function(json){
                         _self.scroll = true;
                         if(json.retcode==1){
-                            transition.next({shoplist:json.data.rows});
+                            // if (_self.page === 1) {
+                            //    _self.shoplist = json.data.rows
+                            // }else{
+                            //     _self.shoplist = _self.shoplist.concat(json.data.rows);
+                            // }
+                            // transition.next(function(){
+                                setTimeout(function(){
+                                   _self.shoplist = _self.shoplist.concat(json.data.rows);
+                                },2000)
+                               
+                            // });
                         }
                     }
                 });
             },
 
              //滚动加载数据
-            getScrollData (){
-                if(this.scroll){
+            getScrollData (transition){
+                let _self = this;
+                if(_self.scroll){
                     let totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
                     if ($(document).height() <= totalheight + 200) {
-                         this.scroll = false;
-
-                         this.shoplist.concart(json.data.rows)
+                         _self.scroll = false;
+                         _self.page++;
+                          _self.getAjaxData(transition)
                     }
                 }
             },
