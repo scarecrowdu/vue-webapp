@@ -1,8 +1,10 @@
 <template>
-    <div class="homepage ">
-
+    <div class="homepage">
+        
+        <!-- 头部 -->
         <app-header title="积分购"></app-header>
-
+        
+        <!-- 轮播广告 -->
         <div class="swiper-container appSwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -15,6 +17,8 @@
             <div class="swiper-pagination app-pagination"></div>
         </div>
 
+
+        <!-- 商品内容区 -->
         <ul class="tab-menu v-flexbox">
             <li class="v-flexbox-item tab-item"  v-for="item in tablist"  @click="sordBy(item.key)" :class="[{active:$index === activeIndex}]" >
                 <a href="javascript:void(0)"  v-if="$index >
@@ -26,6 +30,7 @@
         <section class="main-container">
             <ul class="itemBox">
                 <li class="item" v-for="item in shoplist">
+                  <a v-link="{name:'detail',query:{id:item.id}}">
                     <img :src="item.cover">
                     <div class="info">
                         <p class="title nowrap-multi">{{item.title}}</p>
@@ -40,9 +45,11 @@
                             <span class="add">+清单</span>
                         </p>
                     </div>
+                  </a>  
                 </li>
             </ul>
         </section>
+
     </div>
 </template>
 
@@ -50,7 +57,6 @@
     require('../assets/css/swiper.min.css');
 
     import Header from './common/Header.vue';
-    import Loading from '../components/Loading.vue';
     import Swiper from 'swiper';
 
 
@@ -72,20 +78,15 @@
             }
         },
         components:{
-            appHeader:Header,
-            appLoading :Loading,
-            tabs : require('../components/tabset.vue'),
-            tab  : require('../components/tab.vue')
-
+            appHeader:Header
         },
         route:{
             data (transition) {
                 var _self = this;
                 _self.getAjaxData(transition);
 
-
                 //滚动加载
-                $('.app-content').on('scroll', (transition) => {
+                $('.appRouter').on('scroll', (transition) => {
                     this.getScrollData(transition);
                 });
 
@@ -103,12 +104,8 @@
                 pagination: '.swiper-pagination',
                 paginationClickable: true,
             });
-
-
-
         },
         methods:{
-
 
             //请求数据
             getAjaxData(transition){
@@ -129,7 +126,7 @@
                             // transition.next(function(){
                                 setTimeout(function(){
                                    _self.shoplist = _self.shoplist.concat(json.data.rows);
-                                },2000)
+                                },300)
                                
                             // });
                         }
@@ -141,11 +138,19 @@
             getScrollData (transition){
                 let _self = this;
                 if(_self.scroll){
-                    let totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
-                    if ($(document).height() <= totalheight + 200) {
+    
+                    let parentH = document.querySelector('.appView').offsetHeight,
+                        scrollH  = document.querySelector('.appRouter').scrollTop,
+                        childH  = document.querySelector('.appRouter').offsetHeight;
+                    let totalheight = parseFloat(childH) + parseFloat(scrollH);
+
+
+                    if ( parentH == totalheight ) {
                          _self.scroll = false;
+
+                         console.count();
                          _self.page++;
-                          _self.getAjaxData(transition)
+                         _self.getAjaxData(transition)
                     }
                 }
             },
@@ -164,6 +169,9 @@
 
             sordBy(key){
                 let _self = this;
+                _self.shoplist = [];
+
+                _self.getAjaxData();
 
                 if (key == 4) {
                     _self.isflag = !_self.isflag;
@@ -180,7 +188,7 @@
 
                 }else{
 
-                  _self.mark.up =  _self.mark.down = false; 
+                    _self.mark.up =  _self.mark.down = false; 
 
                 }
                 
@@ -198,19 +206,34 @@
       }
     .appSwiper {
         width:100%;
+        
+        .swiper-slide {
+            text-align: center;
+            background: #fff;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
     }
-    .appSwiper .swiper-slide {
-        text-align: center;
-        background: #fff;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
+
+    .app-pagination{
+        bottom:5px !important;
+        padding-right: 10px;
+        text-align:right;
+
+        >span{
+             width: 25px;
+             height: 5px;
+             background:#888;
+             border-radius:0;
+             margin: 0 2px !important;
+         }
     }
 
     .tab-menu{
@@ -276,20 +299,7 @@
 
     }
 
-    .app-pagination{
-        bottom:5px !important;
-        padding-right: 10px;
-        text-align:right;
-
-        >span{
-             width: 25px;
-             height: 5px;
-             background:#888;
-             border-radius:0;
-             margin: 0 2px !important;
-         }
-    }
-
+    
     .main-container{
         position: relative;
         width: 100%;

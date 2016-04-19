@@ -1,5 +1,5 @@
 <template>
-  <div class="cart app-content">
+  <div class="cart ">
 
     <app-header title="清单">
        <p slot="right" v-on:click="isedit = !isedit">

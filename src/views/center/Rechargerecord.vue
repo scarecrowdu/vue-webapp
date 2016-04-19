@@ -1,5 +1,5 @@
 <template>
-  <div class="rechargeRecord app-content" transition="page">
+  <div class="rechargeRecord " transition="page">
 
     <app-header title="充值记录" :title-bg="true" header-bg="#fff">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>

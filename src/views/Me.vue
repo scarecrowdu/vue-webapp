@@ -1,6 +1,6 @@
 <template>
 
-  <div class="me app-content">
+  <div class="me ">
       
       <div class="user-header">
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="indiana app-content">
+  <div class="indiana">
 
         <app-header title="最新揭晓"></app-header>
 
@@ -151,7 +151,7 @@
                            setTimeout(function(){
                               transition.next({lists:json.data.rows});
                               _self.loading.show = false;
-                           },2000)
+                           },200)
                         }
                     }
                 });

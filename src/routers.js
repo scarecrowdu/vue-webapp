@@ -26,6 +26,14 @@ export default function(router) {
 			}
 		},
 
+		// 详情
+		'/detail':{
+			name:'detail',
+			component:function(resolve){
+				require(['./views/indiana/Detail.vue'],resolve)
+			}
+		},
+
 		// 订单支付
 		'/orderPay':{
 			name:'orderPay',

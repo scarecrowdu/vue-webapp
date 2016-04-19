@@ -1,5 +1,5 @@
 <template>
-  <div class="login app-content" transition="page">
+  <div class="login " transition="page">
 
     <app-header title="添加地址" :title-bg="true" header-bg="#fff">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>

@@ -1,5 +1,5 @@
 <template>
-  <div class="user app-content">
+  <div class="user ">
 
       <!-- 缓存二级路由切换的页面 -->
       <router-view keep-alive > </router-view>

@@ -97,7 +97,7 @@ img {
   vertical-align: middle;
 }
 
-.page {
+.app{
   position: absolute;
   top: 0;
   right: 0;
@@ -109,7 +109,7 @@ img {
   margin:0 auto;
 }
 
-.app-content {
+.appRouter{
   position: absolute;
   top: 0;
   right: 0;

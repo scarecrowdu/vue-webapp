@@ -1,5 +1,5 @@
 <template>
-  <div class="login app-content">
+  <div class="login ">
 
     <app-header title="登陆" :title-bg=true>
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>

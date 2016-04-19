@@ -1,5 +1,5 @@
 <template>
-  <div class="rechargeRecord app-content">
+  <div class="rechargeRecord ">
 
     <app-header title="充值" :title-bg="true" header-bg="#fff">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>

@@ -1,9 +1,9 @@
 <template>
-  <div class="app page">
+  <div class="app">
 
     <!-- 缓存路由切换的页面 -->
-    <div class="app-content">
-    <router-view class="app-view"  keep-alive :class="{'change-page':changePage}"></router-view>
+    <div class="appRouter">
+        <router-view class="appView"  keep-alive :class="{'change-page':changePage}"></router-view>
     </div>
     <!--  :transition="effect" -->
     <!-- app导航 -->

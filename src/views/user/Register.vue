@@ -1,5 +1,5 @@
 <template>
-  <div class="register app-content">
+  <div class="register ">
 
      <app-header title="注册" :title-bg="true">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
