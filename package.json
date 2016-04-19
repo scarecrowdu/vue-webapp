@@ -23,6 +23,7 @@
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.15.0",
     "node-libs-browser": "^0.5.3",
+    "node-sass": "^3.4.2",
     "path": "^0.12.7",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
