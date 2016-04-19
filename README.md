@@ -4,8 +4,8 @@
 ## 运行
 npm install
 
-webpack -w
-
+npm run dev  ---- localhost:8080
+npm run dev  -----本机ip:9000
 
 ## 目录结构
 <pre>
