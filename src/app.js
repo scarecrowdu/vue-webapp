@@ -16,20 +16,6 @@ Vue.use(VueRouter);
 //实例化Vue的filter
 Object.keys(filters).forEach(k => Vue.filter(k, filters[k]))
 
-// 购物车数字校验
-// Vue.filter('numFormat', {
-
-//   write: function(val, oldVal) {
-//     var number = Number(val);
-//     if (isNaN(number)) {
-//       return oldVal;
-//     }else{
-//       return (number <=0) ? 1 : number
-//     }
-//   }
-
-// });
-
 
 //过渡代码放到最下面的时候，有时候并不会执行钩子函数的方法，放到这里就可以了。
 Vue.transition('next', {
@@ -58,8 +44,8 @@ Vue.transition('prev', {
 let router = new VueRouter({
     hashbang: true, 
     history: false,
-    saveScrollPosition: true,
-    transitionOnLoad: true,
+    // saveScrollPosition: true,
+    // transitionOnLoad: true,
     linkActiveClass: 'custom-active',
 });
 

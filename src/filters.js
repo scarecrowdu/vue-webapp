@@ -53,7 +53,9 @@ exports.timeago = (times) => {
 
 }
 
-
+/*
+*时间格式化
+*/
 exports.fmtDate = (date, fmt) => { //author: meizz 
     var o = {
         "M+": date.getMonth() + 1, //月份 

@@ -13,16 +13,17 @@ html {
 }
 
 body {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   font-size: 14px;
   background: #eee;
   color: #333;
-  overflow: hidden;
+
 }
+
+html,body{
+    height: 100%;
+    /*overflow-x:hidden;*/
+}
+
 
 a, input, textarea, select, button {
   outline: 0;
@@ -97,26 +98,159 @@ img {
   vertical-align: middle;
 }
 
-.app{
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: #ebebeb;
-  z-index: 2000;
-  max-width: 640px;
-  margin:0 auto;
-}
 
-.appRouter{
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  background: #ebebeb;
-}
+
+    #app{
+      height: 100%;
+    }
+    .v{
+      min-height:calc(100vh - 50px);
+    }
+
+    .wrap{
+      position:relative;
+      height: 100%;
+      color:#fff;
+      background: #ebebeb;
+
+    }
+    .change-page .v{
+      position: absolute;
+      top:0;
+      width: 100%;
+    }
+    .change-page{
+       overflow-y:hidden;
+    }
+
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    /*场景切换*/
+    .next-enter {
+        z-index: 1002;
+        -webkit-animation: pageFromRightToCenter 800ms forwards;
+        animation: pageFromRightToCenter 800ms forward
+    }
+    .next-leave {
+        z-index: 1001;
+        -webkit-animation: pageFromCenterToLeft 800ms forwards;
+        animation: pageFromCenterToLeft 800ms forwards
+    }
+    .prev-enter {
+        z-index: 1001;
+        -webkit-animation: pageFromLeftToCenter 400ms forwards;
+        animation: pageFromLeftToCenter 400ms forward
+    }
+    .prev-leave {
+        z-index: 1002;
+        -webkit-animation: pageFromCenterToRight 400ms forwards;
+        animation: pageFromCenterToRight 400ms forwards;
+    }
+
+    @-webkit-keyframes pageFromRightToCenter {
+      from {
+        -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+        opacity: .9;
+      }
+      to {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
+    @keyframes pageFromRightToCenter {
+      from {
+        -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+        opacity: .9;
+      }
+      to {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
+    @-webkit-keyframes pageFromCenterToRight {
+      from {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+      to {
+        -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+        opacity: .9;
+      }
+    }
+    @keyframes pageFromCenterToRight {
+      from {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+      to {
+        -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+        opacity: .9;
+      }
+    }
+    .page-from-center-to-left {
+      -webkit-animation: pageFromCenterToLeft 400ms forwards;
+              animation: pageFromCenterToLeft 400ms forwards;
+    }
+    .page-from-left-to-center  {
+      -webkit-animation: pageFromLeftToCenter 400ms forwards;
+              animation: pageFromLeftToCenter 400ms forwards;
+    }
+    @-webkit-keyframes pageFromCenterToLeft {
+      from {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+      }
+      to {
+        opacity: 0.5;
+        -webkit-transform: translate3d(-20%, 0, 0);
+                transform: translate3d(-20%, 0, 0);
+      }
+    }
+    @keyframes pageFromCenterToLeft {
+      from {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+      }
+      to {
+        opacity: 0.5;
+        -webkit-transform: translate3d(-20%, 0, 0);
+                transform: translate3d(-20%, 0, 0);
+      }
+    }
+    @-webkit-keyframes pageFromLeftToCenter {
+      from {
+        opacity: .5;
+        -webkit-transform: translate3d(-20%, 0, 0);
+                transform: translate3d(-20%, 0, 0);
+      }
+      to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+      }
+    }
+    @keyframes pageFromLeftToCenter {
+      from {
+        opacity: .5;
+        -webkit-transform: translate3d(-20%, 0, 0);
+                transform: translate3d(-20%, 0, 0);
+      }
+      to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+      }
+    }

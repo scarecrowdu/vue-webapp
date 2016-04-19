@@ -146,7 +146,7 @@
     }
 </script>
 <style lang="sass">
-@import '~vux/vux.css';
+ 
 
 
 .dataNull{

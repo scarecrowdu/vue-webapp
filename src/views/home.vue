@@ -30,7 +30,7 @@
         <section class="main-container">
             <ul class="itemBox">
                 <li class="item" v-for="item in shoplist">
-                  <a v-link="{name:'detail',query:{id:item.id}}">
+                  <a v-link="{name:'detail'}">
                     <img :src="item.cover">
                     <div class="info">
                         <p class="title nowrap-multi">{{item.title}}</p>
@@ -67,7 +67,7 @@
                 isflag:false,
                 activeIndex: 0,
                 scroll:true,
-                page:0,
+                page:1,
                 tablist:[
                    {title:"默认",key:'1'},
                    {title:"销量",key:'2'},
@@ -86,7 +86,7 @@
                 _self.getAjaxData(transition);
 
                 //滚动加载
-                $('.appRouter').on('scroll', (transition) => {
+                $(window).on('scroll', (transition) => {
                     this.getScrollData(transition);
                 });
 
@@ -96,6 +96,7 @@
 
         deactivate (transition){
            $(window).off('scroll');
+           this.$root.$set('isIndex',true);
            transition.next();
 
         },
@@ -118,15 +119,15 @@
                     success :function(json){
                         _self.scroll = true;
                         if(json.retcode==1){
-                            // if (_self.page === 1) {
-                            //    _self.shoplist = json.data.rows
-                            // }else{
-                            //     _self.shoplist = _self.shoplist.concat(json.data.rows);
-                            // }
+                            if (_self.page === 1) {
+                               _self.shoplist = json.data.rows
+                            }else{
+                                _self.shoplist = _self.shoplist.concat(json.data.rows);
+                            }
                             // transition.next(function(){
-                                setTimeout(function(){
-                                   _self.shoplist = _self.shoplist.concat(json.data.rows);
-                                },300)
+                                // setTimeout(function(){
+                                //    _self.shoplist = _self.shoplist.concat(json.data.rows);
+                                // },300)
                                
                             // });
                         }
@@ -139,18 +140,21 @@
                 let _self = this;
                 if(_self.scroll){
     
-                    let parentH = document.querySelector('.appView').offsetHeight,
-                        scrollH  = document.querySelector('.appRouter').scrollTop,
-                        childH  = document.querySelector('.appRouter').offsetHeight;
-                    let totalheight = parseFloat(childH) + parseFloat(scrollH);
+                    // let parentH = document.querySelector('.appView').offsetHeight,
+                    //     scrollH  = document.querySelector('.appRouter').scrollTop,
+                    //     childH  = document.querySelector('.appRouter').offsetHeight;
+                    // let totalheight = parseFloat(childH) + parseFloat(scrollH);
+                    let totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+                    if ($(document).height() <= totalheight + 200) {
 
-
-                    if ( parentH == totalheight ) {
+                    // if ( parentH == totalheight ) {
                          _self.scroll = false;
 
                          console.count();
                          _self.page++;
-                         _self.getAjaxData(transition)
+                         if(_self.page <= 5){
+                           _self.getAjaxData(transition)
+                         }
                     }
                 }
             },
@@ -202,7 +206,7 @@
 
 <style lang="sass">
     .homepage {
-        bottom: 55px;
+
       }
     .appSwiper {
         width:100%;
@@ -303,6 +307,8 @@
     .main-container{
         position: relative;
         width: 100%;
+        margin-bottom: 55px;
+        overflow: hidden;
     }
     .itemBox{
         overflow: hidden;

@@ -1,6 +1,11 @@
 
+
+
 export default function(router) {
+
+
     router.map({
+
 
     	// 首页
 		'/':{
@@ -65,7 +70,6 @@ export default function(router) {
 	                component: require('./views/center/Addressedit.vue')
 	            },
 
-	            
 	            // 中奖确认
 	            '/winConfirm': {
 	                component: require('./views/center/Winconfirm.vue')
@@ -148,6 +152,7 @@ export default function(router) {
 
 	router.beforeEach(function(transition){
 		// console.log('-----before-----');
+		window.scrollTo(0, 0);
 
 	    if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
 	        router.app.effect='prev';//返回
@@ -194,3 +199,4 @@ export default function(router) {
 	});
 
 }
+
