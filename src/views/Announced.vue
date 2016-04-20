@@ -6,7 +6,7 @@
         <section class="announced-container">
             <ul class="floatBox">
                 <li v-for="item in lists" >
-                  <a href="#">
+                  <a v-link="{name:'jDetail',query:{id:item.id}}">
                      <img v-lazy="item.cover" :style="{ width:item.imgwh +'px',height:item.imgwh +'px' }" >
                      <div class="info">
                         <p class="title">{{item.title}}</p>

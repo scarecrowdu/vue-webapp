@@ -4,6 +4,7 @@
   "description": "this is a webapp",
   "main": "index.js",
   "scripts": {
+    "build":"set PRODUCTION=1 && webpack --progress",
     "dev": "webpack-dev-server --progress --profile --colors --inline ",
     "port": "webpack-dev-server --progress --colors --inline --port 9090 ",
     "hot": "webpack-dev-server --progress --colors --inline --hot",

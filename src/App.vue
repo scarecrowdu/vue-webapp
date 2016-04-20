@@ -6,9 +6,11 @@
 
 
     <div class="wrap">
-      <router-view class="v"  ></router-view>
+      <router-view class="v"  :transition="effect" keep-alive ></router-view>
+      <!-- :transition="effect" -->
     </div>
-    <!-- :transition="effect" -->
+
+    <loading :show="loadshow"></loading>
 
 </div>
 
@@ -18,18 +20,20 @@
 <script>
  
   import Navbar from './views/common/Navbar.vue';
-  import IScroll from './lib/iscroll/iscroll.js';
+  import Loading from './components/Loading.vue';
   
   export default {
      data() {
       return {
           isIndex:true,
           effect:'next',
-          changePage:false
+          changePage:false,
+          loadshow:false
       }
      },
      components:{
-       navBar:Navbar
+       navBar:Navbar,
+       loading:Loading
      },
      methods:{
      },

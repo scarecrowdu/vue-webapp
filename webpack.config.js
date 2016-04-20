@@ -22,7 +22,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");   //独立样式
 var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;  //混淆压缩
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin; //检测重用模块
  
-// 在命令行 输入  “PRODUCTION=1 webpack --progress” 就会打包压缩，并且注入md5戳 到 d.html里面
+// 在命令行 输入  “set PRODUCTION=1 && webpack --progress” 就会打包压缩，并且注入md5戳 到 d.html里面
 var production = process.env.PRODUCTION;
 
 
@@ -79,7 +79,7 @@ module.exports = {
         // filename: '[name].[hash].js',
         // chunkFilename: '[id].[chunkhash].js'
 
-        publicPath: production ? "/util/vue/dist/":"dist/",
+        publicPath: production ? "dist/":"dist/",
         filename: production ? "build.[hash].js" : "build.js"//"build.[hash].js"//[hash]MD5戳   解决html的资源的定位可以使用 webpack提供的HtmlWebpackPlugin插件来解决这个问题  见：http://segmentfault.com/a/1190000003499526 资源路径切换
     },
 

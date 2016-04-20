@@ -1,11 +1,4 @@
-/* 变量 */
-$color-primary: #0894ec;
-$color-danger: #f6383a;
-$color-warning: #f60;
-$color-success: #4cd964;
 
-
-/* icon 字体 */
 @font-face {
   font-family: 'iconfont';
   src: url('//at.alicdn.com/t/font_1460946189_533687.eot'); /* IE9*/
@@ -14,8 +7,7 @@ $color-success: #4cd964;
   url('//at.alicdn.com/t/font_1460946189_533687.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
   url('//at.alicdn.com/t/font_1460946189_533687.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
-                                 
-                                      
+                                                                 
                     
 .icon{
   font-family:"iconfont" !important;
@@ -27,7 +19,6 @@ $color-success: #4cd964;
 
 
 
-/* 弹性布局 */
 .v-flexbox{
   width: 100%;
   text-align: center;
@@ -50,9 +41,6 @@ $color-success: #4cd964;
 }
 
 
-
-
-/* 文字截断 */
 .nowrap{
     max-width: 100%;
     overflow: hidden;

@@ -1,50 +1,39 @@
 
 
-
 export default function(router) {
 
 
     router.map({
 
-
     	// 首页
 		'/':{
 			name:'home',
-			component:function(resolve){
-				require(['./views/Home.vue'],resolve)
-			}
+			component(resolve){ require(['./views/Home.vue'], resolve) }
 		},
-
 		// 最新揭晓
 		'/announced':{
 			name:'announced',
-			component:function(resolve){
-				require(['./views/Announced.vue'],resolve)
-			}
+			component(resolve){ require(['./views/Announced.vue'], resolve) }
 		},
-        
         // 清单
 		'/cart':{
 			name:'cart',
-			component:function(resolve){
-				require(['./views/Cart.vue'],resolve)
-			}
+			component(resolve){ require(['./views/Cart.vue'],resolve) }
 		},
-
-		// 详情
-		'/detail':{
-			name:'detail',
-			component:function(resolve){
-				require(['./views/indiana/Detail.vue'],resolve)
-			}
+		// 揭晓详情
+		'/announced/jDetail':{
+			name:'jDetail',
+			component(resolve){ require(['./views/indiana/announcedDetail.vue'],resolve ) }
 		},
-
+		// 夺宝详情
+		'/announced/dDetail':{
+			name:'dDetail',
+			component(resolve){ require(['./views/indiana/indianaDetail.vue'],resolve ) }
+		},
 		// 订单支付
 		'/orderPay':{
 			name:'orderPay',
-			component:function(resolve){
-				require(['./views/list/Orderpay.vue'],resolve)
-			}
+			component(resolve){ require(['./views/list/Orderpay.vue'],resolve) }
 		},
 
 
@@ -69,13 +58,6 @@ export default function(router) {
 	            	name: 'addressEdit',
 	                component: require('./views/center/Addressedit.vue')
 	            },
-
-	            // 中奖确认
-	            '/winConfirm': {
-	                component: require('./views/center/Winconfirm.vue')
-	            },
-
-	            
             }
 		},
 
@@ -85,27 +67,33 @@ export default function(router) {
         },
 
 		// 全部参与记录
-        '/allRecord': {
+        '/center/allRecord': {
         	name:'allRecord',
             component: require('./views/center/Allrecord.vue')
         },
 
         // 中奖记录
-        '/winRecord': {
+        '/center/winRecord': {
         	name:'winRecord',
             component: require('./views/center/Winrecord.vue')
         },
 
         // 我的红包
-        '/redPackets': {
+        '/center/redPackets': {
         	name:'redPackets',
             component: require('./views/center/Redpackets.vue')
         },
 
         // 充值记录
-        '/rechargeRecord': {
+        '/center/rechargeRecord': {
         	name:'rechargeRecord',
-            component: require('./views/center/Rechargerecord.vue')
+            component: require('./views/center/Winconfirm.vue')
+        },
+
+        // 中奖确认
+        '/center/winConfirm': {
+        	name:'winConfirm',
+            component: require('./views/center/Winconfirm.vue')
         },
 
 
@@ -138,9 +126,7 @@ export default function(router) {
 		
 		// 404
 	    '*': {
-	        component:function(resolve){
-			    require(['./views/error/not_found.vue'],resolve)
-			}
+	        component(resolve){ require(['./views/error/not_found.vue'],resolve) }
 	    }
 	});
 
@@ -178,12 +164,12 @@ export default function(router) {
 	    
 		//使底部菜单栏在一级路由切换时一直保持显示
 		//在二级页时隐藏
-	    // var toPath = transition.to.path;
-	    // if(toPath.replace(/[^/]/g,"").length>1){
-	    //     router.app.isIndex = false;
-	    // }else{
-	    //     router.app.isIndex = true;
-	    // }   
+	    var toPath = transition.to.path;
+	    if(toPath.replace(/[^/]/g,"").length>1){
+	        router.app.isIndex = false;
+	    }else{
+	        router.app.isIndex = true;
+	    }   
 	});
     
     //可以记录访问路径

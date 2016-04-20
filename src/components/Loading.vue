@@ -40,7 +40,7 @@ export default {
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: rgba(0, 0, 0, 0);
+		background: rgba(0, 0, 0, 0.5);
 		color:#fff;
 
     .load-box{
@@ -62,12 +62,12 @@ export default {
   position: relative;
   margin:10px auto;
 }
- 
+.double-bounce1{background-color: #FF6666;}
+.double-bounce2 {background-color: #67CF22;}
 .double-bounce1, .double-bounce2 {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: #67CF22;
   opacity: 0.6;
   position: absolute;
   top: 0;

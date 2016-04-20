@@ -28,7 +28,7 @@
         <section class="main-container">
             <ul class="itemBox">
                 <li class="item" v-for="item in shoplist">
-                  <a v-link="{name:'detail'}">
+                  <a v-link="{name:'dDetail',query:{id:item.id}}">
                     <img v-lazy="item.cover" :style="{ width:item.imgwh +'px',height:item.imgwh +'px' }">
                     <div class="info">
                         <p class="title nowrap-multi">{{item.title}}</p>
