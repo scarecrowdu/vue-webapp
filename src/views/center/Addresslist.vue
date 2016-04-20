@@ -1,5 +1,5 @@
 <template>
-  <div class="adsList"  transition="page">
+  <div class="adsList">
 
     <app-header title="地址管理" :title-bg="true" header-bg="#fff">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>

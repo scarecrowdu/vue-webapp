@@ -7,12 +7,10 @@
         <!-- 轮播广告 -->
         <div class="swiper-container appSwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="../assets/images/logo.png"></div>
-                <div class="swiper-slide">
-                    <img src="../assets/images/logo.png"></div>
-                <div class="swiper-slide">
-                    <img src="../assets/images/logo.png"></div>
+
+                <div class="swiper-slide" v-for="item in imglist" :style="{height:item.height +'px' }">
+                    <img :src="item.src">
+                </div>
             </div>
             <div class="swiper-pagination app-pagination"></div>
         </div>
@@ -31,15 +29,14 @@
             <ul class="itemBox">
                 <li class="item" v-for="item in shoplist">
                   <a v-link="{name:'detail'}">
-                    <img :src="item.cover">
+                    <img v-lazy="item.cover" :style="{ width:item.imgwh +'px',height:item.imgwh +'px' }">
                     <div class="info">
                         <p class="title nowrap-multi">{{item.title}}</p>
                     </div>
                     <div class="msg">
                         <p class="state">
                             <span class="percentage">开奖进度{{progress($index)}}</span>
-                            <span class="progress"> <i class="ongoing" v-bind:style="{width:progress($index)}"></i>
-                            </span>
+                            <span class="progress"> <i class="ongoing" :style="{width:progress($index)}"></i></span>
                         </p>
                         <p class="btn">
                             <span class="add">+清单</span>
@@ -59,7 +56,6 @@
     import Header from './common/Header.vue';
     import Swiper from 'swiper';
 
-
     export default {
         data() {
             return{
@@ -74,37 +70,57 @@
                    {title:"上新",key:'3'},
                    {title:"价格",key:'4'},
                 ],
-                shoplist:[]
+                shoplist:[],
+                imglist:[
+                   {src:"http://bs.baidu.com/dulife/562df13b07703.png",id:'1'},
+                   {src:"http://bs.baidu.com/dulife/557654e01de3e.jpg",id:'2'},
+                   {src:"http://bs.baidu.com/dulife/54d9c790f0903.jpg",id:'3'},
+                ]
             }
         },
         components:{
             appHeader:Header
         },
         route:{
-            data (transition) {
+            data(transition){
                 var _self = this;
                 _self.getAjaxData(transition);
-
                 //滚动加载
                 $(window).on('scroll', (transition) => {
                     this.getScrollData(transition);
                 });
-
-                
+            },
+            deactivate(transition){
+                // var _self = this;
+                // _self.$root.$set('loadshow',true);
+               $(window).off('scroll');
+               transition.next();
             }
         },
-
-        deactivate (transition){
-           $(window).off('scroll');
-           this.$root.$set('isIndex',true);
-           transition.next();
-
-        },
-        ready:function(){
+        ready(){
+            var _self = this;
             new Swiper('.appSwiper', {
                 pagination: '.swiper-pagination',
                 paginationClickable: true,
             });
+
+
+            for (var i = 0; i < _self.imglist.length; i++) {
+                _self.imglist[i].height = window.innerWidth / 2
+            }
+
+            console.log(JSON.stringify(_self.imglist));
+
+        },
+        attached(){
+            // //滚动加载
+            // $(window).on('scroll', (transition) => {
+            //     this.getScrollData(transition);
+            // });
+
+        },
+        detached(){
+            // $(window).off('scroll');
         },
         methods:{
 
@@ -118,11 +134,16 @@
                     dataType:"json",
                     success :function(json){
                         _self.scroll = true;
+                        // _self.$root.$set('loadshow',false);
                         if(json.retcode==1){
+                            let jsonData = json.data.rows;
+                            for (var i = 0; i < jsonData.length; i++) {
+                                jsonData[i].imgwh = window.innerWidth/2-20;
+                            }
                             if (_self.page === 1) {
-                               _self.shoplist = json.data.rows
+                               _self.shoplist = jsonData
                             }else{
-                                _self.shoplist = _self.shoplist.concat(json.data.rows);
+                                _self.shoplist = _self.shoplist.concat(jsonData);
                             }
                             // transition.next(function(){
                                 // setTimeout(function(){
@@ -140,19 +161,13 @@
                 let _self = this;
                 if(_self.scroll){
     
-                    // let parentH = document.querySelector('.appView').offsetHeight,
-                    //     scrollH  = document.querySelector('.appRouter').scrollTop,
-                    //     childH  = document.querySelector('.appRouter').offsetHeight;
-                    // let totalheight = parseFloat(childH) + parseFloat(scrollH);
                     let totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
                     if ($(document).height() <= totalheight + 200) {
-
-                    // if ( parentH == totalheight ) {
                          _self.scroll = false;
-
-                         console.count();
                          _self.page++;
+
                          if(_self.page <= 5){
+                              console.log(_self.page);
                            _self.getAjaxData(transition)
                          }
                     }
@@ -174,6 +189,7 @@
             sordBy(key){
                 let _self = this;
                 _self.shoplist = [];
+                _self.page = 1;
 
                 _self.getAjaxData();
 
@@ -191,9 +207,7 @@
                     }
 
                 }else{
-
                     _self.mark.up =  _self.mark.down = false; 
-
                 }
                 
 
@@ -223,6 +237,8 @@
             -ms-flex-align: center;
             -webkit-align-items: center;
             align-items: center;
+
+            img{width: 100%;height: 200px;}
         }
     }
 
@@ -312,6 +328,7 @@
     }
     .itemBox{
         overflow: hidden;
+        min-height: 450px;
     
         .item:nth-child(even){ 
             &:after {
@@ -355,6 +372,8 @@
               -webkit-transform-origin: 0 0;
               transform-origin: 0 0;
             }
+
+            a{display: block;}
              
 
             img{ width: 100%;height: 100%; }

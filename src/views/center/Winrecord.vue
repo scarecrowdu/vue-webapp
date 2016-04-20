@@ -1,5 +1,5 @@
 <template>
-  <div class="login " transition="page">
+  <div class="login">
 
     <app-header title="中奖记录" :title-bg="true" header-bg="#fff">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
@@ -7,7 +7,7 @@
 
     <div class="weui_panel weui_panel_access">
         <div class="weui_panel_bd winItem">
-            <a v-link="{ path:'/me/winConfirm' }" class="weui_media_box weui_media_appmsg">
+            <a v-link="{ path:'/center/winConfirm' }" class="weui_media_box weui_media_appmsg">
                 <div class="weui_media_hd">
                     <img class="weui_media_appmsg_thumb" src="../../assets/images/logo.png"  alt="">
                 </div>

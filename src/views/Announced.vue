@@ -7,7 +7,7 @@
             <ul class="floatBox">
                 <li v-for="item in lists" >
                   <a href="#">
-                     <img :src="item.cover">
+                     <img v-lazy="item.cover" :style="{ width:item.imgwh +'px',height:item.imgwh +'px' }" >
                      <div class="info">
                         <p class="title">{{item.title}}</p>
                         <p class="issue">期号：{{item.periods}}</p>
@@ -131,11 +131,15 @@
           data (transition) {
             var _self = this;
             _self.getAjaxData(transition);
-            
           },
           deactivate (transition){
-               transition.next();
+             var _self = this;
+              // _self.$root.$set('loadshow',true);
+             $(window).off('scroll');
+             transition.next();
           }
+        },
+        ready(){
         },
         methods:{
             /*请求数据*/
@@ -147,11 +151,23 @@
                     data:{},
                     dataType:"json",
                     success :function(json){
+                        // _self.$root.$set('loadshow',false);
                         if(json.retcode==1){
-                           setTimeout(function(){
-                              transition.next({lists:json.data.rows});
-                              _self.loading.show = false;
-                           },200)
+                            let jsonData = json.data.rows;
+                            for (var i = 0; i < jsonData.length; i++) {
+                                jsonData[i].imgwh = window.innerWidth/2-20;
+                            }
+                            if (_self.page === 1) {
+                               _self.lists = jsonData
+                            }else{
+                                _self.lists = _self.lists.concat(jsonData);
+                            }
+                            // transition.next(function(){
+                                // setTimeout(function(){
+                                //    _self.shoplist = _self.shoplist.concat(json.data.rows);
+                                // },300)
+                               
+                            // });
                         }
                     }
                 });

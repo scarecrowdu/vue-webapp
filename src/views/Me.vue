@@ -32,7 +32,7 @@
       </div> 
 
       <div class="weui_cells">
-        <a class="weui_cell" v-link="{ path: '/allRecord' }">
+        <a class="weui_cell" v-link="{ path: '/center/allRecord' }">
           <div class="weui_cell_hd">
             <span class="icon c-icon danger">&#xe606;</span>
           </div>
@@ -41,7 +41,7 @@
           </div>
           <div class="weui_cell_ft with_arrow"></div>
         </a>
-        <a class="weui_cell" v-link="{ path: '/winRecord' }">
+        <a class="weui_cell" v-link="{ path: '/center/winRecord' }">
           <div class="weui_cell_hd">
             <span class="icon c-icon warning">&#xe604;</span>
           </div>
@@ -50,7 +50,7 @@
           </div>
           <div class="weui_cell_ft with_arrow"></div>
         </a>
-        <a class="weui_cell" v-link="{ path: '/redPackets' }">
+        <a class="weui_cell" v-link="{ path: '/center/redPackets' }">
           <div class="weui_cell_hd">
             <span class="icon c-icon danger">&#xe605;</span>
           </div>
@@ -59,7 +59,7 @@
           </div>
           <div class="weui_cell_ft with_arrow"></div>
         </a>
-        <a class="weui_cell" v-link="{ path: '/rechargeRecord' }">
+        <a class="weui_cell" v-link="{ path: '/center/rechargeRecord' }">
           <div class="weui_cell_hd">
             <span class="icon c-icon primary">&#xe608;</span>
           </div>

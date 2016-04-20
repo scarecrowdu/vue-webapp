@@ -1,8 +1,8 @@
 <template>
   <div class="detail">
      
-     <!-- 头部 -->
-     <app-header title="商品详情" :title-bg="true" header-bg="#fff">
+    <!-- 头部 -->
+    <app-header title="商品详情" :title-bg="true" header-bg="#fff">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
         <a slot="right" >分享</a>
     </app-header>
@@ -22,7 +22,6 @@
 
     <!-- 主体区域 -->
     <div class="detailItem">
-
         <div class="topInfo">
             <div class="title">
                 <span class="status">进行中</span>
@@ -122,17 +121,14 @@
             </div>
         </div>
 
-        <!-- <div style="height:55px;"></div> -->
-        <div class="bottomInfo v-flexbox">
+        <div class="bottomInfo v-flexbox showUp">
             <p class="v-flexbox-item">新一期正在火热进行中</p>
             <p>
                 <a href="javascript:;" class="weui_btn weui_btn_warn">立即前往</a>
             </p>
         </div>
-
     </div>
 
-    
   </div>
 </template>
 
@@ -148,7 +144,6 @@
         },
         route:{
           activate(transition){
-            // this.$root.$set('isIndex',false);
             transition.next();
           }
         },
@@ -167,6 +162,25 @@
 
 
 <style lang="sass">
+
+@-webkit-keyframes showUp {
+  from {opacity: 0;bottom:-100px;}
+  to { opacity: 1;bottom:0;}
+}
+
+@keyframes showUp {
+  from {opacity: 0;bottom:-100px;}
+  to { opacity: 1;bottom:0;}
+}
+
+.showUp {
+  -webkit-animation-name: showUp;
+  animation-name: showUp;
+   -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
     .appSwiper {
         width:100%;
 
@@ -308,6 +322,8 @@
         >.weui_cells{margin-top:10px;font-size: 14px;}
         .recordmsg{
             background: #ebebeb;
+            margin-bottom:55px;
+
 
             .item{
                 position: relative;
@@ -321,7 +337,7 @@
 
             .Cimg{
                width: 40px;
-               
+
                &:after{
                   position: absolute;
                   top: 0;
@@ -371,8 +387,8 @@
     }
 
     .bottomInfo{
-        // position: fixed;
-        bottom:0;
+        position: fixed;
+        // bottom:0;
         left:0;
         z-index: 99;
         width: 100%;
@@ -383,7 +399,7 @@
             text-align:left;
         }
         >p:nth-child(2){
-            >a{ font-size: 14px;}
+            >a{ font-size: 14px;border-radius:3px;}
         }
     }
 

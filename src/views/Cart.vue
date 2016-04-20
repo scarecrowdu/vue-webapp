@@ -10,7 +10,7 @@
 
     
     <!-- 清单无数据 -->
-    <section class="cartNull">
+    <section class="cartNull" style="display:none">
         <div class="cart-msg">
           <i class="cart-icon icon">&#xe602;</i>
           <p>空空如也~</p>
@@ -65,7 +65,7 @@
     
     
     <!-- 清单主内容 -->
-    <section class="catContainer" style="display:none">
+    <section class="catContainer">
         <div class="cartBox">
           <div class="cartItem ui-border-t" v-for="item in ishopList">
              <div class="checklist" v-show="isedit">
@@ -91,7 +91,7 @@
              </div>
           </div>
         </div>
-        <div class="cartEdit">
+        <div class="cartEdit " >
             <div class="chk" v-show="isedit">
                 <span class="check" :class="{checked:checkedAll}" @click="chkAll()" ></span>
                 <span>全选</span>
@@ -147,7 +147,6 @@
 
             let sildeW = $(".swiper-slide").width();
             $(".swiper-slide").find('img').css({'width':sildeW,'height':sildeW})
-            console.log(sildeW)
 
         },
         methods:{
@@ -297,6 +296,25 @@
 </script>
 
 <style lang="sass">
+
+@-webkit-keyframes showUpc {
+  from {opacity: 0;bottom:0;}
+  to { opacity: 1;bottom:55px;}
+}
+
+@keyframes showUpc {
+  from {opacity: 0;bottom:0;}
+  to { opacity: 1;bottom:55px;}
+}
+
+.showUpc {
+  -webkit-animation-name: showUpc;
+  animation-name: showUpc;
+   -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
 
   .cart-msg{
      width: 100%;
@@ -496,9 +514,10 @@
 
 
 .cartEdit{
-    position: absolute;
+    position: fixed;
     bottom:55px;
     left:0;
+    z-index: 1000;
     width: 100%;
     padding:10px;
     box-sizing:border-box;
