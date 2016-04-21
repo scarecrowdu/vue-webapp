@@ -102,6 +102,8 @@ img {
 
 #app{
   height: 100%;
+  max-width: 640px;
+  margin: 0 auto;
 }
 .v{
   min-height:calc(100vh - 50px);

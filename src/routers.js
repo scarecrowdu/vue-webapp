@@ -8,7 +8,7 @@ export default function(router) {
     	// 首页
 		'/':{
 			name:'home',
-			component(resolve){ require(['./views/Home.vue'], resolve) }
+			component: require('./views/Home.vue')
 		},
 		// 最新揭晓
 		'/announced':{

@@ -37,7 +37,7 @@ var plugins = [
 
     //会将所有的样式文件打包成一个单独的style.css
     new ExtractTextPlugin( production ? "style.[hash].css" : "style.css", {
-       disable: false,
+       disable: false ,
        allChunks: true  //所有独立样式打包成一个css文件
     }),
 
@@ -112,13 +112,10 @@ module.exports = {
         ]
     },
 
-    // vue: {
-    //     loaders: {
-    //         /*js: 'babel!eslint',*/
-    //         less: 'vue-style!css!less',
-    //         sass: 'vue-style!css!sass'
-    //     }
-    // },
+    vue:{
+        css:ExtractTextPlugin.extract("style-loader","css-loader?sourceMap!cssnext-loader"),
+        scss: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!sass-loader!cssnext-loader")
+    },
 
     // 插件项
     plugins:plugins,

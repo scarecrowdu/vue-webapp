@@ -152,10 +152,11 @@
                     dataType:"json",
                     success :function(json){
                         // _self.$root.$set('loadshow',false);
+                        let appW = document.querySelector("#app").style.width 
                         if(json.retcode==1){
                             let jsonData = json.data.rows;
                             for (var i = 0; i < jsonData.length; i++) {
-                                jsonData[i].imgwh = window.innerWidth/2-20;
+                                jsonData[i].imgwh = appW/2-20;
                             }
                             if (_self.page === 1) {
                                _self.lists = jsonData
