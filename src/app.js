@@ -8,6 +8,8 @@ import filters from './filters'
 import AppVue from './app.vue';
 import lazyload from 'vue-lazyload'
 
+Vue.config.devtools = true;
+
 Vue.use(lazyload, {
   error: 'assets/images/lazy.png',
   loading: 'http://img.zcool.cn/community/01443f564897a432f87512f6eed753.gif',
