@@ -2,7 +2,7 @@
     <div class="homepage">
         
         <!-- 头部 -->
-        <app-header title="积分购"></app-header>
+        <appheader title="积分购"></appheader>
         
         <!-- 轮播广告 -->
         <div class="swiper-container appSwiper">
@@ -14,7 +14,7 @@
             <div class="swiper-pagination app-pagination"></div>
         </div>
 
-        <!-- 商品内容区 -->
+        <!-- TAB切换区 -->
         <ul class="tab-menu v-flexbox">
             <li class="v-flexbox-item tab-item"  v-for="item in tablist"  @click="sordBy(item.key)" :class="[{active:$index === activeIndex}]" >
                 <a href="javascript:void(0)"  v-if="$index >
@@ -23,6 +23,8 @@
                 <a href="javascript:void(0)"  v-else  @click.prevent="activeIndex=$index">{{item.title}}</a>
             </li>
         </ul>
+
+        <!-- 商品内容区 -->
         <section class="main-container">
             <ul class="itemBox">
                 <li class="item" v-for="item in shoplist">
@@ -49,116 +51,103 @@
 </template>
 
 <script>
+
+    let imgdata = [{src:"http://bs.baidu.com/dulife/562df13b07703.png",id:'1'},{src:"http://bs.baidu.com/dulife/557654e01de3e.jpg",id:'2'},{src:"http://bs.baidu.com/dulife/54d9c790f0903.jpg",id:'3'},];
+    let tabdata = [{title:"默认",key:'1'},{title:"销量",key:'2'},{title:"上新",key:'3'},{title:"价格",key:'4'},]
+
+
     require('../assets/css/swiper.min.css');
-    import Header from './common/Header.vue';
-    import Swiper from 'swiper';
+    import appheader from  './common/Header.vue';
+    import Swiper    from  'swiper';
 
     export default {
         data() {
             return{
-                mark         :   {up:false,down:false},
-                isflag       :   false,   //用于tab切换的最后一个标识
-                activeIndex  :   0,
-                scroll       :   true,
-                page         :   1,
-                tablist :[
-                   {title:"默认",key:'1'},
-                   {title:"销量",key:'2'},
-                   {title:"上新",key:'3'},
-                   {title:"价格",key:'4'},
-                ],
-                shoplist:[],
-                imglist:[
-                   {src:"http://bs.baidu.com/dulife/562df13b07703.png",id:'1'},
-                   {src:"http://bs.baidu.com/dulife/557654e01de3e.jpg",id:'2'},
-                   {src:"http://bs.baidu.com/dulife/54d9c790f0903.jpg",id:'3'},
-                ]
+                isflag       :   false,                   //用于tab切换的最后一个标识
+                scroll       :   true,                    //用于判断是否滚动
+                activeIndex  :   0,                       //用于默认active样式 
+                page         :   1,                       //当前页数
+                mark         :   {up:false,down:false},   //用于判断价格升降序
+                tablist      :   null,                    //tab数据
+                shoplist     :   null,                    //列表数据
+                imglist      :   null,                    //轮播数据
             }
-        },
-        components:{
-            appHeader:Header
         },
         route:{
             data(transition){
-                var _self = this;
-                _self.getAjaxData(transition);
+                let self = this;
+                self.getAjaxData(transition);
                 //滚动加载
                 $(window).on('scroll', (transition) => {
-                    this.getScrollData(transition);
+                    self.getScrollData(transition);
                 });
             },
             deactivate(transition){
-                // var _self = this;
-                // _self.$root.$set('loadshow',true);
                $(window).off('scroll');
                transition.next();
             }
         },
         ready(){
-            var _self = this;
-            new Swiper('.appSwiper', {
-                pagination: '.swiper-pagination',
-                paginationClickable: true,
-            });
-        },
-        attached(){
-            // //滚动加载
-            // $(window).on('scroll', (transition) => {
-            //     this.getScrollData(transition);
-            // });
+            let self = this;
+            
+            self.$set('imglist', imgdata);
+            self.$set('tablist', tabdata);
 
-        },
-        detached(){
-            // $(window).off('scroll');
-        },
+            setTimeout(function(){
+                new Swiper('.appSwiper', {
+                    pagination: '.swiper-pagination',
+                    paginationClickable: true,
+                });
+            },1000)
+
+            let appW = document.querySelector("#app");
+
+        },     
         methods:{
 
             //请求数据
             getAjaxData(transition){
-                let _self = this;
-                $.ajax({
-                    type: "GET",
-                    url:'../../src/data/shoplist.json',
-                    data:{},
-                    dataType:"json",
-                    success :function(json){
-                        _self.scroll = true;
-                        // _self.$root.$set('loadshow',false);
-                        let appW = document.querySelector("#app").style.width 
-                        if(json.retcode==1){
-                            let jsonData = json.data.rows;
+                  let self = this;
+
+                  self.$http.get('../../src/data/shoplist.json').then(function (response) {
+
+                      self.scroll = true;
+                      let data = response.data;
+
+                      if(data.retcode == 1){
+                            console.log(self.page);
+                            let jsonData = data.data.rows;
+                            let appW = document.querySelector("#app").style.width;
+
                             for (var i = 0; i < jsonData.length; i++) {
                                 jsonData[i].imgwh = appW/2-20;
                             }
-                            if (_self.page === 1) {
-                               _self.shoplist = jsonData
+                            if (self.page === 1) {
+                               self.shoplist = jsonData
                             }else{
-                                _self.shoplist = _self.shoplist.concat(jsonData);
+                                self.shoplist = self.shoplist.concat(jsonData);
                             }
-                            // transition.next(function(){
-                                // setTimeout(function(){
-                                //    _self.shoplist = _self.shoplist.concat(json.data.rows);
-                                // },300)
-                               
-                            // });
                         }
-                    }
-                });
+
+                  }, function (response) {
+                      // error callback
+                  });
             },
 
-             //滚动加载数据
+            //滚动加载数据
             getScrollData (transition){
-                let _self = this;
-                if(_self.scroll){
+                let self = this;
+                if(self.scroll){
     
                     let totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
                     if ($(document).height() <= totalheight + 200) {
-                         _self.scroll = false;
-                         _self.page++;
+                         self.scroll = false;
+                         self.page++;
+                        
 
-                         if(_self.page <= 5){
-                              console.log(_self.page);
-                           _self.getAjaxData(transition)
+                         if(self.page <= 5){
+                              // console.log(self.page);
+                           self.getAjaxData(transition)
                          }
                     }
                 }
@@ -166,45 +155,45 @@
 
             // 计算开奖进度
             progress(index){
-                let _self = this;
+                let self = this;
                 let totalprogress = 0,
-                    remainmember = _self.shoplist[index].remainmember,
-                    totalmember = _self.shoplist[index].totalmember;
+                    remainmember = self.shoplist[index].remainmember,
+                    totalmember = self.shoplist[index].totalmember;
 
                 totalprogress   = Math.round(remainmember/totalmember*100)+'%';
                
                 return  totalprogress; 
             },
-
+            
+            // 价格升降序
             sordBy(key){
-                let _self = this;
-                _self.shoplist = [];
-                _self.page = 1;
+                let self = this;
+                self.shoplist = [];
+                self.page = 1;
 
-                _self.getAjaxData();
+                self.getAjaxData();
 
                 if (key == 4) {
-                    _self.isflag = !_self.isflag;
+                    self.isflag = !self.isflag;
                     
                     if (this.isflag) {
-                        _self.mark.up = true;
-                        _self.mark.down = false;
+                        self.mark.up = true;
+                        self.mark.down = false;
                         alert('up')
                     }else{
                         alert('down')
-                        _self.mark.down = true;
-                        _self.mark.up = false;
+                        self.mark.down = true;
+                        self.mark.up = false;
                     }
 
                 }else{
-                    _self.mark.up =  _self.mark.down = false; 
+                    self.mark.up =  self.mark.down = false; 
                 }
-                
-
-
             }
-
-        }
+        },
+        components:{
+           appheader
+        },
     }
 </script>
 

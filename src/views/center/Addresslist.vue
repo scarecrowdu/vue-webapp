@@ -3,7 +3,7 @@
 
     <app-header title="地址管理" :title-bg="true" header-bg="#fff">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
-        <a v-link="{ path: '/me/addressEdit' }" slot="right" >添加</a>
+        <a v-link="{ path: '/center/addressEdit' }" slot="right" >添加</a>
     </app-header>
 
 

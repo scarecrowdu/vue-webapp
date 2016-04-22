@@ -1,8 +1,11 @@
 <template>
-  <div class="indiana">
 
-        <app-header title="最新揭晓"></app-header>
+    <div class="indiana"> 
 
+        <!-- 头部 -->
+        <appheader title="最新揭晓"></appheader>
+
+        <!-- 列表区 -->
         <section class="announced-container">
             <ul class="floatBox">
                 <li v-for="item in lists" >
@@ -36,138 +39,66 @@
                       </div>
                     </a>
                 </li>
-                <!--  <li>
-                  <a href="#">
-                     <img src="../assets/images/logo.png">
-                     <div class="info">
-                        <p class="title">小米电视</p>
-                        <p class="issue">期号：123456789101</p>
-                        <p class="state">
-                          <span class="txt">获得者：小林</span>
-                          <span class="txt">参与人数：20</span>
-                        </p>
-                        <p class="msg">
-                          <span class="txt">幸运号码：1026262266</span>
-                          <span class="txt">揭晓时间：今天12：00</span>
-                        </p>
-                     </div>
-                    </a>
-                </li>
-                <li>
-                  <a href="#">
-                     <img src="../assets/images/logo.png">
-                     <div class="info">
-                        <p class="title">小米电视</p>
-                        <p class="issue">期号：123456789101</p>
-                        <p class="state">
-                          <span class="txt">获得者：小林</span>
-                          <span class="txt">参与人数：20</span>
-                        </p>
-                        <p class="msg">
-                          <span class="match">计算中，请稍等...</span>
-                        </p>
-                     </div>
-                    </a>
-                </li>
-                 <li>
-                  <a href="#">
-                     <img src="../assets/images/logo.png">
-                     <div class="info">
-                        <p class="title">小米电视</p>
-                        <p class="issue">期号：123456789101</p>
-                        <p class="state">即将揭晓</p>
-                        <p class="msg">15:15:0</p>
-                     </div>
-                    </a>
-                </li>
-                 <li>
-                  <a href="#">
-                     <img src="../assets/images/logo.png">
-                     <div class="info">
-                        <p class="title">小米电视</p>
-                        <p class="issue">期号：123456789101</p>
-                       <p class="state">
-                          <span class="txt">获得者：小林</span>
-                          <span class="txt">参与人数：20</span>
-                        </p>
-                        <p class="msg">
-                          <span class="txt">获得者：小林</span>
-                          <span class="txt">参与人数：20</span>
-                          <span class="txt">幸运号码：1026262266</span>
-                          <span class="txt">揭晓时间：今天12：00</span>
-                        </p>
-                     </div>
-                    </a>
-                </li> -->
+  
             </ul>
         </section>
 
-       <!-- <app-loading  :show="loading.show" :title="loading.showTxt" ></app-loading> -->
-
    </div>
+
 </template>
 
 <script>
-    import Header from './common/Header.vue';
-    import Loading from '../components/Loading.vue';
+
+    import appheader from './common/Header.vue';
+    import loading from '../components/Loading.vue';
     
     export default {
         data() {
          return{
-           title:'最新揭晓',
-           lists:[],
-           loading:{
-                show:true,
-                showTxt:'二维码识别中'
-            }
-
+           lists:[]
          }
         },
-        components:{
-           appHeader:Header,
-           appLoading:Loading
-        },
         route:{
+
           data (transition) {
-            var _self = this;
-            clearInterval();
-            _self.getAjaxData();
+            var self = this;
+            self.getAjaxData(transition);
           },
           deactivate (transition){
-             var _self = this;
-              // _self.$root.$set('loadshow',true);
+             var self = this;
              $(window).off('scroll');
              transition.next();
           }
-        },
-        ready(){
 
         },
+        ready(){
+        },
         methods:{
-            /*请求数据*/
+
+            //请求数据
             getAjaxData:function(transition){
-                var _self = this;
+                var self = this;
                 $.ajax({
                     type: "GET",
                     url:'../../src/data/list.json',
                     data:{},
                     dataType:"json",
                     success :function(json){
-                        // _self.$root.$set('loadshow',false);
+                        // self.$root.$set('loadshow',false);
                         let appW = document.querySelector("#app").style.width 
                         if(json.retcode==1){
                             let jsonData = json.data.rows;
                             for (var i = 0; i < jsonData.length; i++) {
                                 jsonData[i].imgwh = appW/2-20;
                             }
-                            if (_self.page === 1) {
-                               _self.lists = jsonData
+                            if (self.page === 1) {
+                               self.lists = jsonData
                             }else{
-                                _self.lists = _self.lists.concat(jsonData);
+                                self.lists = self.lists.concat(jsonData);
                             }
                             // transition.next(function(){
                                 // setTimeout(function(){
-                                //    _self.shoplist = _self.shoplist.concat(json.data.rows);
+                                //    self.shoplist = self.shoplist.concat(json.data.rows);
                                 // },300)
                                
                             // });
@@ -176,7 +107,7 @@
                 });
             },
 
-
+            //倒计时
             runtime(el,timer){
 
                 let timestamp = timer;
@@ -203,7 +134,11 @@
                 }
 
                 // isInter = setInterval(interval, 1000);
-          }
+            }
+        },
+        components:{
+           appheader,
+           loading
         }
     }
 </script>
@@ -291,7 +226,6 @@
           display: inline-block;
           border-style: solid;
           border-width: 1px;
-          // border-color: #000;
           width: 65px;
           padding:2px 0;
           font-size: 12px;

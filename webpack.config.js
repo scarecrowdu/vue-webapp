@@ -1,4 +1,4 @@
-//先清空 n-build 文件夹下的文件
+/*//先清空 n-build 文件夹下的文件
 var fs = require('fs'),
     buildPath='./static/';
 var folder_exists = fs.existsSync(buildPath);
@@ -132,4 +132,4 @@ module.exports = {
 
     // Create Sourcemaps for the bundle
     devtool: 'source-map',
-};
+};*/

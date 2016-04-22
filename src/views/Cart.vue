@@ -1,12 +1,14 @@
 <template>
-  <div class="cart ">
 
-    <app-header title="清单">
+  <div class="cart ">
+    
+    <!-- 头部 -->
+    <appheader title="清单">
        <p slot="right" v-on:click="isedit = !isedit">
            <span v-show="!isedit">编辑</span>
            <span v-show="isedit">取消</span>
        </p>
-    </app-header>
+    </appheader>
 
     
     <!-- 清单无数据 -->
@@ -62,8 +64,6 @@
         </div>
     </section>
        
-    
-    
     <!-- 清单主内容 -->
     <section class="catContainer">
         <div class="cartBox">
@@ -109,34 +109,30 @@
     </section>
 
   </div>
+
 </template>
 
 <script>
 
-    import Header from './common/Header.vue';
+    import appheader from './common/Header.vue';
     import Swiper from 'swiper';
  
 
     export default {
         data() {
          return{
-           title:'清单',
-           isedit:false,
-           checkedAll:false,
-           isSelectALL:false,
-           ishopList:[]
+           isedit        :  false,  //用于切换编辑
+           checkedAll    :  false,  //用于全选
+           ishopList     :  null    //清单数据
          }
-        },
-        components:{
-           appHeader:Header
         },
         route:{
           activate(transition){
             transition.next();
           },
           data(transition){
-             var _self = this;
-             _self.getAjaxData(transition);
+             var self = this;
+             self.getAjaxData(transition);
           }
         },
         ready(){
@@ -153,7 +149,7 @@
 
             //请求当前用户购物车数据
             getAjaxData(transition){
-                var _self = this;
+                var self = this;
                 $.ajax({
                     type: "GET",
                     url:'../../src/data/cart.json',
@@ -286,10 +282,14 @@
                 //     }
                 // });
             },
-
+            
+            // 更新清单数量
             updateCart(id,buycount){
                 console.log(id, buycount);
             }
+        },
+        components:{
+           appheader
         }
     }
 
@@ -297,30 +297,10 @@
 
 <style lang="sass">
 
-@-webkit-keyframes showUpc {
-  from {opacity: 0;bottom:0;}
-  to { opacity: 1;bottom:55px;}
-}
-
-@keyframes showUpc {
-  from {opacity: 0;bottom:0;}
-  to { opacity: 1;bottom:55px;}
-}
-
-.showUpc {
-  -webkit-animation-name: showUpc;
-  animation-name: showUpc;
-   -webkit-animation-duration: 3s;
-  animation-duration: 3s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
   .cart-msg{
      width: 100%;
      text-align: center;
      margin-top: 30px;
-     // display: none;
 
      .btn-gruop{
         margin-top: 10px;

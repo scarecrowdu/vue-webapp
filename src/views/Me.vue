@@ -10,7 +10,7 @@
             </div>
 
             <div class="u-icon">
-               <a v-link="{ path: '/msg' }"><i class="icon">&#xe609;</i></a>
+               <a v-link="{ path: '/center/msg' }"><i class="icon">&#xe609;</i></a>
             </div>
         </div>
 

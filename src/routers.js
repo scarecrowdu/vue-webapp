@@ -35,74 +35,56 @@ export default function(router) {
 			name:'orderPay',
 			component(resolve){ require(['./views/list/Orderpay.vue'],resolve) }
 		},
-
-
 		// 订单结果
 		'/payResults':{
 			name:'payResults',
-			component:function(resolve){
-				require(['./views/list/Payresults.vue'],resolve)
-			}
+			component(resolve){ require(['./views/list/Payresults.vue'],resolve) }
 		},
-
         // 个人中心
 		'/me':{
 			name:'me',
-			component:function(resolve){
-				require(['./views/Me.vue'],resolve)
-			},
-			subRoutes: {
-			
-	            // 添加地址
-	            '/addressEdit/': {
-	            	name: 'addressEdit',
-	                component: require('./views/center/Addressedit.vue')
-	            },
-            }
+			component(resolve){	require(['./views/Me.vue'],resolve) },
+			subRoutes: {}
 		},
-
 		// 个人资料
-        '/msg': {
-            component: require('./views/center/Personal.vue')
+        '/center/msg': {
+        	name:'msg',
+            component(resolve){ require(['./views/center/Personal.vue'],resolve) }
         },
-
 		// 全部参与记录
         '/center/allRecord': {
         	name:'allRecord',
-            component: require('./views/center/Allrecord.vue')
+            component(resolve){ require(['./views/center/Allrecord.vue'],resolve) }
         },
-
         // 中奖记录
         '/center/winRecord': {
         	name:'winRecord',
-            component: require('./views/center/Winrecord.vue')
+            component(resolve){ require(['./views/center/Winrecord.vue'],resolve) }
         },
-
         // 我的红包
         '/center/redPackets': {
         	name:'redPackets',
-            component: require('./views/center/Redpackets.vue')
+            component(resolve){ require(['./views/center/Redpackets.vue'],resolve) }
         },
-
         // 充值记录
         '/center/rechargeRecord': {
         	name:'rechargeRecord',
-            component: require('./views/center/Winconfirm.vue')
+            component(resolve){ require(['./views/center/Winconfirm.vue'],resolve) }
         },
-
         // 中奖确认
         '/center/winConfirm': {
         	name:'winConfirm',
-            component: require('./views/center/Winconfirm.vue')
+            component(resolve){ require(['./views/center/Winconfirm.vue'],resolve) }
         },
-
-
 		// 地址列表
-        '/addressList': {
+        '/center/addressList': {
         	name:'addressList',
-            component:function(resolve){
-				require(['./views/center/Addresslist.vue'],resolve)
-			},
+            component(resolve){ require(['./views/center/Addresslist.vue'],resolve) }
+        },
+        // 添加地址
+        '/center/addressEdit/': {
+        	name: 'addressEdit',
+        	component(resolve){ require(['./views/center/Addressedit.vue'],resolve) }
         },
 
 		// 登陆注册手机绑定

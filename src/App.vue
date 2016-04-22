@@ -17,10 +17,8 @@
 </template>
 
 <script>
- 
   import navbar from './views/common/Navbar.vue';
   import loading from './components/Loading.vue';
-  
   export default {
      data() {
         return { 
@@ -40,9 +38,11 @@
 </script>
 
 <style>
-
+  @import '~vux/vux.css';
   [v-cloak] { 
     display: none;
   }
-
+  body{
+    background: yellow;
+  }
 </style>

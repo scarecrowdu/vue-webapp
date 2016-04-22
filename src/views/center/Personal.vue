@@ -47,7 +47,7 @@
             <input class="weui_input" placeholder="I'm placeholder" type="text">
           </p>
         </div>
-        <a class="weui_cell" v-link="{ path: '/addressList' }">
+        <a class="weui_cell" v-link="{ path: '/center/addressList' }">
           <p class="weui_cell_hd">
              <label class="weui_label" style="width: 4.5em;">地址管理</label>
           </p>
