@@ -46,9 +46,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
+/word
 /node_modules
 /dist
 /static
 /.idea
-/word

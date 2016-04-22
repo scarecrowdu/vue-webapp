@@ -8,7 +8,8 @@ import filters from './filters'
 import AppVue from './app.vue';
 import lazyload from 'vue-lazyload'
 
-Vue.config.devtools = true;
+// 在加载 Vue 之后立即同步的设置
+Vue.config.devtools = true
 
 Vue.use(lazyload, {
   error: 'assets/images/lazy.png',
@@ -68,8 +69,8 @@ Vue.transition('prev', {
 let router = new VueRouter({
     hashbang: true, 
     history: false,
-    // saveScrollPosition: true,
-    // transitionOnLoad: true,
+    saveScrollPosition: true,
+    transitionOnLoad: true,
     linkActiveClass: 'custom-active',
 });
 
