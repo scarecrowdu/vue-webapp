@@ -1,6 +1,6 @@
 //先清空 n-build 文件夹下的文件
 var fs = require('fs'),
-    buildPath='./dist/';
+    buildPath='./static/';
 var folder_exists = fs.existsSync(buildPath);
 
 if(folder_exists == true){
@@ -74,12 +74,12 @@ module.exports = {
     // 输出配置
     output: {
         // 输出路径是
-        path: path.join(__dirname, '/dist'),
-        // publicPath: 'dist/',
+        path: path.join(__dirname, '/static'),
+        // publicPath: 'static/',
         // filename: '[name].[hash].js',
         // chunkFilename: '[id].[chunkhash].js'
 
-        publicPath: production ? "dist/":"dist/",
+        publicPath: production ? "static/":"static/",
         filename: production ? "build.[hash].js" : "build.js"//"build.[hash].js"//[hash]MD5戳   解决html的资源的定位可以使用 webpack提供的HtmlWebpackPlugin插件来解决这个问题  见：http://segmentfault.com/a/1190000003499526 资源路径切换
     },
 

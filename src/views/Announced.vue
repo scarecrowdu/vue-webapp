@@ -26,7 +26,7 @@
 
                         <div class="msg" v-if="item.caipiaotype == 1">
                             <span class="btn reds">即将揭晓</span>
-                            <span class="time">{{item.downtime}}</span>
+                            <span class="time" id="{{item.id}}">{{runtime(item.id,item.downtime)}}</span>
                         </div>
 
                         <div class="msg" v-if="item.caipiaotype == 0">
@@ -130,7 +130,8 @@
         route:{
           data (transition) {
             var _self = this;
-            _self.getAjaxData(transition);
+            clearInterval();
+            _self.getAjaxData();
           },
           deactivate (transition){
              var _self = this;
@@ -140,6 +141,7 @@
           }
         },
         ready(){
+
         },
         methods:{
             /*请求数据*/
@@ -172,7 +174,36 @@
                         }
                     }
                 });
-            }
+            },
+
+
+            runtime(el,timer){
+
+                let timestamp = timer;
+                let isInter;
+                function interval(){
+                  if(timestamp<=0){
+                    console.count();
+                    $('#'+el).text("正在计算中，请稍等...");
+                    return;
+                  }
+
+                  let hm = Math.floor(timestamp % 1000 /10);
+                  let sec = Math.floor(timestamp / 1000 % 60);
+                  let mini = Math.floor(timestamp / (60*1000));
+
+                  hm = hm < 10 ? "0" + hm : hm;
+                  sec = sec < 10 ? "0" + sec : sec;
+                  mini = mini < 10 ? "0" + mini : mini;
+                  let text = mini + ":" + sec + ":" + hm;
+
+                  setTimeout(interval, 1);
+                  $('#'+el).text(text);
+                  timestamp--;
+                }
+
+                // isInter = setInterval(interval, 1000);
+          }
         }
     }
 </script>
@@ -252,6 +283,7 @@
           display: block;
           font-weight: 600;
           font-size: 18px;
+          margin-top: 5px;
         }
 
         .btn{

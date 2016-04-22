@@ -108,11 +108,23 @@
         </div>
 
         <div class="bottomInfo2 v-flexbox showUp" >
-            <p class="v-flexbox-item"><a href="javascript:;" class="weui_btn weui_btn_warn">立即夺宝</a></p>
+            <p class="v-flexbox-item"><a href="javascript:;" class="weui_btn weui_btn_warn" @click="showBottomAside = true">立即夺宝</a></p>
             <p class="v-flexbox-item"><a href="javascript:;" class="weui_btn weui_btn_plain_default">加入清单</a></p>
             <p class="iconBox"><i class="icon">&#xe602;</i></p>
         </div>
     </div>
+
+
+     <!--下-->
+    <asidebar v-ref:asideL  :show.sync="showBottomAside"  :placement.sync="bottom"  :header.sync="asideBottomTit" >
+      <div slot="body">
+        <!--自定义内容-->
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea praesentium repudiandae accusantium nostrum doloribus voluptas accusamus consectetur quod inventore provident magni id sit, dolor harum totam. Odio ducimus error architecto.
+        <div class="aside-footer">
+          <button type="button" class="btn btn-default" @click="showBottomAside=false">在组件声明的时候定义的close事件</button>
+        </div>
+      </div>
+    </asidebar>
 
   </div>
 </template>
@@ -121,10 +133,17 @@
 
     import Header from '../common/Header.vue';
     import Swiper from 'swiper';
+    import asidebar from '../../components/aside.vue'
+
+
 
 	export default {
         data() {
          return{
+            showAside       : false,         //用于 aside
+            bottom          : 'bottom',      //用于 aside
+            showBottomAside : false,         //用于 asideaside 方向
+            asideBottomTit  : 'right-title', //用于 aside
          }
         },
         route:{
@@ -139,7 +158,8 @@
             });
         },
         components:{
-           appHeader:Header
+           appHeader:Header,
+           asidebar:asidebar
         }
 
     }

@@ -74,3 +74,33 @@ exports.fmtDate = (date, fmt) => { //author: meizz
     return fmt;
 }
 
+
+
+/*exports.runtime = (el,timer) =>{
+
+      let timestamp = timer;
+      let isInter;
+      
+      function interval(){
+        if(timestamp<=0){
+          console.count();
+          clearInterval(isInter);
+          return;
+        }
+
+        let hm = Math.floor(timestamp % 1000 /10);
+        let sec = Math.floor(timestamp / 1000 % 60);
+        let mini = Math.floor(timestamp / (60*1000));
+
+        hm = hm < 10 ? "0" + hm : hm;
+        sec = sec < 10 ? "0" + sec : sec;
+        mini = mini < 10 ? "0" + mini : mini;
+        let text = mini + ":" + sec + ":" + hm;
+
+        setTimeout(interval, 1);
+        document.getElementById(el).innerHTML = text;
+        timestamp--;
+      }
+
+      isInter = setInterval(interval, 1000);
+}*/

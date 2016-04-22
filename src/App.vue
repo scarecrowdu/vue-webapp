@@ -1,50 +1,48 @@
 <template>
+  <div id="app" v-cloak :class="{'change-page':changePage}" >
 
-  <div id="app" :class="{'change-page':changePage}">
-    <!-- app导航 -->
-    <nav-bar v-if="isIndex"></nav-bar>
+      <!-- 路由 -->
+      <div class="wrap">
+        <router-view class="v"  :transition="effect" keep-alive ></router-view>
+        <!-- :transition="effect" -->
+      </div>
 
+      <!-- 导航 -->
+      <navbar v-if="isIndex"></navbar>
 
-    <div class="wrap">
-      <router-view class="v"  :transition="effect" keep-alive ></router-view>
-      <!-- :transition="effect" -->
-    </div>
+      <!-- loading -->
+      <loading :show="loadshow"></loading>
 
-    <loading :show="loadshow"></loading>
-
-</div>
-
-
+  </div>
 </template>
 
 <script>
  
-  import Navbar from './views/common/Navbar.vue';
-  import Loading from './components/Loading.vue';
+  import navbar from './views/common/Navbar.vue';
+  import loading from './components/Loading.vue';
   
   export default {
      data() {
-      return {
-          isIndex:true,
-          effect:'next',
-          changePage:false,
-          loadshow:false
-      }
+        return { 
+            effect       :  'next',     //用于切换过渡动画
+            isIndex      :  true,       //用于navbar导航
+            changePage   :  false,      //用于过渡设置样式
+            loadshow     :  false       //用于全局loading
+        }
      },
+     methods:{},
+     ready(){},
      components:{
-       navBar:Navbar,
-       loading:Loading
+       navbar,
+       loading
      },
-     methods:{
-     },
-     ready(){
-     
-     }
-
   }
-  
 </script>
 
-<style lang="sass">
+<style>
+
+  [v-cloak] { 
+    display: none;
+  }
 
 </style>

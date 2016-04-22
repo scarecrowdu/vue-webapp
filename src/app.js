@@ -1,5 +1,4 @@
 require('./assets/css/reset.css');
-// require('./assets/scss/base.scss');
 // require('./assets/scss/weui.scss');
 
 import Vue from 'vue'; //vue

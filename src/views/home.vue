@@ -7,14 +7,12 @@
         <!-- 轮播广告 -->
         <div class="swiper-container appSwiper">
             <div class="swiper-wrapper">
-
                 <div class="swiper-slide" v-for="item in imglist" :style="{height:item.height +'px' }">
                     <img :src="item.src">
                 </div>
             </div>
             <div class="swiper-pagination app-pagination"></div>
         </div>
-
 
         <!-- 商品内容区 -->
         <ul class="tab-menu v-flexbox">
@@ -52,19 +50,18 @@
 
 <script>
     require('../assets/css/swiper.min.css');
-
     import Header from './common/Header.vue';
     import Swiper from 'swiper';
 
     export default {
         data() {
             return{
-                mark:{up:false,down:false},
-                isflag:false,
-                activeIndex: 0,
-                scroll:true,
-                page:1,
-                tablist:[
+                mark         :   {up:false,down:false},
+                isflag       :   false,   //用于tab切换的最后一个标识
+                activeIndex  :   0,
+                scroll       :   true,
+                page         :   1,
+                tablist :[
                    {title:"默认",key:'1'},
                    {title:"销量",key:'2'},
                    {title:"上新",key:'3'},
@@ -212,9 +209,7 @@
 </script>
 
 <style lang="sass">
-    .homepage {
-
-      }
+    .homepage {}
     .appSwiper {
         width:100%;
         
