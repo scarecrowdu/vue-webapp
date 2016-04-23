@@ -1,20 +1,3 @@
-/*//先清空 n-build 文件夹下的文件
-var fs = require('fs'),
-    buildPath='./static/';
-var folder_exists = fs.existsSync(buildPath);
-
-if(folder_exists == true){
-   var dirList = fs.readdirSync(buildPath);
-   dirList.forEach(function(fileName)
-   {
-       fs.unlinkSync(buildPath + fileName);
-   });
-   console.log("clearing " + buildPath);
-};
-
-
-
-
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin'); //自动生成带hash的HTML 文件
@@ -22,11 +5,13 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");   //独立样式
 var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;  //混淆压缩
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin; //检测重用模块
  
+var prod = require('./webpack-prod');
+
 // 在命令行 输入  “set PRODUCTION=1 && webpack --progress” 就会打包压缩，并且注入md5戳 到 d.html里面
 var production = process.env.PRODUCTION;
 
-
 var plugins = [
+
     // Avoid publishing files when compilation fails
     new webpack.NoErrorsPlugin(),
 
@@ -40,31 +25,31 @@ var plugins = [
        disable: false ,
        allChunks: true  //所有独立样式打包成一个css文件
     }),
-
  
    //new ExtractTextPlugin("[name].css" )
    //自动分析重用的模块并且打包成单独的文件
-   new CommonsChunkPlugin(production ? "vendor.[hash].js" : "vendor.js" ),
+   new CommonsChunkPlugin(production ? "vendor.[hash].js" : "vendor.js" )
 
 ];
 
 
 //发布编译时，压缩，版本控制
 if (process.env.PRODUCTION) {
+    
+    // 清除之前的上线文件
+    prod.folder('./output/static/');
 
     //压缩
     plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false } }));
-
+    
+    // 生成模板文件
     plugins.push(new HtmlWebpackPlugin({
-        filename:'../d.html',//会生成d.html在根目录下,并注入脚本
+        filename:'../index.html',//会生成index.html在根目录下,并注入脚本
         template:'index.tpl',
         inject:true //此参数必须加上，不加不注入
     }))
 
 }
-
-
-
 
 module.exports = {
 
@@ -74,13 +59,10 @@ module.exports = {
     // 输出配置
     output: {
         // 输出路径是
-        path: path.join(__dirname, '/static'),
-        // publicPath: 'static/',
-        // filename: '[name].[hash].js',
-        // chunkFilename: '[id].[chunkhash].js'
-
+        path: path.join(__dirname, '/output/static'),
         publicPath: production ? "static/":"static/",
-        filename: production ? "build.[hash].js" : "build.js"//"build.[hash].js"//[hash]MD5戳   解决html的资源的定位可以使用 webpack提供的HtmlWebpackPlugin插件来解决这个问题  见：http://segmentfault.com/a/1190000003499526 资源路径切换
+        filename: production ? "build.[hash].js" : "build.js",//[hash]MD5戳解决html的资源的定位可以使用webpack提供的HtmlWebpackPlugin插件来解决这个问题  见：http://segmentfault.com/a/1190000003499526 资源路径切换
+        chunkFilename: '[id].[chunkhash].js'
     },
 
     // 添加的module属性
@@ -96,27 +78,36 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel?presets=es2015',
                 exclude: /node_modules/
-                // exclude: /node_modules|vue\/src|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
-            }, {
+            }, 
+            {
                 test: /\.css$/,
                 // loader: "css-loader?sourceMap!cssnext-loader"
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!cssnext-loader")
-            }, {
+            }, 
+            {
                 test: /\.scss$/,
                 // loader: "css-loader?sourceMap!sass-loader!cssnext-loader"
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!sass-loader!cssnext-loader")
-            }, {
+            }, 
+            // 内联 base64 URLs, 限定 <=10k 的图片, 其他的用 URL
+            {
                 test: /\.(png|jpg)$/, 
-                loader: 'url-loader?limit=8192'
-            }, // 内联 base64 URLs, 限定 <=8k 的图片, 其他的用 URL
+                // loader: 'url-loader?limit=8192'
+                loader: 'url',
+                query: {
+                  limit: 10000,
+                  name: '[name].[ext]?[hash]'
+                }
+            }, 
         ]
     },
-
-    vue:{
-        css:ExtractTextPlugin.extract("style-loader","css-loader?sourceMap!cssnext-loader"),
-        scss: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!sass-loader!cssnext-loader")
-    },
-
+    vue: {
+	    // loaders: prod.loaders(),
+        
+        autoprefixer: {
+          browsers: ['last 2 versions']
+        }
+   },
     // 插件项
     plugins:plugins,
 
@@ -131,5 +122,6 @@ module.exports = {
     },
 
     // Create Sourcemaps for the bundle
-    devtool: 'source-map',
-};*/
+    // devtool: 'source-map',
+    devtool: 'eval-source-map',
+};

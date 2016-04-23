@@ -9,8 +9,7 @@
     "port": "webpack-dev-server --progress --colors --inline --port 9090 ",
     "hot": "webpack-dev-server --progress --colors --inline --hot",
     "cp": "cp -r index.html ./build/ d:/wamp/www/vue",
-    "ip": "webpack-dev-server  --progress --colors --hot --host=0.0.0.0  --port 9000",
-    "ips": "webpack-dev-server --host 10.1.1.174 --devtool eval --progress --colors --hot "
+    "ip": "webpack-dev-server  --progress --colors --hot --host=0.0.0.0  --port 9000"
   },
   "devDependencies": {
     "babel-core": "^6.0.20",
@@ -20,6 +19,7 @@
     "babel-runtime": "^5.8.38",
     "css-loader": "^0.23.1",
     "cssnext-loader": "^1.0.1",
+    "eslint": "^2.8.0",
     "express": "^4.13.4",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-loader": "^0.4.3",

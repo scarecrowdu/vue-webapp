@@ -17,6 +17,7 @@
 </template>
 
 <script>
+
   import navbar from './views/common/Navbar.vue';
   import loading from './components/Loading.vue';
   export default {
@@ -43,6 +44,6 @@
     display: none;
   }
   body{
-    background: yellow;
+    background: red;
   }
 </style>

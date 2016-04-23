@@ -51,12 +51,10 @@
 </template>
 
 <script>
-
     let imgdata = [{src:"http://bs.baidu.com/dulife/562df13b07703.png",id:'1'},{src:"http://bs.baidu.com/dulife/557654e01de3e.jpg",id:'2'},{src:"http://bs.baidu.com/dulife/54d9c790f0903.jpg",id:'3'},];
     let tabdata = [{title:"默认",key:'1'},{title:"销量",key:'2'},{title:"上新",key:'3'},{title:"价格",key:'4'},]
 
 
-    require('../assets/css/swiper.min.css');
     import appheader from  './common/Header.vue';
     import Swiper    from  'swiper';
 
