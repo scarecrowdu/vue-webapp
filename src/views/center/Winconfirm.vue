@@ -7,14 +7,37 @@
 
 
    <div class="statusItem">
-        <div class="content v-flexbox">
-            <div class="iconInfo "></div>
-            <div class="msgInfo v-flexbox-item">
-                <p>获得奖品</p>
+    <ul class="ant-timeline">
+        <li class="ant-timeline-item">
+            <div class="ant-timeline-item-tail" style="display: block;"></div>
+            <div class="ant-timeline-item-head-red ant-timeline-item-head"></div>
+            <div class="ant-timeline-item-content">创建服务现场 2015-09-01</div>
+        </li>
+        <li class="ant-timeline-item">
+            <div class="ant-timeline-item-tail" style="display: block;"></div>
+            <div class="ant-timeline-item-head"></div>
+            <div class="ant-timeline-item-content">初步排除网络异常 2015-09-01</div>
+        </li>
+        <li class="ant-timeline-item">
+            <div class="ant-timeline-item-tail" style="display: block;"></div>
+            <div class="ant-timeline-item-head"></div>
+            <div class="ant-timeline-item-content">
+                <p>初步排除网络异常1</p>
+                <p>初步排除网络异常2</p>
+                <p>初步排除网络异常3 2015-09-01</p>
             </div>
-        </div>
-    </div>
-
+        </li>
+        <li class="ant-timeline-item">
+          <div class="ant-timeline-item-tail" style="display: none;"></div>
+          <div class="ant-timeline-item-head"></div>
+          <div class="ant-timeline-item-content">
+            <p>技术测试异常1</p>
+                <p>技术测试异常2</p>
+                <p>技术测试异常3 2015-09-01</p>
+          </div>
+        </li>
+    </ul>
+  </div>
 
     <div class="weui_panel weui_panel_access adsItem">
         <div class="weui_panel_hd">地址信息</div>
@@ -83,7 +106,7 @@
 .statusItem{
     background:#fff;
     margin-top: 10px;
-    padding: 10px 15px;
+    padding: 15px;
     font-size: 14px;
 
     .content{
@@ -109,6 +132,41 @@
          font-size: 14px;
         }
     }
+}
+
+.ant-timeline{
+    margin-left: 15px;
+}
+.ant-timeline-item {
+    position: relative;
+    padding-bottom: 12px;
+}
+.ant-timeline-item-tail {
+    position: absolute;
+    left: 5px;
+    top: 0;
+    height: 100%;
+    border-left: 2px solid #e9e9e9;
+}
+.ant-timeline-item-head-red {
+    border: 2px solid #ff6666 !important;
+    background-color: #ff6666 !important;
+}
+.ant-timeline-item-head {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border-radius: 100px;
+    border: 2px solid #ddd;
+}
+.ant-timeline-item-content {
+    padding: 0 0 10px 0;
+    font-size: 12px;
+    position: relative;
+    top: -3px;
+    border-bottom: 1px solid #eee;
+    margin-left: 35px;
 }
 
 </style>

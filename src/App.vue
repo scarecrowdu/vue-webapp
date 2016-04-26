@@ -4,7 +4,6 @@
       <!-- 路由 -->
       <div class="wrap">
         <router-view class="v"  :transition="effect" keep-alive ></router-view>
-        <!-- :transition="effect" -->
       </div>
 
       <!-- 导航 -->
@@ -42,8 +41,5 @@
   @import '~vux/vux.css';
   [v-cloak] { 
     display: none;
-  }
-  body{
-    background: red;
   }
 </style>

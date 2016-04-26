@@ -12,11 +12,8 @@
                   <a v-link="{name:'jDetail',query:{id:item.id}}">
                      <img v-lazy="item.cover" :style="{ width:item.imgwh +'px',height:item.imgwh +'px' }" >
                      <div class="info">
-                        <p class="title">{{item.title}}</p>
+                        <p class="title nowrap">{{item.title}}</p>
                         <p class="issue">期号：{{item.periods}}</p>
-                        
-                        <!-- Caipiaotype: 开奖状态(0进行中;1倒计时;2已揭晓) -->
-
                         <div class="msg" v-if="item.caipiaotype == 2">
                             <span class="txt" v-for="(key, val) in item.wuser | jsonFormat" >
                                 <label v-if="key == 'nickname'">获得者：</label>
@@ -55,7 +52,9 @@
     export default {
         data() {
          return{
-           lists:[]
+           lists:[],
+           page        :   1,        //当前页数
+           scroll      :   true,     //用于判断是否滚动
          }
         },
         route:{
@@ -63,9 +62,15 @@
           data (transition) {
             var self = this;
             self.getAjaxData(transition);
+            //滚动加载
+            $(window).on('scroll', (transition) => {
+                self.getScrollData(transition);
+            });
           },
           deactivate (transition){
              var self = this;
+             self.lists = [];
+             self.page = 1;
              $(window).off('scroll');
              transition.next();
           }
@@ -84,7 +89,7 @@
                     data:{},
                     dataType:"json",
                     success :function(json){
-                        // self.$root.$set('loadshow',false);
+                         self.scroll = true;
                         let appW = document.querySelector("#app").style.width 
                         if(json.retcode==1){
                             let jsonData = json.data.rows;
@@ -107,34 +112,55 @@
                 });
             },
 
-            //倒计时
-            runtime(el,timer){
+             //滚动加载数据
+            getScrollData (transition){
+                let self = this;
+                if(self.scroll){
+    
+                    let totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+                    if ($(document).height() <= totalheight + 200) {
+                         self.scroll = false;
+                         self.page++;
+                        
 
-                let timestamp = timer;
-                let isInter;
-                function interval(){
-                  if(timestamp<=0){
-                    console.count();
-                    $('#'+el).text("正在计算中，请稍等...");
-                    return;
-                  }
-
-                  let hm = Math.floor(timestamp % 1000 /10);
-                  let sec = Math.floor(timestamp / 1000 % 60);
-                  let mini = Math.floor(timestamp / (60*1000));
-
-                  hm = hm < 10 ? "0" + hm : hm;
-                  sec = sec < 10 ? "0" + sec : sec;
-                  mini = mini < 10 ? "0" + mini : mini;
-                  let text = mini + ":" + sec + ":" + hm;
-
-                  setTimeout(interval, 1);
-                  $('#'+el).text(text);
-                  timestamp--;
+                         if(self.page <= 3){
+                              // console.log(self.page);
+                           self.getAjaxData(transition)
+                         }
+                    }
                 }
+            },
 
-                // isInter = setInterval(interval, 1000);
-            }
+            //倒计时
+            // runtime(el,timer){
+
+            //     let timestamp = timer;
+            //     let isInter;
+
+            //     function interval(){
+            //       if(timestamp<=0){
+            //         console.count();
+            //         clearInterval(isInter);
+            //         $('#'+el).text("正在计算中，请稍等...");
+            //         return;
+            //       }
+
+            //       let hm = Math.floor(timestamp % 1000 /10);
+            //       let sec = Math.floor(timestamp / 1000 % 60);
+            //       let mini = Math.floor(timestamp / (60*1000));
+
+            //       hm = hm < 10 ? "0" + hm : hm;
+            //       sec = sec < 10 ? "0" + sec : sec;
+            //       mini = mini < 10 ? "0" + mini : mini;
+            //       let text = mini + ":" + sec + ":" + hm;
+
+            //       setTimeout(interval, 1);
+            //       $('#'+el).text(text);
+            //       timestamp--;
+            //     }
+
+            //     isInter = setInterval(interval, 1000);
+            // }
         },
         components:{
            appheader,

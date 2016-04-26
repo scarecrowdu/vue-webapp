@@ -66,9 +66,9 @@
                 activeIndex  :   0,                       //用于默认active样式 
                 page         :   1,                       //当前页数
                 mark         :   {up:false,down:false},   //用于判断价格升降序
-                tablist      :   null,                    //tab数据
-                shoplist     :   null,                    //列表数据
-                imglist      :   null,                    //轮播数据
+                tablist      :   [],                      //tab数据
+                shoplist     :   [],                      //列表数据
+                imglist      :   [],                      //轮播数据
             }
         },
         route:{

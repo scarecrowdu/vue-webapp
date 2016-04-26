@@ -122,6 +122,5 @@ module.exports = {
     },
 
     // Create Sourcemaps for the bundle
-    // devtool: 'source-map',
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
 };

@@ -97,7 +97,7 @@
                 <span>全选</span>
             </div>
             <div class="info" >
-                <p v-show="!isedit">总计<span>{{totalQuantity()}}</span>积分</p>
+                <p v-show="!isedit">总计<span>{{totalQuantity}}</span>积分</p>
             </div>
             <div class="btn" v-show="!isedit">
                <a class="weui_btn weui_btn_warn">结算</a>
@@ -117,13 +117,12 @@
     import appheader from './common/Header.vue';
     import Swiper from 'swiper';
  
-
     export default {
         data() {
          return{
            isedit        :  false,  //用于切换编辑
            checkedAll    :  false,  //用于全选
-           ishopList     :  null    //清单数据
+           ishopList     :  []    //清单数据
          }
         },
         route:{
@@ -143,7 +142,6 @@
 
             let sildeW = $(".swiper-slide").width();
             $(".swiper-slide").find('img').css({'width':sildeW,'height':sildeW})
-
         },
         methods:{
 
@@ -273,14 +271,6 @@
                 if(idsArr.length <= 0){
                    alert("请选择需要删除的商品")
                 }else{}
-                // $.ajax({
-                //     type: "GET",
-                //     url:'../../src/data/cart.json',
-                //     data:{},
-                //     dataType:"json",
-                //     success :function(json){
-                //     }
-                // });
             },
             
             // 更新清单数量
@@ -288,8 +278,20 @@
                 console.log(id, buycount);
             }
         },
+        computed:{
+             totalQuantity() {
+                let total = 0;
+                if (this.ishopList != 0) {
+                   this.ishopList.forEach(function (item) {
+                    total += parseInt(item.buycount);
+                   })
+                }
+                return total;
+            },
+          
+        },
         components:{
-           appheader
+          appheader
         }
     }
 
@@ -492,75 +494,71 @@
     }
   }
 
+  .cartEdit{
+      position: fixed;
+      bottom:55px;
+      left:0;
+      z-index: 1000;
+      width: 100%;
+      padding:10px;
+      box-sizing:border-box;
+      -moz-box-sizing:border-box; 
+      -webkit-box-sizing:border-box;
+      background: #fff;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -o-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
 
-.cartEdit{
-    position: fixed;
-    bottom:55px;
-    left:0;
-    z-index: 1000;
-    width: 100%;
-    padding:10px;
-    box-sizing:border-box;
-    -moz-box-sizing:border-box; 
-    -webkit-box-sizing:border-box;
-    background: #fff;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -o-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-
-    .info{
-        -moz-box-flex: 1;
-        -webkit-box-flex: 1;
-        -o-box-flex: 1;
-        -ms-flex: 1;
-        flex: 1;
-        text-align:right;
-        margin-right: 10px;
-    }
-    .btn{
-        a{padding: 0 30px;}
-    }
-
-}
-
-.check{
-  color: #999;
-  border-radius: 0;
-  width: auto;
-  height: auto;
-  border: none;
-  background: 0 0;
-  box-sizing: border-box;
-  padding: 0;
-  -webkit-appearance: none;
-  outline: 0;
-
-  &:after{
-    font-family: "weui";
-    font-style: normal;
-    font-weight: normal;
-    speak: none;
-    display: inline-block;
-    vertical-align: middle;
-    text-decoration: inherit;
-    display: inline-block;
-    content: "\EA01";
-    font-size: 22px;
+      .info{
+          -moz-box-flex: 1;
+          -webkit-box-flex: 1;
+          -o-box-flex: 1;
+          -ms-flex: 1;
+          flex: 1;
+          text-align:right;
+          margin-right: 10px;
+      }
+      .btn{
+          a{padding: 0 30px;}
+      }
   }
-}
 
-.checked{
+  .check{
+    color: #999;
+    border-radius: 0;
+    width: auto;
+    height: auto;
+    border: none;
+    background: 0 0;
+    box-sizing: border-box;
+    padding: 0;
+    -webkit-appearance: none;
+    outline: 0;
 
-  &:after{
-    content: "\EA06";
-    color:#ff6666;
+    &:after{
+      font-family: "weui";
+      font-style: normal;
+      font-weight: normal;
+      speak: none;
+      display: inline-block;
+      vertical-align: middle;
+      text-decoration: inherit;
+      display: inline-block;
+      content: "\EA01";
+      font-size: 22px;
+    }
   }
-}
 
+  .checked{
 
-   
+    &:after{
+      content: "\EA06";
+      color:#ff6666;
+    }
+  }
+
 </style>

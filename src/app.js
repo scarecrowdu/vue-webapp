@@ -1,4 +1,5 @@
 require('./assets/css/reset.css');
+require('./assets/css/swiper.min.css');
 
 import Vue         from 'vue';                //vue
 import VueRouter   from 'vue-router';         //vue-router路由
