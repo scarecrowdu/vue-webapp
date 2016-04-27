@@ -84,7 +84,8 @@
         data() {
          return{
            title:'个人中心',
-           isIndex:true
+           isIndex:true,
+           content:123456
          }
         },
         components: {

@@ -26,10 +26,15 @@ export default function(router) {
 			component(resolve){ require(['./views/indiana/announcedDetail.vue'],resolve ) }
 		},
 		// 夺宝详情
-		'/announced/dDetail':{
-			name:'dDetail',
-			component(resolve){ require(['./views/indiana/indianaDetail.vue'],resolve ) }
+		'/detail/goods':{
+			name:'detail',
+			component(resolve){ require(['./views/indiana/Goods.vue'],resolve ) }
 		},
+		// 图文详情
+		'/detail/graphic': {
+        	name:'graphic',
+        	component(resolve){ require(['./views/indiana/Graphic.vue'],resolve ) }
+        },
 		// 订单支付
 		'/orderPay':{
 			name:'orderPay',
@@ -95,6 +100,7 @@ export default function(router) {
 			},
 			subRoutes: {
 	            '/login': {
+	            	name:"login",
 	                component: require('./views/user/Login.vue')
 	            },
 	            '/register': {

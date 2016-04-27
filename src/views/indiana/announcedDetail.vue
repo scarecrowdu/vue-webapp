@@ -121,7 +121,7 @@
             </div>
         </div>
 
-        <div class="bottomInfo v-flexbox showUp">
+        <div class="bottomInfo v-flexbox">
             <p class="v-flexbox-item">新一期正在火热进行中</p>
             <p>
                 <a href="javascript:;" class="weui_btn weui_btn_warn">立即前往</a>
@@ -388,7 +388,7 @@
 
     .bottomInfo{
         position: fixed;
-        // bottom:0;
+        bottom:0;
         left:0;
         z-index: 99;
         width: 100%;

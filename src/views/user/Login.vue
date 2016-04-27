@@ -51,6 +51,8 @@
            appHeader:Header
         },
         route:{
+          data(){
+          },
           activate:function(transition){
             document.title = this.title;
             this.$root.$set('header',this.title);

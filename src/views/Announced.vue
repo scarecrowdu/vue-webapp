@@ -132,7 +132,7 @@
             },
 
             //倒计时
-            // runtime(el,timer){
+            runtime(el,timer){
 
             //     let timestamp = timer;
             //     let isInter;
@@ -160,7 +160,7 @@
             //     }
 
             //     isInter = setInterval(interval, 1000);
-            // }
+            }
         },
         components:{
            appheader,

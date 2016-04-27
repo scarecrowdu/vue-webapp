@@ -2,60 +2,96 @@
   <div class="detail">
      
     <!-- 头部 -->
-    <app-header title="商品详情" :title-bg="true" header-bg="#fff">
+    <appheader title="商品详情" :title-bg="true" header-bg="#fff">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
         <a slot="right" >分享</a>
-    </app-header>
+    </appheader>
 
     <!-- 商品广告 -->
-    <div class="swiper-container appSwiper" id="detailSwiper">
+    <div class="swiper-container appSwiper" id="detailSwiper" v-if="!loading">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img src="../../assets/images/logo.png"></div>
-            <div class="swiper-slide">
-                <img src="../../assets/images/logo.png"></div>
-            <div class="swiper-slide">
-                <img src="../../assets/images/logo.png"></div>
+            <div class="swiper-slide" v-for="item in list.images" track-by="$index">
+                <img :src="item" >
+            </div>
         </div>
         <div class="swiper-pagination"></div>
     </div>
 
     <!-- 主体区域 -->
-    <div class="detailItem">
+    <div class="detailItem" v-if="!loading">
         <div class="topInfo">
+            <!-- 标题 -->
             <div class="title">
-                <span class="status">进行中</span>
-                <span class="gname">Uwatch 10 升级版 智能创意手表Uwatch 10 升级版 智能创意手表</span>
+                <span class="status st1" v-if="list.isshow == 0">进行中</span>
+                <span class="status st2" v-if="list.isshow == 1">倒计时</span>
+                <span class="status st3" v-if="list.isshow == 2">已揭晓</span>
+                <span class="gname">{{list.title}}</span>
             </div>
 
-            <div class="dcontent">
-                 <p class="d-num">期号：123456235</p>
-                 <p class="progress"><i class="ongoing" style="width: 50%;"></i></p>
+            <!-- 进行中 -->
+            <div class="dcontent" v-if="list.isshow == 0">
+                 <p class="d-num">期号：{{list.periods}}</p>
+                 <p class="progress"><i class="ongoing" :style="{width:progress($index)}"></i></p>
                  <p class="d-txt">
-                     <span class="total">总需52322人次</span>
-                     <span class="remain">剩余5232<span>
+                     <span class="total">总需{{list.totalmember}}人次</span>
+                     <span class="remain">剩余{{list.remainmember}}<span>
                  </p>
             </div>
-           
+            
+            <!-- 倒计时 -->
+            <div class="match v-flexbox" v-if="list.isshow == 1">
+                <div class="txt v-flexbox-item">
+                    <p>期号：{{list.periods}}</p>
+                    <p class="timer">
+                       <span>揭晓倒计时：05:52:13</span>
+                    </p>
+                </div>
+                <div class="btn">
+                    <a class="match-btn">计算详情</a>
+                </div>
+            </div>
+            
+            <!-- 已揭晓 -->
+            <div class="results ui-border" v-if="list.isshow == 2">
+               <div class="centent">
+                 <div class="Rimg"><img :src="list.wuser.portrait"></div>
+                 <div class="Rtxt">
+                    <p>获奖者：{{list.wuser.nickname}}</p>
+                    <p>用户ID：{{list.wuser.bingocode}}</p>
+                    <p>期号：{{list.periods}}</p>
+                    <p>本期参与：{{list.wuser.buycount}}人次</p>
+                    <p>揭晓时间：{{list.publishtime | dateFormat 'yyyy-MM-dd hh:mm:ss' }}</p>
+                 </div>
+                </div> 
 
+               <div class="item v-flexbox">
+                    <p class="lucknum v-flexbox-item">幸运号码：12346790</p>
+                    <p class="btn">
+                       <a class="match-btn">计算详情</a>
+                    </p>
+               </div>
+            </div>
+
+            <!-- 夺宝记录 -->
             <div class="chklist">
                 <div class="prompt">
                     <a href="javascript:void(0)"><span>登录</span>查看我的夺宝记录</a>
                 </div>
                 <div class="nitem">
                    <div class="ntxt">
-                       <p>你参与了：</p><p>10人次</p>
+                       <p>你参与了：</p><p>{{list.buyInfo.buycount}}人次</p>
                    </div>
                     <div class="ntxt">
-                       <p>夺宝号码：</p><p><span>14234665</span><span>14234665</span><span>14234665</span></p>
+                       <p>夺宝号码：</p><p><span>{{list.buyInfo.buycodes}}</span></p>
                    </div>
                 </div>
             </div>
+
         </div>
 
         <div class="linkInfo">
             <div class="weui_cells">
-                <a class="weui_cell" v-link="{ path: '' }">
+                <a class="weui_cell"  v-link="{name:'graphic',query:{id:list.id}}">
                   <div class="weui_cell_bd weui_cell_primary">
                     <p>图文详情</p>
                   </div>
@@ -100,68 +136,108 @@
             </div>
         </div>
 
-        <div class="bottomInfo v-flexbox showUp" style="display:none"  >
+        <div class="bottomInfo v-flexbox" style="display:none"  >
             <p class="v-flexbox-item">新一期正在火热进行中</p>
             <p>
                 <a href="javascript:;" class="weui_btn weui_btn_warn">立即前往</a>
             </p>
         </div>
 
-        <div class="bottomInfo2 v-flexbox showUp" >
+        <div class="bottomInfo2 v-flexbox" >
             <p class="v-flexbox-item"><a href="javascript:;" class="weui_btn weui_btn_warn" @click="showBottomAside = true">立即夺宝</a></p>
             <p class="v-flexbox-item"><a href="javascript:;" class="weui_btn weui_btn_plain_default">加入清单</a></p>
             <p class="iconBox"><i class="icon">&#xe602;</i></p>
         </div>
     </div>
-
-
-     <!--下-->
-    <asidebar v-ref:asideL  :show.sync="showBottomAside"  :placement.sync="bottom"  :header.sync="asideBottomTit" >
-      <div slot="body">
-        <!--自定义内容-->
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea praesentium repudiandae accusantium nostrum doloribus voluptas accusamus consectetur quod inventore provident magni id sit, dolor harum totam. Odio ducimus error architecto.
-        <div class="aside-footer">
-          <button type="button" class="btn btn-default" @click="showBottomAside=false">在组件声明的时候定义的close事件</button>
-        </div>
-      </div>
-    </asidebar>
+    
+    <!-- 加载层 -->
+    <loading :show="loading"></loading>
 
   </div>
 </template>
 
 <script>
 
-    import Header from '../common/Header.vue';
+    import Appheader from '../common/Header.vue';
+    import Loading from '../../components/Loading.vue'
     import Swiper from 'swiper';
-    import asidebar from '../../components/aside.vue'
+
+    export default {
+          data() {
+           return{
+              list            : [],
+              loading         : true,
+              showAside       : false,         //用于 aside
+              bottom          : 'bottom',      //用于 aside
+              showBottomAside : false,         //用于 asideaside 方向
+              asideBottomTit  : 'right-title', //用于 aside
+           }
+          },
+          route:{
+            data(){
+               var self = this;
+               self.getAjaxData();               
+            },
+            activate(transition){
+              transition.next();
+            }
+          },
+          ready(){
+              
+          },
+          methods:{
+
+            //请求数据
+            getAjaxData(){
+                  let self = this;
+
+                  self.$http.get('../../src/data/detail.json').then(function (response) {
+
+                      let data = response.data;
+                      if (data.retcode == 1) {
+                          self.list = data.data; 
+                          self.list.wuser = JSON.parse(data.data.wuser)
+                      }
+                      self.loading = false;
+                      self.$nextTick(() =>{
+                        // DOM 现在更新了
+                        self.swipe();
+                      })
+                  }, function (response) {
+                      // error callback
+                  });
+            },
+            
+            //轮播组件
+            swipe(){
+              const swiperView = new Swiper('.appSwiper', {
+                  autoplay : 3000,
+                  speed:600,
+                  autoplayDisableOnInteraction : false,
+                  loop : true,
+                  pagination: '.swiper-pagination',
+                  paginationClickable: true,
+              });
+            },
+
+            // 计算开奖进度
+            progress(){
+                let self = this;
+                let totalprogress = 0,
+                    remainmember = self.list.remainmember,
+                    totalmember = self.list.totalmember;
+
+                totalprogress   = Math.round(remainmember/totalmember*100)+'%';
+               
+                return  totalprogress; 
+            },
 
 
-
-	export default {
-        data() {
-         return{
-            showAside       : false,         //用于 aside
-            bottom          : 'bottom',      //用于 aside
-            showBottomAside : false,         //用于 asideaside 方向
-            asideBottomTit  : 'right-title', //用于 aside
-         }
-        },
-        route:{
-          activate(transition){
-            transition.next();
+          },
+          components:{
+             Appheader,
+             Loading
           }
-        },
-        ready(){
-            new Swiper('.appSwiper', {
-                pagination: '.swiper-pagination',
-                paginationClickable: true,
-            });
-        },
-        components:{
-           appHeader:Header,
-           asidebar:asidebar
-        }
-
     }
 </script>
 
@@ -188,6 +264,7 @@
     }
     .appSwiper {
         width:100%;
+        margin-top: 1px;
 
         .swiper-slide {
             display: flex;
@@ -212,7 +289,10 @@
         padding:15px;
 
         .title{
-          .status{ padding:5px;border:.5px solid #eee;border-radius:3px; }
+          .status{padding:3px 5px;border-radius:3px;font-size: 14px;}
+          .st1{border:.5px solid #ff6666;color:#ff6666;}
+          .st2{border:.5px solid #ff6666;color:#ff6666;}
+          .st3{border:.5px solid #ff6666;color:#ff6666;}
           .gname{ }
         }
 
@@ -358,7 +438,6 @@
                   transform: scaleX(.5);
                   -webkit-transform-origin: 0 0;
                   transform-origin: 0 0;
-
                }
 
                
@@ -394,7 +473,7 @@
 
     .bottomInfo2{
         position: fixed;
-        // bottom:0;
+        bottom:0;
         left:0;
         z-index: 99;
         width: 100%;

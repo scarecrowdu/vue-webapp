@@ -13,13 +13,11 @@
         data() {
          return{
            title:'登陆',
-           isIndex:true
+           isIndex:true,
          }
         },
         route:{
           activate:function(transition){
-            document.title = this.title;
-            this.$root.$set('header',this.title);
             transition.next();
           }
         },

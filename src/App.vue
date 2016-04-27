@@ -3,7 +3,8 @@
 
       <!-- 路由 -->
       <div class="wrap">
-        <router-view class="v"  :transition="effect" keep-alive ></router-view>
+        <router-view class="v"  transition="next" ></router-view>
+        <!-- :transition="effect" keep-alive -->
       </div>
 
       <!-- 导航 -->
@@ -29,7 +30,6 @@
         }
      },
      methods:{},
-     ready(){},
      components:{
        navbar,
        loading

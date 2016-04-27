@@ -10,8 +10,7 @@ import AppVue      from './app.vue';
 import filters     from './filters';
 
 
-// 在加载 Vue 之后立即同步的设置
-Vue.config.devtools = true
+
 
 let App = Vue.extend(AppVue);
 
@@ -23,7 +22,8 @@ Vue.use(Lazyload, {
   try: 3 // default 1
 })
 
-
+// 在加载 Vue 之后立即同步的设置
+Vue.config.devtools = true
 //实例化Vue的filter
 Object.keys(filters).forEach(k => Vue.filter(k, filters[k]))
 

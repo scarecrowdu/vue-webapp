@@ -28,7 +28,7 @@
         <section class="main-container">
             <ul class="itemBox">
                 <li class="item" v-for="item in shoplist">
-                  <a v-link="{name:'dDetail',query:{id:item.id}}">
+                  <a v-link="{name:'detail/Goods',query:{id:item.id}}">
                     <img v-lazy="item.cover" :style="{ width:item.imgwh +'px',height:item.imgwh +'px' }">
                     <div class="info">
                         <p class="title nowrap-multi">{{item.title}}</p>
@@ -46,7 +46,6 @@
                 </li>
             </ul>
         </section>
-
     </div>
 </template>
 
@@ -55,34 +54,21 @@
     let tabdata = [{title:"默认",key:'1'},{title:"销量",key:'2'},{title:"上新",key:'3'},{title:"价格",key:'4'},]
 
 
-    import appheader from  './common/Header.vue';
+    import Appheader from  './common/Header.vue';
+    import Loading   from  '../components/Loading.vue';
     import Swiper    from  'swiper';
 
     export default {
         data() {
             return{
-                isflag       :   false,                   //用于tab切换的最后一个标识
-                scroll       :   true,                    //用于判断是否滚动
-                activeIndex  :   0,                       //用于默认active样式 
-                page         :   1,                       //当前页数
-                mark         :   {up:false,down:false},   //用于判断价格升降序
-                tablist      :   [],                      //tab数据
-                shoplist     :   [],                      //列表数据
-                imglist      :   [],                      //轮播数据
-            }
-        },
-        route:{
-            data(transition){
-                let self = this;
-                self.getAjaxData(transition);
-                //滚动加载
-                $(window).on('scroll', (transition) => {
-                    self.getScrollData(transition);
-                });
-            },
-            deactivate(transition){
-               $(window).off('scroll');
-               transition.next();
+                isflag       :  false,                  //用于tab切换的最后一个标识
+                scroll       :  true,                   //用于判断是否滚动
+                activeIndex  :  0,                      //用于默认active样式 
+                page         :  1,                      //当前页数
+                mark         :  {up:false,down:false},  //用于判断价格升降序
+                tablist      :  [],                     //tab数据
+                shoplist     :  [],                     //列表数据
+                imglist      :  []                      //轮播数据
             }
         },
         ready(){
@@ -99,8 +85,21 @@
             },1000)
 
             let appW = document.querySelector("#app");
-
-        },     
+        }, 
+        route:{
+            data(transition){
+                let self = this;
+                self.getAjaxData(transition);
+                //滚动加载
+                $(window).on('scroll', (transition) => {
+                    self.getScrollData(transition);
+                });
+            },
+            deactivate(transition){
+               $(window).off('scroll');
+               transition.next();
+            }
+        },    
         methods:{
 
             //请求数据
@@ -190,7 +189,8 @@
             }
         },
         components:{
-           appheader
+           Appheader,
+           Loading
         },
     }
 </script>
