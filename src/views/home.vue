@@ -1,8 +1,7 @@
 <template>
     <div class="homepage">
         <button @click="showGlobalModal">全局弹窗自定义</button>
-        <!--globalmodal-->
-        <globalmodal :globalmodal.sync="globalModal"></globalmodal>
+    
         <!-- 头部 -->
         <appheader title="积分购"></appheader>
         
@@ -26,7 +25,6 @@
             </li>
         </ul>
 
-
         <!-- 商品内容区 -->
         <section class="main-container">
             <ul class="itemBox">
@@ -49,6 +47,10 @@
                 </li>
             </ul>
         </section>
+
+        <!--模态框-->
+        <globalmodal :globalmodal.sync="globalModal"></globalmodal>
+        
     </div>
 </template>
 
@@ -73,14 +75,7 @@
                 tablist      :  [],                     //tab数据
                 shoplist     :  [],                     //列表数据
                 imglist      :  [],                     //轮播数据
-                globalModal  :{ //自定义弹层
-                      title:'daaaaaaaaaaa',
-                      content:'',
-                      confirmFn:function(){},
-                      cancelFn:function(){},
-                      rd:0,
-                      alert:'false'
-                }
+                globalModal  :  {}                      //自定义弹层
             }
         },
         ready(){
@@ -234,9 +229,9 @@
             showGlobalModal:function(){
               this.globalModal = {
                 rd:Math.random(),
-                // title:'title',
+                title:'title',
                 content:'content',
-                // alert:false,
+                alert:true,
                 confirmFn:function(){
                   console.log('自定义confirmFn'+Math.random());
                 },
