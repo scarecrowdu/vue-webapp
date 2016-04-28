@@ -1,7 +1,7 @@
 <template>
   <div class="rechargeRecord">
 
-    <app-header title="充值记录" :title-bg="true" header-bg="#fff">
+    <app-header title="充值记录" >
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
         <a style="color:#ff6666" slot="right" v-link="{ path: '/me/recharge' }">充值</a>
     </app-header>

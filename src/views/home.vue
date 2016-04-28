@@ -1,6 +1,8 @@
 <template>
     <div class="homepage">
-        
+        <button @click="showGlobalModal">全局弹窗自定义</button>
+        <!--globalmodal-->
+        <globalmodal :globalmodal.sync="globalModal"></globalmodal>
         <!-- 头部 -->
         <appheader title="积分购"></appheader>
         
@@ -24,11 +26,12 @@
             </li>
         </ul>
 
+
         <!-- 商品内容区 -->
         <section class="main-container">
             <ul class="itemBox">
                 <li class="item" v-for="item in shoplist">
-                  <a v-link="{name:'detail/Goods',query:{id:item.id}}">
+                  <a v-link="{name:'goods',query:{id:item.id}}">
                     <img v-lazy="item.cover" :style="{ width:item.imgwh +'px',height:item.imgwh +'px' }">
                     <div class="info">
                         <p class="title nowrap-multi">{{item.title}}</p>
@@ -39,7 +42,7 @@
                             <span class="progress"> <i class="ongoing" :style="{width:progress($index)}"></i></span>
                         </p>
                         <p class="btn">
-                            <span class="add">+清单</span>
+                            <span class="add" @click.stop.prevent="addCart">+清单</span>
                         </p>
                     </div>
                   </a>  
@@ -54,9 +57,10 @@
     let tabdata = [{title:"默认",key:'1'},{title:"销量",key:'2'},{title:"上新",key:'3'},{title:"价格",key:'4'},]
 
 
-    import Appheader from  './common/Header.vue';
-    import Loading   from  '../components/Loading.vue';
-    import Swiper    from  'swiper';
+    import Appheader    from  './common/Header.vue';
+    import Loading      from  '../components/Loading.vue';
+    import Globalmodal  from  '../components/globalmodal.vue';
+    import Swiper       from  'swiper';
 
     export default {
         data() {
@@ -68,31 +72,34 @@
                 mark         :  {up:false,down:false},  //用于判断价格升降序
                 tablist      :  [],                     //tab数据
                 shoplist     :  [],                     //列表数据
-                imglist      :  []                      //轮播数据
+                imglist      :  [],                     //轮播数据
+                globalModal  :{ //自定义弹层
+                      title:'daaaaaaaaaaa',
+                      content:'',
+                      confirmFn:function(){},
+                      cancelFn:function(){},
+                      rd:0,
+                      alert:'false'
+                }
             }
         },
         ready(){
             let self = this;
             
-            self.$set('imglist', imgdata);
             self.$set('tablist', tabdata);
+            
 
-            setTimeout(function(){
-                new Swiper('.appSwiper', {
-                    pagination: '.swiper-pagination',
-                    paginationClickable: true,
-                });
-            },1000)
-
-            let appW = document.querySelector("#app");
         }, 
         route:{
-            data(transition){
+            data(){
                 let self = this;
-                self.getAjaxData(transition);
-                //滚动加载
-                $(window).on('scroll', (transition) => {
-                    self.getScrollData(transition);
+                /*加载轮播图片*/
+                self.imgSwiper();
+                /*加载首页数据*/
+                self.getAjaxData();
+                /*滚动加载*/
+                $(window).on('scroll', () => {
+                    self.getScrollData();
                 });
             },
             deactivate(transition){
@@ -102,8 +109,11 @@
         },    
         methods:{
 
-            //请求数据
-            getAjaxData(transition){
+            /**
+             * 请求数据
+             * @return {[type]} [description]
+             */
+            getAjaxData(){
                   let self = this;
 
                   self.$http.get('../../src/data/shoplist.json').then(function (response) {
@@ -119,7 +129,7 @@
                             for (var i = 0; i < jsonData.length; i++) {
                                 jsonData[i].imgwh = appW/2-20;
                             }
-                            if (self.page === 1) {
+                            if (self.page == 1) {
                                self.shoplist = jsonData
                             }else{
                                 self.shoplist = self.shoplist.concat(jsonData);
@@ -131,26 +141,29 @@
                   });
             },
 
-            //滚动加载数据
-            getScrollData (transition){
+            /**
+             * 滚动加载数据
+             * @return {[type]} [description]
+             */
+            getScrollData(){
                 let self = this;
                 if(self.scroll){
-    
                     let totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
                     if ($(document).height() <= totalheight + 200) {
                          self.scroll = false;
                          self.page++;
-                        
-
                          if(self.page <= 5){
-                              // console.log(self.page);
-                           self.getAjaxData(transition)
+                           self.getAjaxData()
                          }
                     }
                 }
             },
 
-            // 计算开奖进度
+            /**
+             * 计算开奖进度
+             * @param  {[type]} index [description]
+             * @return {[type]}       [description]
+             */
             progress(index){
                 let self = this;
                 let totalprogress = 0,
@@ -162,7 +175,11 @@
                 return  totalprogress; 
             },
             
-            // 价格升降序
+            /**
+             * 价格升降序
+             * @param  {[type]} key [description]
+             * @return {[type]}     [description]
+             */
             sordBy(key){
                 let self = this;
                 self.shoplist = [];
@@ -186,11 +203,53 @@
                 }else{
                     self.mark.up =  self.mark.down = false; 
                 }
+            },
+
+            /**
+             * 加入清单
+             * [addCart description] 
+             */
+            addCart(){
+                console.log("加入清单成功");
+            },
+            
+            /**
+             * 轮播广告
+             * @return {[type]} [description]
+             */
+            imgSwiper(){  
+               let self = this;
+               self.$set('imglist', imgdata);
+               self.$nextTick(function(){
+                   const swiper = new Swiper('.appSwiper', {
+                        autoplay : 3000,
+                        speed:600,
+                        autoplayDisableOnInteraction : false,
+                        pagination: '.swiper-pagination',
+                        paginationClickable: true,
+                   });
+               });
+            },
+
+            showGlobalModal:function(){
+              this.globalModal = {
+                rd:Math.random(),
+                // title:'title',
+                content:'content',
+                // alert:false,
+                confirmFn:function(){
+                  console.log('自定义confirmFn'+Math.random());
+                },
+                cancelFn:function(){
+                  console.log('自定义cancelFn'+Math.random());
+                }
+              }
             }
         },
         components:{
            Appheader,
-           Loading
+           Loading,
+           Globalmodal
         },
     }
 </script>

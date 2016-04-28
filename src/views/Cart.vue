@@ -1,5 +1,4 @@
 <template>
-
   <div class="cart ">
     
     <!-- 头部 -->
@@ -62,6 +61,7 @@
                     </div>
             </div>
         </div>
+
     </section>
        
     <!-- 清单主内容 -->
@@ -109,7 +109,6 @@
     </section>
 
   </div>
-
 </template>
 
 <script>
@@ -122,7 +121,7 @@
          return{
            isedit        :  false,  //用于切换编辑
            checkedAll    :  false,  //用于全选
-           ishopList     :  []    //清单数据
+           ishopList     :  []      //清单数据
          }
         },
         route:{
@@ -145,7 +144,11 @@
         },
         methods:{
 
-            //请求当前用户购物车数据
+            /**
+             * 请求当前用户购物车数据
+             * @param  {[type]} transition [description]
+             * @return {[type]}            [description]
+             */
             getAjaxData(transition){
                 var self = this;
                 $.ajax({
@@ -167,7 +170,11 @@
                 });
             },
 
-            // 判断单商品是否全选了
+            /**
+             * 判断单商品是否全选
+             * @param  {[type]} item [description]
+             * @return {[type]}      [description]
+             */
             checked(item) { 
                 if(item.checked) 
                     return true;
@@ -175,21 +182,27 @@
                     return false;
             },
 
-            // 选择商品动作
+            /**
+             * 选择商品
+             * @param  {[type]} index [数组索引值]
+             * @return {[type]}       [description]
+             */
             chk(index) {
                 this.ishopList[index].checked = !this.ishopList[index].checked;
-
                 let r = this.ishopList.every(this.checked);
                 if(r){
                     this.checkedAll = true;
-                   console.log("all true");
+                    console.log("all true");
                 }else{ 
                     this.checkedAll = false;
                     console.log("not all true");
                 }
             },
             
-            // 全选商品动作
+            /**
+             * 全选商品按钮
+             * @return {[type]} [description]
+             */
             chkAll(){
                 this.checkedAll = !this.checkedAll;
 
@@ -201,7 +214,11 @@
                 } 
             },
 
-            // 当前商品添加数量
+            /**
+             * 当前商品添加数量
+             * @param  {[type]} index [数组索引值]
+             * @return {[type]}       [description]
+             */
             plusNum(index){
                 let item = this.ishopList[index];
                 let limitNum = item.remainmember;
@@ -217,8 +234,12 @@
                     }
                 }        
             },
-
-            // 当前商品添加减少数量
+      
+            /**
+             * 当前商品添加减少数量
+             * @param  {[type]} index [数组索引值]
+             * @return {[type]}       [description]
+             */
             minusNum(index){
                 if (index !== -1) {
                     let item = this.ishopList[index];
@@ -229,7 +250,11 @@
                 } 
             },
             
-            // 当前商品输入限制判断
+            /**
+             * 当前商品输入限制判断
+             * @param  {[type]} index [数组索引值]
+             * @return {[type]}       [description]
+             */
             inpNum(index){
                 let item = this.ishopList[index];
                 let limitNum = item.remainmember;
@@ -248,7 +273,10 @@
                 } 
             },
             
-            //计算总积分
+            /**
+             * 计算总积分
+             * @return {[type]} [description]
+             */
             totalQuantity() {
                 let total = 0;
                 this.ishopList.forEach(function (item) {
@@ -257,7 +285,10 @@
                 return total;
             },
 
-            // 删除商品
+            /**
+             * 删除商品
+             * @return {[type]} [description]
+             */
             delCart(){
                 let idsArr = [];
 

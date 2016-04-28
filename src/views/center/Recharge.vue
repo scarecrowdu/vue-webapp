@@ -1,7 +1,7 @@
 <template>
   <div class="rechargeRecord ">
 
-    <app-header title="充值" :title-bg="true" header-bg="#fff">
+    <app-header title="充值" >
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
     </app-header>
 

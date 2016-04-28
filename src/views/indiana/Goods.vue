@@ -2,7 +2,7 @@
   <div class="detail">
      
     <!-- 头部 -->
-    <appheader title="商品详情" :title-bg="true" header-bg="#fff">
+    <appheader title="商品详情" >
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
         <a slot="right" >分享</a>
     </appheader>
@@ -173,6 +173,8 @@
               asideBottomTit  : 'right-title', //用于 aside
            }
           },
+          ready(){        
+          },
           route:{
             data(){
                var self = this;
@@ -182,17 +184,15 @@
               transition.next();
             }
           },
-          ready(){
-              
-          },
           methods:{
 
-            //请求数据
+            /**
+             * 请求列表数据
+             * @return {[type]} [description]
+             */
             getAjaxData(){
                   let self = this;
-
                   self.$http.get('../../src/data/detail.json').then(function (response) {
-
                       let data = response.data;
                       if (data.retcode == 1) {
                           self.list = data.data; 
@@ -200,7 +200,7 @@
                       }
                       self.loading = false;
                       self.$nextTick(() =>{
-                        // DOM 现在更新了
+                        // DOM 现在更新了，调用轮播组件。
                         self.swipe();
                       })
                   }, function (response) {
@@ -208,19 +208,25 @@
                   });
             },
             
-            //轮播组件
+            /**
+             * 轮播组件
+             * @return {[type]} [description]
+             */
             swipe(){
               const swiperView = new Swiper('.appSwiper', {
                   autoplay : 3000,
                   speed:600,
                   autoplayDisableOnInteraction : false,
-                  loop : true,
+                  /*loop : true,*/
                   pagination: '.swiper-pagination',
                   paginationClickable: true,
               });
             },
 
-            // 计算开奖进度
+            /**
+             * 计算开奖进度
+             * @return {[type]} [description]
+             */
             progress(){
                 let self = this;
                 let totalprogress = 0,
@@ -228,10 +234,8 @@
                     totalmember = self.list.totalmember;
 
                 totalprogress   = Math.round(remainmember/totalmember*100)+'%';
-               
                 return  totalprogress; 
-            },
-
+            }
 
           },
           components:{

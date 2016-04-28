@@ -1,7 +1,7 @@
 <template>
   <div class="login">
 
-    <app-header title="中奖确认" :title-bg="true" header-bg="#fff">
+    <app-header title="中奖确认" >
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
     </app-header>
 

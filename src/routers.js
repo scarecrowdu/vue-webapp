@@ -27,7 +27,7 @@ export default function(router) {
 		},
 		// 夺宝详情
 		'/detail/goods':{
-			name:'detail',
+			name:'goods',
 			component(resolve){ require(['./views/indiana/Goods.vue'],resolve ) }
 		},
 		// 图文详情

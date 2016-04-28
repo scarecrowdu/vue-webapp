@@ -1,7 +1,7 @@
 <template>
   <div class="login">
 
-    <app-header title="我的红包" :title-bg="true" header-bg="#fff">
+    <app-header title="我的红包" >
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
     </app-header>
 
@@ -10,8 +10,6 @@
        <tab-item :selected="demo1 === '可使用'" @click="demo1 = '可使用'">可使用</tab-item>
        <tab-item :selected="demo1 === '已使用/过期'" @click="demo1 = '已使用/过期'">已使用/过期</tab-item>
     </tab>
-
-
 
     <section class="redNull dataNull" style="display:none">
         <div class="msg">
@@ -61,10 +59,7 @@
 
 
     <section class="redContainer">
-        
-
         <div class="redItem">
-            
             <div class="list">
                 <div class="img">
                    <p class="price">20</p>
@@ -120,10 +115,7 @@
         },
         route:{
           activate:function(transition){
-            document.title = this.title;
-            this.$root.$set('header',this.title);
             transition.next();
-
           }
         },
 
@@ -135,20 +127,17 @@
 
             let sildeW = $(".swiper-slide").width();
             $(".swiper-slide").find('img').css({'width':sildeW,'height':sildeW})
-            console.log(sildeW)
-
         },
         methods:{
-        	greet:function(argument) {
+        	greet:function() {
         		console.log(1)
         	}
         }
     }
 </script>
+
 <style lang="sass">
  
-
-
 .dataNull{
     .msg{
      width: 100%;
@@ -176,7 +165,6 @@
        color:#ddd;
      }
   }
-
 }
 
 .likeContainer{
@@ -219,9 +207,7 @@
     }
 }
 
-
 .redItem{
-   
     .list{
         margin-bottom: 5px;
         background: #fff;
@@ -236,11 +222,18 @@
            position: relative;
            width: 90px;
            height: 100px;
-           background: red;
+           background:url("../../assets/images/red.png");
+           background-size: cover;
            text-align: center;
            font-size: 13px;
-
-           .price{}
+           .price{
+              margin-top: 40px;
+              font-size: 16px;
+              color:yellow;
+           }
+           .txt{
+             color:red;
+           }
         }
 
         .content{
@@ -261,10 +254,6 @@
         }
 
    }
-    
 }
-
-
-
 
 </style>
