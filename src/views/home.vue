@@ -1,25 +1,21 @@
 <template>
     <div class="homepage">
-        <button @click="showGlobalModal">全局弹窗自定义</button>
-    
+        <!-- <button @click="showGlobalModal">全局弹窗自定义</button> -->
+
         <!-- 头部 -->
         <appheader title="积分购"></appheader>
         
         <!-- 轮播广告 -->
-        <div class="swiper-container appSwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" v-for="item in imglist" :style="{height:item.height +'px' }">
-                    <img :src="item.src">
-                </div>
-            </div>
-            <div class="swiper-pagination app-pagination"></div>
-        </div>
+        <carousel id="swiperView" classpage="app-pagination" height="200px">
+              <div class="swiper-slide" v-for="item in imglist">
+                  <a href="javascript"><img :src="item.src" height="200px"></a>
+              </div>
+        </carousel>
 
         <!-- TAB切换区 -->
         <ul class="tab-menu v-flexbox">
             <li class="v-flexbox-item tab-item"  v-for="item in tablist"  @click="sordBy(item.key)" :class="[{active:$index === activeIndex}]" >
-                <a href="javascript:void(0)"  v-if="$index >
-                    2"  @click.prevent="activeIndex=$index"  :class="{ markUp: mark.up, markDown: mark.down }"> {{item.title}}
+                <a href="javascript:void(0)"  v-if="$index > 2"  @click.prevent="activeIndex=$index"  :class="{ markUp: mark.up, markDown: mark.down }"> {{item.title}}
                 </a>
                 <a href="javascript:void(0)"  v-else  @click.prevent="activeIndex=$index">{{item.title}}</a>
             </li>
@@ -55,14 +51,14 @@
 </template>
 
 <script>
-    let imgdata = [{src:"http://bs.baidu.com/dulife/562df13b07703.png",id:'1'},{src:"http://bs.baidu.com/dulife/557654e01de3e.jpg",id:'2'},{src:"http://bs.baidu.com/dulife/54d9c790f0903.jpg",id:'3'},];
-    let tabdata = [{title:"默认",key:'1'},{title:"销量",key:'2'},{title:"上新",key:'3'},{title:"价格",key:'4'},]
-
-
+    const imgdata = [{src:"http://bs.baidu.com/dulife/562df13b07703.png",id:'1'},{src:"http://bs.baidu.com/dulife/557654e01de3e.jpg",id:'2'},{src:"http://bs.baidu.com/dulife/54d9c790f0903.jpg",id:'3'}];
+    const tabdata = [{title:"默认",key:'1'},{title:"销量",key:'2'},{title:"上新",key:'3'},{title:"价格",key:'4'}]
+    
+    // import Swiper       from  'swiper';
     import Appheader    from  './common/Header.vue';
     import Loading      from  '../components/Loading.vue';
     import Globalmodal  from  '../components/globalmodal.vue';
-    import Swiper       from  'swiper';
+    import Carousel     from  '../components/carousel.vue'
 
     export default {
         data() {
@@ -80,16 +76,14 @@
         },
         ready(){
             let self = this;
-            
+            self.$set('imglist', imgdata);
             self.$set('tablist', tabdata);
-            
-
         }, 
         route:{
             data(){
                 let self = this;
                 /*加载轮播图片*/
-                self.imgSwiper();
+                // self.imgSwiper();
                 /*加载首页数据*/
                 self.getAjaxData();
                 /*滚动加载*/
@@ -244,38 +238,19 @@
         components:{
            Appheader,
            Loading,
-           Globalmodal
+           Globalmodal,
+           Carousel
         },
     }
 </script>
 
 <style lang="sass">
     .homepage {}
-    .appSwiper {
-        width:100%;
-        
-        .swiper-slide {
-            text-align: center;
-            background: #fff;
-            display: flex;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-
-            img{width: 100%;height: 200px;}
-        }
-    }
-
+    /*轮播图 --- start*/
     .app-pagination{
         bottom:5px !important;
         padding-right: 10px;
         text-align:right;
-
         >span{
              width: 25px;
              height: 5px;
@@ -284,14 +259,15 @@
              margin: 0 2px !important;
          }
     }
-
+    /*轮播图 --- end*/
+    
+     /*TAB切换 --- start*/
     .tab-menu{
         position: relative;
         padding:10px 0;
         background: #fff;
 
         .active a{color:#ff6666;}
-
         &:before {
               position: absolute;
               top: 0;
@@ -345,10 +321,10 @@
          .markDown{
             &:after {border-top: 7px solid #ff6666 !important;}
         }
-
     }
+     /*TAB切换 --- end*/
 
-    
+    /*列表区域 --- start*/
     .main-container{
         position: relative;
         width: 100%;
@@ -383,9 +359,9 @@
            -webkit-box-sizing: border-box;
            -ms-box-sizing: border-box;
            -o-box-sizing: border-box;
-           box-sizing: border-box;
-           background: #fff;
-           padding:10px;
+            box-sizing: border-box;
+            background: #fff;
+            padding:10px;
 
             &:before {
               position: absolute;
@@ -403,10 +379,7 @@
             }
 
             a{display: block;}
-             
-
             img{ width: 100%;height: 100%; }
-
             .info{
                 background: #fff;
                 height: 40px;
@@ -466,4 +439,5 @@
              }
         }
     }
+    /*列表区域 --- end*/
 </style>
