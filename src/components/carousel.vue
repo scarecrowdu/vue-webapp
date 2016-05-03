@@ -1,7 +1,11 @@
 <template>
-    <div class="swiper-container appSwiper" :style="{height: height}">
+    <div class="swiper-container appSwiper" >
         <div class="swiper-wrapper">
-        	<slot></slot>
+        	<!-- <a href="javascript:void(0)" class="swiper-slide" v-for="item in list" :style="{backgroundImage: buildBackgroundUrl(item.src),height: height}">
+        	</a> -->
+            <div class="swiper-slide" v-for="item in list" >
+                <a href="javascript:void(0)"><img :src="item.src" :style="{height: height}"></a>
+            </div>
         </div>
         <div class="swiper-pagination" :class="classpage"  v-if="showpage" ></div>
     </div>
@@ -13,26 +17,36 @@
 	export default{
 		ready(){
 			let _this = this
-			_this.$nextTick(() =>{
-			   _this.renderSwiper();
-			});
+			if (!(_this.list && _this.list.length === 0)) {
+				   _this.renderSwiper();
+		    }
 		},
 		methods:{
+			/*背景图片路径*/
+			buildBackgroundUrl: function (url) {
+		      return `url(${url})`
+		    },
 		   /*渲染swiper组件*/
            renderSwiper(){
-           	const _this = this
-			this.swiper = new Swiper(_this.$el, {
-				direction:_this.direction,
-				autoplay: _this.autoplay,
-				speed: _this.speed,
-				loop: _this.loop,
-				autoplayDisableOnInteraction: _this.autoplayDisableOnInteraction,
-				pagination: '.swiper-pagination',
-				paginationClickable: true
-			});
-           }
+	           	let _this = this
+				_this.swiper = new Swiper(_this.$el, {
+					direction:_this.direction,
+					autoplay: _this.autoplay,
+					speed: _this.speed,
+					loop: _this.loop,
+					autoplayDisableOnInteraction: _this.autoplayDisableOnInteraction,
+					pagination: '.swiper-pagination',
+					paginationClickable: true
+				});
+
+            }
 		},
 		props: {
+		    /*数据*/
+			list: {
+		      type: Array,
+		      required: false
+		    },
 			/*滑动方向，可设置水平(horizontal)或垂直(vertical)*/
 			direction: {
                type:String,
@@ -46,7 +60,7 @@
 		    /*滑动速度*/
 			speed: {
                type:Number,
-               default:300
+               default:600
 			},
 			/*循环切换*/
 			loop:{
@@ -72,13 +86,16 @@
 		    }
 		},
 		watch: {
+			list: function (val) {
+			  this.renderSwiper()
+			}
 		}
 	}
 </script>
 
 <style lang="sass">
     /* scoped */
-	/*轮播图 --- start*/
+	/*轮播图*/
     .appSwiper {
         width:100%;
         
@@ -94,6 +111,8 @@
             -ms-flex-align: center;
             -webkit-align-items: center;
             align-items: center;
+            background: center no-repeat;
+            background-size: cover;
 
             a{display: block;}
             img{width: 100%;}
