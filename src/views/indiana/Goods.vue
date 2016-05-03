@@ -8,7 +8,7 @@
     </appheader>
 
     <!-- 商品广告 -->
-    <div class="swiper-container appSwiper" id="detailSwiper" v-if="!loading">
+    <div class="swiper-container goodSwiper" id="detailSwiper" v-if="!loading">
         <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="item in list.images" track-by="$index">
                 <img :src="item" >
@@ -266,22 +266,12 @@
       -webkit-animation-fill-mode: both;
       animation-fill-mode: both;
     }
-    .appSwiper {
+    .goodSwiper {
         width:100%;
-        margin-top: 1px;
-
         .swiper-slide {
-            display: flex;
-            background: #ebebeb;
-            text-align: center;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            align-items: center;
+            img{
+              height: 200px;
+            }
         }
     }
 

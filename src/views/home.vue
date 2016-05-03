@@ -1,15 +1,14 @@
 <template>
     <div class="homepage">
-        <button @click="showGlobalModal">全局弹窗自定义</button>
+        <!-- <button @click="showGlobalModal">全局弹窗自定义</button> -->
+        <!-- <button @click="setData">加载</button> -->
+         <!-- <button :value.sync="toastShow">toast</button> -->
 
         <!-- 头部 -->
         <appheader title="积分购"></appheader>
         
         <!-- 轮播广告 -->
-        <carousel id="swiperView" classpage="app-pagination" height="200px">
-              <div class="swiper-slide" v-for="item in imglist">
-                  <a href="javascript"><img :src="item.src" height="200px"></a>
-              </div>
+        <carousel id="swiperView" classpage="app-pagination" :list="imglist">
         </carousel>
 
         <!-- TAB切换区 -->
@@ -46,19 +45,37 @@
 
         <!--模态框-->
         <globalmodal :globalmodal.sync="globalModal"></globalmodal>
-        
+
     </div>
 </template>
 
 <script>
-    const imgdata = [{src:"http://bs.baidu.com/dulife/562df13b07703.png",id:'1'},{src:"http://bs.baidu.com/dulife/557654e01de3e.jpg",id:'2'},{src:"http://bs.baidu.com/dulife/54d9c790f0903.jpg",id:'3'}];
-    const tabdata = [{title:"默认",key:'1'},{title:"销量",key:'2'},{title:"上新",key:'3'},{title:"价格",key:'4'}]
+    const imgdata = 
+    [{
+      src:"http://bs.baidu.com/dulife/570db7542bfc2.jpg",
+      id:'1'
+    },{
+      src:"http://bs.baidu.com/dulife/56dd272259724.jpg",
+      id:'2'
+    },{
+      src:"http://bs.baidu.com/dulife/570db5f05b0f0.jpg",
+      id:'3'
+    }]
+    const tabdata = 
+    [{
+      title:"默认",key:'1'
+    },{
+      title:"销量",key:'2'
+    },{
+      title:"上新",key:'3'
+    },{
+      title:"价格",key:'4'
+    }]
     
-    // import Swiper       from  'swiper';
     import Appheader    from  './common/Header.vue';
     import Loading      from  '../components/Loading.vue';
     import Globalmodal  from  '../components/globalmodal.vue';
-    import Carousel     from  '../components/carousel.vue'
+    import Carousel     from  '../components/carousel.vue';
 
     export default {
         data() {
@@ -71,19 +88,19 @@
                 tablist      :  [],                     //tab数据
                 shoplist     :  [],                     //列表数据
                 imglist      :  [],                     //轮播数据
-                globalModal  :  {}                      //自定义弹层
+                globalModal  :  {},                      //自定义弹层
             }
         },
         ready(){
             let self = this;
-            self.$set('imglist', imgdata);
             self.$set('tablist', tabdata);
+            this.$parent.toast.content = 'toast  2.0s...';
         }, 
         route:{
             data(){
                 let self = this;
-                /*加载轮播图片*/
-                // self.imgSwiper();
+                /*轮播图片*/
+                self.imgSwiper();
                 /*加载首页数据*/
                 self.getAjaxData();
                 /*滚动加载*/
@@ -208,18 +225,15 @@
              */
             imgSwiper(){  
                let self = this;
-               self.$set('imglist', imgdata);
-               self.$nextTick(function(){
-                   const swiper = new Swiper('.appSwiper', {
-                        autoplay : 3000,
-                        speed:600,
-                        autoplayDisableOnInteraction : false,
-                        pagination: '.swiper-pagination',
-                        paginationClickable: true,
-                   });
-               });
+               self.$nextTick(() =>{
+                   self.$set('imglist', imgdata);
+                });
             },
-
+            
+            /**
+             * 弹出层组件
+             * @return {[type]} [description]
+             */
             showGlobalModal:function(){
               this.globalModal = {
                 rd:Math.random(),

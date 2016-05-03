@@ -13,26 +13,36 @@
 			<!-- loading -->
 			<loading :show="loadshow"></loading>
 
+			<!-- toast -->
+	        <toast v-ref:toast :toast.sync="toast">
+	           <div slot = "content" >{{toast.content}}</div>
+	        </toast>
+
 	</div>
 </template>
 
 <script>
 
-	import navbar from './views/common/Navbar.vue';
-	import loading from './components/Loading.vue';
+	import Navbar   from  './views/common/Navbar.vue';
+	import Loading  from  './components/Loading.vue';
+	import Toast    from  './components/toast.vue';
+
 	export default {
 		 data() {
-				return { 
-						effect       :  'next',     //用于切换过渡动画
-						isIndex      :  true,       //用于navbar导航
-						changePage   :  false,      //用于过渡设置样式
-						loadshow     :  false       //用于全局loading
-				}
+			return { 
+				effect       :  'next',        //用于切换过渡动画
+				isIndex      :  true,          //用于navbar导航
+				changePage   :  false,         //用于过渡设置样式
+				loadshow     :  false,         //用于全局loading
+				toast        :  {content:''}   //toast
+      
+			}
 		 },
 		 methods:{},
 		 components:{
-			 navbar,
-			 loading
+			 Navbar,
+			 Loading,
+			 Toast
 		 },
 	}
 </script>

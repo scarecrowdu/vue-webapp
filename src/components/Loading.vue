@@ -31,7 +31,7 @@ export default {
 
 <style lang="sass">
 	.loading{
-		z-index: 10000;
+		z-index: 10001;
 		overflow: hidden;
 		position: fixed;
 		top: 0;
