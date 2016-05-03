@@ -1,6 +1,7 @@
 <template>
     <div class="homepage">
         <!-- <button @click="showGlobalModal">全局弹窗自定义</button> -->
+
         <!-- 头部 -->
         <appheader title="积分购"></appheader>
         
