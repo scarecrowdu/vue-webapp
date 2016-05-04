@@ -89,7 +89,5 @@
 </script>
 
 <style lang="sass">
-.red{
-  background-color: #000;
-}
+
 </style>

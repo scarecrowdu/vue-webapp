@@ -571,7 +571,7 @@
     outline: 0;
 
     &:after{
-      font-family: "weui";
+      font-family: "iconfont";
       font-style: normal;
       font-weight: normal;
       speak: none;
@@ -579,7 +579,7 @@
       vertical-align: middle;
       text-decoration: inherit;
       display: inline-block;
-      content: "\EA01";
+      content: "\e607";
       font-size: 22px;
     }
   }
@@ -587,7 +587,7 @@
   .checked{
 
     &:after{
-      content: "\EA06";
+      content: "\e60f";
       color:#ff6666;
     }
   }

@@ -122,5 +122,5 @@
 </script>
 
 <style lang="sass">
-@import '~vux/vux.css';
+/* @import '~vux/vux.css'; */
 </style>
