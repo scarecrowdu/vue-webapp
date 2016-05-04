@@ -160,7 +160,7 @@
 
     import Appheader from '../common/Header.vue';
     import Loading from '../../components/Loading.vue'
-    import Swiper from 'swiper';
+    // import Swiper from 'swiper';
 
     export default {
           data() {
@@ -213,14 +213,14 @@
              * @return {[type]} [description]
              */
             swipe(){
-              const swiperView = new Swiper('.appSwiper', {
+              /*const swiperView = new Swiper('.appSwiper', {
                   autoplay : 3000,
                   speed:600,
                   autoplayDisableOnInteraction : false,
-                  /*loop : true,*/
+                  loop : true,
                   pagination: '.swiper-pagination',
                   paginationClickable: true,
-              });
+              });*/
             },
 
             /**

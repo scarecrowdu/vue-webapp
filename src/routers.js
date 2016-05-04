@@ -20,6 +20,14 @@ export default function(router) {
 			name:'cart',
 			component(resolve){ require(['./views/Cart.vue'],resolve) }
 		},
+		// 个人中心
+		'/me':{
+			name:'me',
+			component(resolve){	require(['./views/Me.vue'],resolve) },
+			subRoutes: {}
+		},
+
+
 		// 揭晓详情
 		'/announced/jDetail':{
 			name:'jDetail',
@@ -44,12 +52,6 @@ export default function(router) {
 		'/payResults':{
 			name:'payResults',
 			component(resolve){ require(['./views/list/Payresults.vue'],resolve) }
-		},
-        // 个人中心
-		'/me':{
-			name:'me',
-			component(resolve){	require(['./views/Me.vue'],resolve) },
-			subRoutes: {}
 		},
 		// 个人资料
         '/center/msg': {

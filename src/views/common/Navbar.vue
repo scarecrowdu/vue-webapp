@@ -30,9 +30,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        height: 55px;
         width: 100%;
-        -webkit-transform: translateZ(0);
         transform: translateZ(0);
         background: #fff;
 
@@ -45,22 +43,16 @@
           height: 1px;
           border-top: 1px solid #d9d9d9;
           color: #d9d9d9;
-          -webkit-transform-origin: 0 0;
           transform-origin: 0 0;
-          -webkit-transform: scaleY(.5);
           transform: scaleY(.5);
-          left: 0;
         }
 
 
         .tab-bar{
           padding-top: 2px;
           width: 100%;
+          height: 55px;
           text-align: center;
-          display: -webkit-box;
-          display: -moz-box;
-          display: -o-box;
-          display: -ms-flexbox;
           display: flex;
           -webkit-box-align: center;
           -webkit-align-items: center;
@@ -68,10 +60,6 @@
 
               a{
                 color: #5D656B;
-                -webkit-box-flex: 1;
-                -moz-box-flex: 1;
-                -webkit-flex: 1;
-                -ms-flex: 1;
                 flex: 1;
                 text-align: center;
                 box-sizing: border-box;
@@ -80,6 +68,8 @@
 
                 .icon{
                   font-size: 18px;
+                  margin-bottom: 5px;
+                  display: block;
                 }
               }
         }

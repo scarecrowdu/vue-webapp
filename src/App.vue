@@ -3,7 +3,7 @@
 
 			<!-- 路由 -->
 			<div class="wrap">
-				<router-view class="v"  transition="next" ></router-view>
+				<router-view class="v"  :transition="effect" keep-alive></router-view>
 				<!-- :transition="effect" keep-alive -->
 			</div>
 
@@ -38,6 +38,13 @@
       
 			}
 		 },
+		 route:{
+            
+            deactivate(transition){
+               this.toast.content = '';
+               transition.next();
+            }
+		 },
 		 methods:{},
 		 components:{
 			 Navbar,
@@ -48,7 +55,7 @@
 </script>
 
 <style>
-	@import '~vux/vux.css';
+	/*@import '~vux/vux.css';*/
 	[v-cloak] { 
 		display: none;
 	}

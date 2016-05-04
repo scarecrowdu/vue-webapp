@@ -28,6 +28,8 @@
 							delete _this.toast.timer ;
 						},310);//这里的300是动画的延迟，故意多设置10毫秒
 					},_this.toast.timer || 2000);
+				}else{
+					_this.show = false;
 				}
 			}
 		}

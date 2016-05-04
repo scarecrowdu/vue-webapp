@@ -1,4 +1,5 @@
 require('./assets/css/reset.css');
+// require('./assets/css/weui.css');
 require('./assets/css/swiper.min.css');
 
 import Vue         from 'vue';                //vue
