@@ -60,7 +60,7 @@ module.exports = {
     output: {
         // 输出路径是
         path: path.join(__dirname, '/output/static'),
-        publicPath: "/static",
+        publicPath: production ? "./static/" :"static/",
         filename: production ? "build.[hash].js" : "build.js",//[hash]MD5戳解决html的资源的定位可以使用webpack提供的HtmlWebpackPlugin插件来解决这个问题  见：http://segmentfault.com/a/1190000003499526 资源路径切换
         chunkFilename: '[id].[chunkhash].js'
     },
