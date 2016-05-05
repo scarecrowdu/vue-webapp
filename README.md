@@ -6,14 +6,17 @@ vue
 vue-ruoter
 vue-resource
 webpack
-
 ````
-
-``` bash
 ## 运行
 
 ``` bash
-npm install
+npm install or cnpm install [前提安装了淘宝源](http://npm.taobao.org/)
+````
+
+``` bash
+如遇到node-sass 安装失败或者编译失败提示node-sass 
+重新安装 cnpm install node-sass@3.4.2
+node-sass@3.4.2 跟packag.json 里面是相同的版本
 ````
 
 ``` bash
