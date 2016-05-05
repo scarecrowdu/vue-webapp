@@ -1,12 +1,17 @@
 # webapp
-
+移动端H5积分商城 (vue+vue-ruoter+webpack) 
 
 ## 运行
+
+``` bash
 npm install
+````
 
-npm run dev  ---- localhost:8080
-
-npm run dev  -----本机ip:9000
+``` bash
+npm run dev   ----- localhost:8080  
+npm run ip    ----- 本机ip:9000
+npm run build ----- 打包项目
+````
 
 ## 目录结构
 <pre>
