@@ -23,8 +23,8 @@
             <input class="weui_input" placeholder="请输入密码" type="text">
           </p>
         </div>
-        <address :title="title" :value.sync="value" :list="addressData"></address>
-        <address :title="title2" :value.sync="value2" raw-value :list="addressData"></address>
+        <!-- <address :title="title" :value.sync="value" :list="addressData"></address> -->
+        <!-- <address :title="title2" :value.sync="value2" raw-value :list="addressData"></address> -->
         <div class="weui_cell">
             <p class="weui_cell_hd">
              <label class="weui_label" style="width: 5em;">详细地址</label>

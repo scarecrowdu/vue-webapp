@@ -3,31 +3,27 @@
 	<div class="me ">
 			
 			<div class="user-header">
-
 				<div class="u-top">
-						<div class="u-icon">
-							 <i class="icon">&#xe60a;</i>
-						</div>
-
-						<div class="u-icon">
-							 <a v-link="{ path: '/center/msg' }"><i class="icon">&#xe609;</i></a>
-						</div>
+					<div class="u-icon">
+						 <i class="icon">&#xe60a;</i>
+					</div>
+					<div class="u-icon">
+						 <a v-link="{ path: '/center/msg' }"><i class="icon">&#xe609;</i></a>
+					</div>
 				</div>
-
 				<div class="u-middle">
-								<div class="img"><img src="../assets/images/logo.png"></div>
-								<div class="content">
-									<p><a v-link="{ path: '/user/login' }">登陆</a><span></span><a v-link="{ path: '/user/register' }"> 注册</a></p>
-								</div>
+					<div class="img"><img src="../assets/images/logo.png"></div>
+					<div class="content">
+						<p><a v-link="{ path: '/user/login' }">登陆</a><span></span><a v-link="{ path: '/user/register' }"> 注册</a></p>
+					</div>
 				</div>
-
 				<div class="u-bottom">
-						<div class="content">
-								<p>余额:<strong>200</strong>积分</p>
-						</div>
-						<div class="btn">
-							<a href="">充值</a>
-						</div>
+					<div class="content">
+						<p>余额:<strong>200</strong>积分</p>
+					</div>
+					<div class="btn">
+						<a href="">充值</a>
+					</div>
 				</div>
 			</div> 
 
@@ -70,12 +66,6 @@
 				</a>
 			</div>
 
-
-
-			<!-- 缓存二级路由切换的页面 -->
-			<router-view> </router-view>
-					 
-
 	</div>
 </template>
 
@@ -101,37 +91,6 @@
 
 
 <style lang="sass">
-.page-enter {
-		z-index: 2002;
-		-webkit-animation: pageFromRightToCenter 600ms forwards;
-		-o-animation: pageFromRightToCenter 600ms forwards;
-		animation: pageFromRightToCenter 600ms forward
-}
-.page-leave {
-		z-index: 2002;
-		-webkit-animation: pageFromCenterToRight 600ms forwards;
-		-o-animation: pageFromCenterToRight 600ms forwards;
-		animation: pageFromCenterToRight 600ms forwards
-}
-
-
-@-webkit-keyframes opacityLeave {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
-}
-@keyframes opacityLeave {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
-}
-
 
 	/* 变量 */
 	$color-primary: #27c4fe;

@@ -1,27 +1,24 @@
 <template>
     <div class="homepage">
         <!-- <button @click="showGlobalModal">全局弹窗自定义</button> -->
-        <!-- <button @click="setData">加载</button> -->
-         <!-- <button :value.sync="toastShow">toast</button> -->
 
         <!-- 头部 -->
         <appheader title="积分购"></appheader>
         
         <!-- 轮播广告 -->
-        <carousel id="swiperView" classpage="app-pagination" :list="imglist">
+        <carousel id="swiperView" classpage="app-pagination" :list="imglist" v-if="!loading">
         </carousel>
 
         <!-- TAB切换区 -->
-        <ul class="tab-menu v-flexbox">
-            <li class="v-flexbox-item tab-item"  v-for="item in tablist"  @click="sordBy(item.key)" :class="[{active:$index === activeIndex}]" >
-                <a href="javascript:void(0)"  v-if="$index > 2"  @click.prevent="activeIndex=$index"  :class="{ markUp: mark.up, markDown: mark.down }"> {{item.title}}
-                </a>
-                <a href="javascript:void(0)"  v-else  @click.prevent="activeIndex=$index">{{item.title}}</a>
+        <ul class="tab-menu v-flexbox" v-if="!loading">
+            <li class="v-flexbox-item tab-item"  v-for="item in tablist"  @click="sordBy(item.key)" :class="[{active:$index === activeIndex}]">
+                <a v-if="$index > 2"  @click.prevent="activeIndex=$index"  :class="{ markUp: mark.up, markDown: mark.down }">{{item.title}}</a>
+                <a v-else  @click.prevent="activeIndex=$index">{{item.title}}</a>
             </li>
         </ul>
 
         <!-- 商品内容区 -->
-        <section class="main-container">
+        <section class="main-container" v-if="!loading">
             <ul class="itemBox">
                 <li class="item" v-for="item in shoplist">
                   <a v-link="{name:'goods',query:{id:item.id}}">
@@ -45,6 +42,9 @@
 
         <!--模态框-->
         <globalmodal :globalmodal.sync="globalModal"></globalmodal>
+
+        <!-- Loading -->
+        <loading :show="loading"></loading>
 
     </div>
 </template>
@@ -89,12 +89,14 @@
                 shoplist     :  [],                     //列表数据
                 imglist      :  [],                     //轮播数据
                 globalModal  :  {},                      //自定义弹层
+                loading      :  true
             }
         },
         ready(){
             let self = this;
+            self.loadshow = true;
             self.$set('tablist', tabdata);
-            this.$parent.toast.content = 'toast  2.0s...';
+            // this.$parent.toast.content = 'toast  2.0s...';
         }, 
         route:{
             data(){
@@ -123,12 +125,14 @@
                   let self = this;
 
                   self.$http.get('../../src/data/shoplist.json').then(function (response) {
-
+                      
                       self.scroll = true;
                       let data = response.data;
 
                       if(data.retcode == 1){
                             console.log(self.page);
+                            self.loading = false;
+
                             let jsonData = data.data.rows;
                             let appW = document.querySelector("#app").style.width;
 
@@ -306,7 +310,7 @@
                 content:"";
                 display: block;
                 position: absolute;
-                top:4px;
+                top:0;
                 right:20%;
                 width: 0;
                 height: 0;
@@ -319,7 +323,7 @@
                 content:"";
                 display: block;
                 position: absolute;
-                bottom:4px;
+                bottom:0;
                 right:20%;
                 width: 0;
                 height: 0;

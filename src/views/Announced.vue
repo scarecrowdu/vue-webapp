@@ -6,7 +6,7 @@
         <appheader title="最新揭晓"></appheader>
 
         <!-- 列表区 -->
-        <section class="announced-container">
+        <section class="announced-container" v-if="!loading">
             <ul class="floatBox">
                 <li v-for="item in lists" >
                   <a v-link="{name:'goods',query:{id:item.id}}">
@@ -40,6 +40,9 @@
             </ul>
         </section>
 
+        <!-- Loading -->
+        <loading :show="loading"></loading>
+
    </div>
 
 </template>
@@ -47,7 +50,7 @@
 <script>
 
     import appheader from './common/Header.vue';
-    import loading from '../components/Loading.vue';
+    import Loading      from  '../components/Loading.vue';
     
     export default {
         data() {
@@ -55,6 +58,7 @@
            lists:[],
            page        :   1,        //当前页数
            scroll      :   true,     //用于判断是否滚动
+           loading     :   true
          }
         },
         route:{
@@ -89,7 +93,8 @@
                     data:{},
                     dataType:"json",
                     success :function(json){
-                         self.scroll = true;
+                        self.loading = false;
+                        self.scroll  = true;
                         let appW = document.querySelector("#app").style.width 
                         if(json.retcode==1){
                             let jsonData = json.data.rows;
@@ -164,7 +169,7 @@
         },
         components:{
            appheader,
-           loading
+           Loading
         }
     }
 </script>

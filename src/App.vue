@@ -39,7 +39,6 @@
 			}
 		 },
 		 route:{
-            
             deactivate(transition){
                this.toast.content = '';
                transition.next();

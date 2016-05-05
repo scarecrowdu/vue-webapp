@@ -11,7 +11,8 @@ import AppVue      from './app.vue';
 import filters     from './filters';
 
 
-let App = Vue.extend(AppVue);
+const App = Vue.extend(AppVue);
+
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(Lazyload, {
@@ -39,28 +40,28 @@ const restoreTouchmove = function(){
 Vue.transition('next', {
   beforeEnter: function (el) {
     router.app.changePage = true;
-    router.app.loadshow = true;
+    // router.app.loadshow = true;
     banTouchmove();
   },
   enter:function(){
   },
   afterEnter: function (el) {
     router.app.changePage = false;
-    router.app.loadshow = false;
+    // router.app.loadshow = false;
     restoreTouchmove();
   }
 });
 Vue.transition('prev', {
   beforeEnter: function (el) {
     router.app.changePage = true;
-    router.app.loadshow = true;
+    // router.app.loadshow = true;
     banTouchmove();
   },
   enter:function(){
   },
   afterEnter: function (el) {
     router.app.changePage = false;
-    router.app.loadshow = false;
+    // router.app.loadshow = false;
     restoreTouchmove();
   }
 });

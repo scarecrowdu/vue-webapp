@@ -11,7 +11,7 @@
 
     
     <!-- 清单无数据 -->
-    <section class="cartNull" style="display:none">
+    <section class="cartNull" style="display:none" >
         <div class="cart-msg">
           <i class="cart-icon icon">&#xe602;</i>
           <p>空空如也~</p>
@@ -61,11 +61,10 @@
                     </div>
             </div>
         </div>
-
     </section>
        
     <!-- 清单主内容 -->
-    <section class="catContainer">
+    <section class="catContainer" v-if="!loading">
         <div class="cartBox">
           <div class="cartItem ui-border-t" v-for="item in ishopList">
              <div class="checklist" v-show="isedit">
@@ -108,17 +107,22 @@
         </div>
     </section>
 
+    <!-- Loading -->
+    <loading :show="loading"></loading>
+
   </div>
 </template>
 
 <script>
 
     import appheader from './common/Header.vue';
-    import Swiper from 'swiper';
+    import Loading   from  '../components/Loading.vue';
+    import Swiper    from 'swiper';
  
     export default {
         data() {
          return{
+           loading       :  true, 
            isedit        :  false,  //用于切换编辑
            checkedAll    :  false,  //用于全选
            ishopList     :  []      //清单数据
@@ -139,8 +143,8 @@
                 spaceBetween: 10
             });
 
-            let sildeW = $(".swiper-slide").width();
-            $(".swiper-slide").find('img').css({'width':sildeW,'height':sildeW})
+            // let sildeW = $(".swiper-slide").width();
+            // $(".swiper-slide").find('img').css({'width':sildeW,'height':sildeW})
         },
         methods:{
 
@@ -157,7 +161,7 @@
                     data:{},
                     dataType:"json",
                     success :function(json){
-
+                        self.loading = false;
                         if(json.retcode==1){
                             var list  = json.data.ishopList
 
@@ -322,7 +326,8 @@
           
         },
         components:{
-          appheader
+          appheader,
+          Loading
         }
     }
 
