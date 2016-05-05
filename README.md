@@ -1,6 +1,15 @@
 # webapp
-移动端H5积分商城 (vue+vue-ruoter+webpack) 
+``` bash
+移动端H5积分商城项目
 
+vue
+vue-ruoter
+vue-resource
+webpack
+
+````
+
+``` bash
 ## 运行
 
 ``` bash
