@@ -9,7 +9,7 @@ webpack
 ````
 
 ## 示例
-<p><img src="gif/demo.gif" width="100%" height="100%"></p>
+<p><img src="gif/demo.gif" width="375" height="667"></p>
 
 
 ## 运行
