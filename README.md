@@ -8,6 +8,13 @@ vue-resource
 webpack
 ````
 
+## 说明
+``` bash
+  因该例子是以公司项目开发的，所以仅提供参考，请勿作为商业用途。
+  望谅解。
+````
+
+
 ## 示例
 <p><img src="gif/demo.gif" width="375" height="667"></p>
 
