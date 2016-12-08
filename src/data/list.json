@@ -13,7 +13,7 @@
                 "periods": 100000001,
                 "downtime": "14592352",
                 "publishtime": "1460448164569",
-                "cover": "http://bs.baidu.com/dulife/562df13b07703.png",
+                "cover": "../assets/images/test.jpg",
                 "wuser": "{\"nickname\":\"抽奖小王子\",\"buycount\":1199,\"bingocode\":\"10001167\"}"
 
             },
@@ -70,5 +70,3 @@
         ]
     }
 }
-
-

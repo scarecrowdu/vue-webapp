@@ -1,13 +1,12 @@
 require('./assets/css/reset.css');
-// require('./assets/css/weui.css');
 require('./assets/css/swiper.min.css');
 
 import Vue         from 'vue';                //vue
 import VueRouter   from 'vue-router';         //vue-router路由
 import VueResource from 'vue-resource';       //vue-router路由
-import Lazyload     from 'vue-lazyload';       //vue图片懒加载
+import Lazyload     from './lib/vue-lazyload/vue-lazyload';       //vue图片懒加载
 import RouterMap   from './routers';          //路由配置文件
-import AppVue      from './app.vue';     
+import AppVue      from './app.vue';
 import filters     from './filters';
 
 
@@ -16,7 +15,7 @@ const App = Vue.extend(AppVue);
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(Lazyload, {
-  error: 'assets/images/lazy.png',
+  error: "http://cn.vuejs.org/images/logo.png",
   loading: 'http://img.zcool.cn/community/01443f564897a432f87512f6eed753.gif',
   try: 3 // default 1
 })
@@ -28,13 +27,13 @@ Vue.config.devtools = true
 Object.keys(filters).forEach(k => Vue.filter(k, filters[k]))
 
 
-function preventDefault(e) { e.preventDefault(); }; 
+function preventDefault(e) { e.preventDefault(); };
 const banTouchmove = function(){
-  document.addEventListener('touchmove', preventDefault, false); 
+  document.addEventListener('touchmove', preventDefault, false);
 }
 const restoreTouchmove = function(){
   document.removeEventListener('touchmove', preventDefault, false);
-} 
+}
 
 //过渡代码放到最下面的时候，有时候并不会执行钩子函数的方法，放到这里就可以了。
 Vue.transition('next', {
@@ -69,7 +68,7 @@ Vue.transition('prev', {
 
 
 let router = new VueRouter({
-    hashbang: true, 
+    hashbang: true,
     history: false,
     saveScrollPosition: true,
     transitionOnLoad: true,

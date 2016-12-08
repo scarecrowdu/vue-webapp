@@ -4,7 +4,7 @@
 
         <!-- 头部 -->
         <appheader title="积分购"></appheader>
-        
+
         <!-- 轮播广告 -->
         <carousel id="swiperView" classpage="app-pagination" :list="imglist" v-if="!loading">
         </carousel>
@@ -35,7 +35,7 @@
                             <span class="add" @click.stop.prevent="addCart">+清单</span>
                         </p>
                     </div>
-                  </a>  
+                  </a>
                 </li>
             </ul>
         </section>
@@ -50,18 +50,18 @@
 </template>
 
 <script>
-    const imgdata = 
+    const imgdata =
     [{
-      src:"http://bs.baidu.com/dulife/570db7542bfc2.jpg",
+      src:"http://img.mp.itc.cn/upload/20160803/3c417c801f564e6cb166f841d05f588c_th.jpg",
       id:'1'
     },{
-      src:"http://bs.baidu.com/dulife/56dd272259724.jpg",
+      src:"http://img.mp.itc.cn/upload/20160803/e646358582ad47458589cbca9289b034_th.jpg",
       id:'2'
     },{
-      src:"http://bs.baidu.com/dulife/570db5f05b0f0.jpg",
+      src:"http://img.mp.itc.cn/upload/20160803/3d490ff58ee647c18045e2ec03c6b865_th.jpg",
       id:'3'
     }]
-    const tabdata = 
+    const tabdata =
     [{
       title:"默认",key:'1'
     },{
@@ -71,7 +71,7 @@
     },{
       title:"价格",key:'4'
     }]
-    
+
     import Appheader    from  './common/Header.vue';
     import Loading      from  '../components/Loading.vue';
     import Globalmodal  from  '../components/globalmodal.vue';
@@ -82,7 +82,7 @@
             return{
                 isflag       :  false,                  //用于tab切换的最后一个标识
                 scroll       :  true,                   //用于判断是否滚动
-                activeIndex  :  0,                      //用于默认active样式 
+                activeIndex  :  0,                      //用于默认active样式
                 page         :  1,                      //当前页数
                 mark         :  {up:false,down:false},  //用于判断价格升降序
                 tablist      :  [],                     //tab数据
@@ -97,7 +97,7 @@
             self.loadshow = true;
             self.$set('tablist', tabdata);
             // this.$parent.toast.content = 'toast  2.0s...';
-        }, 
+        },
         route:{
             data(){
                 let self = this;
@@ -114,7 +114,7 @@
                $(window).off('scroll');
                transition.next();
             }
-        },    
+        },
         methods:{
 
             /**
@@ -125,7 +125,7 @@
                   let self = this;
 
                   self.$http.get('../../src/data/shoplist.json').then(function (response) {
-                      
+
                       self.scroll = true;
                       let data = response.data;
 
@@ -181,10 +181,10 @@
                     totalmember = self.shoplist[index].totalmember;
 
                 totalprogress   = Math.round(remainmember/totalmember*100)+'%';
-               
-                return  totalprogress; 
+
+                return  totalprogress;
             },
-            
+
             /**
              * 价格升降序
              * @param  {[type]} key [description]
@@ -199,7 +199,7 @@
 
                 if (key == 4) {
                     self.isflag = !self.isflag;
-                    
+
                     if (this.isflag) {
                         self.mark.up = true;
                         self.mark.down = false;
@@ -211,29 +211,29 @@
                     }
 
                 }else{
-                    self.mark.up =  self.mark.down = false; 
+                    self.mark.up =  self.mark.down = false;
                 }
             },
 
             /**
              * 加入清单
-             * [addCart description] 
+             * [addCart description]
              */
             addCart(){
                 console.log("加入清单成功");
             },
-            
+
             /**
              * 轮播广告
              * @return {[type]} [description]
              */
-            imgSwiper(){  
+            imgSwiper(){
                let self = this;
                self.$nextTick(() =>{
                    self.$set('imglist', imgdata);
                 });
             },
-            
+
             /**
              * 弹出层组件
              * @return {[type]} [description]
@@ -278,7 +278,7 @@
          }
     }
     /*轮播图 --- end*/
-    
+
      /*TAB切换 --- start*/
     .tab-menu{
         position: relative;
@@ -352,8 +352,8 @@
     .itemBox{
         overflow: hidden;
         min-height: 450px;
-    
-        .item:nth-child(even){ 
+
+        .item:nth-child(even){
             &:after {
                 position: absolute;
                 top: 0;
@@ -433,7 +433,7 @@
                         height: 6px;
                         border-radius:3px;
                         background: #ddd;
-                    }    
+                    }
                     .ongoing{
                         display: block;
                         // width: 50%;

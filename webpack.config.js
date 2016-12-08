@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin'); //自动生成带hash的
 var ExtractTextPlugin = require("extract-text-webpack-plugin");   //独立样式文件
 var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;  //混淆压缩
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin; //检测重用模块
- 
+
 var prod = require('./webpack-prod');
 
 // 在命令行 输入  “set PRODUCTION=1 && webpack --progress” 就会打包压缩，并且注入md5戳 到 d.html里面
@@ -25,7 +25,7 @@ var plugins = [
        disable: false ,
        allChunks: true  //所有独立样式打包成一个css文件
     }),
- 
+
    //new ExtractTextPlugin("[name].css" )
    //自动分析重用的模块并且打包成单独的文件
    new CommonsChunkPlugin(production ? "vendor.[hash].js" : "vendor.js" )
@@ -35,13 +35,13 @@ var plugins = [
 
 //发布编译时，压缩，版本控制
 if (process.env.PRODUCTION) {
-    
+
     // 清除之前的上线文件
     prod.folder('./output/static/');
 
     //压缩
     plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false } }));
-    
+
     // 生成模板文件
     plugins.push(new HtmlWebpackPlugin({
         filename:'../index.html',//会生成index.html在根目录下,并注入脚本
@@ -78,32 +78,30 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel?presets=es2015',
                 exclude: /node_modules/
-            }, 
+            },
             {
                 test: /\.css$/,
                 // loader: "css-loader?sourceMap!cssnext-loader"
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!cssnext-loader")
-            }, 
+            },
             {
                 test: /\.scss$/,
                 // loader: "css-loader?sourceMap!sass-loader!cssnext-loader"
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!sass-loader!cssnext-loader")
-            }, 
+            },
             // 内联 base64 URLs, 限定 <=10k 的图片, 其他的用 URL
             {
-                test: /\.(png|jpg|svg)$/, 
-                // loader: 'url-loader?limit=8192'
-                loader: 'file-loader',
-                query: {
-                  limit: 10000,
-                  name: '[name].[ext]?[hash]'
-                }
-            }, 
+               test: /\.(png|jpe?g|gif)(\?.*)?$/,
+               loader: 'url',
+               query: {
+                   limit: 10000,
+                   name: 'images/[name].[ext]?[hash:10]'
+               }
+           }
         ]
     },
     vue: {
-	    // loaders: prod.loaders(),
-        
+	      loaders: prod.loaders(),
         autoprefixer: {
           browsers: ['last 2 versions']
         }

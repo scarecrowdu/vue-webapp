@@ -40,7 +40,6 @@
     "vue-resource": "^0.7.0",
     "vue-router": "^0.7.11",
     "vue-style-loader": "^1.0.0",
-    "vux": "0.0.103",
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1",
@@ -51,5 +50,8 @@
   "license": "ISC",
   "directories": {
     "test": "test"
+  },
+  "dependencies": {
+    "vue-lazyload": "^0.4.7"
   }
 }
