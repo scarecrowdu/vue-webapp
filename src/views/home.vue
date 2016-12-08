@@ -124,7 +124,7 @@
             getAjaxData(){
                   let self = this;
 
-                  self.$http.get('../../src/data/shoplist.json').then(function (response) {
+                  self.$http.get('../src/data/listdata.json').then(function (response) {
 
                       self.scroll = true;
                       let data = response.data;
