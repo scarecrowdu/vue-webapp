@@ -1,6 +1,6 @@
 <template>
 
-    <div class="indiana"> 
+    <div class="indiana">
 
         <!-- 头部 -->
         <appheader title="最新揭晓"></appheader>
@@ -36,7 +36,7 @@
                       </div>
                     </a>
                 </li>
-  
+
             </ul>
         </section>
 
@@ -48,14 +48,35 @@
 </template>
 
 <script>
+    import Mock        from 'mockjs';
+    // 生成商品列数据
+    Mock.mock('reslist.json', {
+      retcode: 1,
+      retmsg: '查询成功',
+      data: {
+        'total': 1,
+        'records': 10,
+        'page': 1,
+        'rows|10': [{
+            'id|+1': 1,
+            'caipiaotype':'@natural(1, 3)',
+            'periods|+1':'11000002',
+            'downtime':'@natural(14592352, 64592352)',
+            'publishtime|+10':'1460448164569',
+            'title': '@csentence(6, 10)',
+            'cover': '@image(200x200, #ff6666, Hello)',
+            "wuser": "{\"nickname\":\"抽奖小王子\",\"buycount\":1199,\"bingocode\":\"10001167\"}"
+        }]
+      }
+    })
 
     import appheader from './common/Header.vue';
     import Loading      from  '../components/Loading.vue';
-    
+
     export default {
         data() {
          return{
-           lists:[],
+           lists       :   [],
            page        :   1,        //当前页数
            scroll      :   true,     //用于判断是否滚动
            loading     :   true
@@ -65,6 +86,7 @@
 
           data (transition) {
             var self = this;
+
             self.getAjaxData(transition);
             //滚动加载
             $(window).on('scroll', (transition) => {
@@ -86,47 +108,39 @@
 
             //请求数据
             getAjaxData:function(transition){
-                var self = this;
-                $.ajax({
-                    type: "GET",
-                    url:'../../src/data/list.json',
-                    data:{},
-                    dataType:"json",
-                    success :function(json){
-                        self.loading = false;
-                        self.scroll  = true;
-                        let appW = document.querySelector("#app").style.width 
-                        if(json.retcode==1){
-                            let jsonData = json.data.rows;
-                            for (var i = 0; i < jsonData.length; i++) {
-                                jsonData[i].imgwh = appW/2-20;
-                            }
-                            if (self.page === 1) {
-                               self.lists = jsonData
-                            }else{
-                                self.lists = self.lists.concat(jsonData);
-                            }
-                            // transition.next(function(){
-                                // setTimeout(function(){
-                                //    self.shoplist = self.shoplist.concat(json.data.rows);
-                                // },300)
-                               
-                            // });
-                        }
-                    }
+                let self = this;
+                self.$http.get('reslist.json').then(function (response) {
+                    self.loading = false;
+                    let data = response.data;
+                    self.loadshow = true;
+                    if(data.retcode == 1){
+                          let jsonData = data.data.rows;
+                          if (self.page === 1) {
+                             self.lists = jsonData
+                          }else{
+                              self.lists = self.lists.concat(jsonData);
+                          }
+                      }
+
+                }, function (response) {
+                    // error callback
                 });
+
+
+
+
             },
 
              //滚动加载数据
             getScrollData (transition){
                 let self = this;
                 if(self.scroll){
-    
+
                     let totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
                     if ($(document).height() <= totalheight + 200) {
                          self.scroll = false;
                          self.page++;
-                        
+
 
                          if(self.page <= 3){
                               // console.log(self.page);
@@ -236,13 +250,15 @@
      }
      .info{
        background: #fff;
+       min-height: 93px;
+
       .title{
         font-size: 14px;line-height: 1.4;
       }
       .issue{
         font-size: 12px;
       }
-      
+
       .msg{
         height:60px;
         .time{
@@ -285,7 +301,7 @@
         }
       }
      }
-    } 
+    }
 }
 
 </style>

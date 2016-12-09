@@ -1,6 +1,6 @@
 <template>
   <div class="cart ">
-    
+
     <!-- 头部 -->
     <appheader title="清单">
        <p slot="right" v-on:click="isedit = !isedit">
@@ -9,7 +9,7 @@
        </p>
     </appheader>
 
-    
+
     <!-- 清单无数据 -->
     <section class="cartNull" style="display:none" >
         <div class="cart-msg">
@@ -29,40 +29,40 @@
                         <img src="http://pic.pedaily.cn/201503/20150324100853205320.jpg">
                         <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
                         <p class="progress"><i class="ongoing"></i></p>
-                     </div> 
+                     </div>
                     </div>
                     <div class="swiper-slide">
                       <div class="like-item">
                         <img src="http://img1.gtimg.com/ninja/0/ninja141074803812010.jpg">
                         <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
                         <p class="progress"><i class="ongoing"></i></p>
-                     </div> 
+                     </div>
                     </div>
                     <div class="swiper-slide">
                       <div class="like-item">
                         <img src="http://img1.qq.com/tech/pics/6241/6241197.jpg">
                         <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
                         <p class="progress"><i class="ongoing"></i></p>
-                     </div> 
+                     </div>
                     </div>
                     <div class="swiper-slide">
                       <div class="like-item">
                         <img src="../assets/images/logo.png">
                         <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
                         <p class="progress"><i class="ongoing"></i></p>
-                     </div> 
+                     </div>
                     </div>
                     <div class="swiper-slide">
                       <div class="like-item">
                         <img src="../assets/images/logo.png">
                         <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
                         <p class="progress"><i class="ongoing"></i></p>
-                     </div> 
+                     </div>
                     </div>
             </div>
         </div>
     </section>
-       
+
     <!-- 清单主内容 -->
     <section class="catContainer" v-if="!loading">
         <div class="cartBox">
@@ -82,7 +82,7 @@
                 <div class="num">
                   <p>参与人次</p>
                   <div class="edit-quantity">
-                    <p class="btn-minus" @touchstart="minusNum($index)"><a class="btn minus icon">&#xe60d;</a></p> 
+                    <p class="btn-minus" @touchstart="minusNum($index)"><a class="btn minus icon">&#xe60d;</a></p>
                     <p class="btn-input"><input type="tel" v-model="item.buycount | numFormat" v-on:keyup="inpNum($index)" number></p>
                     <p class="btn-plus" @touchstart="plusNum($index)" ><a class="btn plus icon">&#xe60c;</a></p>
                   </div>
@@ -115,14 +115,43 @@
 
 <script>
 
+    import Mock        from 'mockjs';
+    // 生成商品列数据
+    Mock.mock('cartlist.json', {
+      retcode: 1,
+      retmsg: '查询成功',
+      data: {
+        'total': 1,
+        'records': 10,
+        'page': 1,
+        'ishopList|4': [{
+            'id|+1': 1,
+            'mid|+1': 1,
+            'shopid|+1': 1,
+            'sid|+1': 1,
+            'productid': 100,
+            'price': '@integer(60, 600)',
+            'buycount': '@integer(60, 1000)',
+            'standard': null,
+            'totalmember': '@integer(600, 10000)',
+            'remainmember': '@integer(600, 10000)',
+            'period|+10': 100000001,
+            'itemno': null,
+            'providers': null,
+            'shopname': '@title(20, 100)',
+            'shopimg': '@image(200x200, #ff6666, Cart)'
+        }]
+      }
+    })
+
     import appheader from './common/Header.vue';
     import Loading   from  '../components/Loading.vue';
     import Swiper    from 'swiper';
- 
+
     export default {
         data() {
          return{
-           loading       :  true, 
+           loading       :  true,
            isedit        :  false,  //用于切换编辑
            checkedAll    :  false,  //用于全选
            ishopList     :  []      //清单数据
@@ -142,9 +171,6 @@
                 slidesPerView: 3,
                 spaceBetween: 10
             });
-
-            // let sildeW = $(".swiper-slide").width();
-            // $(".swiper-slide").find('img').css({'width':sildeW,'height':sildeW})
         },
         methods:{
 
@@ -154,24 +180,23 @@
              * @return {[type]}            [description]
              */
             getAjaxData(transition){
-                var self = this;
-                $.ajax({
-                    type: "GET",
-                    url:'../../src/data/cart.json',
-                    data:{},
-                    dataType:"json",
-                    success :function(json){
-                        self.loading = false;
-                        if(json.retcode==1){
-                            var list  = json.data.ishopList
+                let self = this;
+                self.$http.get('cartlist.json').then(function (response) {
+                    let data = response.data;
+                    if(data.retcode == 1){
+                          self.loading = false;
+                          var list  = data.data.ishopList
 
-                            for (var i = 0; i < list.length; i++) {
-                                list[i].checked = false;
-                            }
-                            transition.next({ ishopList:list});
-                        }
-                    }
+                          for (var i = 0; i < list.length; i++) {
+                              list[i].checked = false;
+                          }
+                          transition.next({ ishopList:list});
+                      }
+
+                }, function (response) {
+                    // error callback
                 });
+
             },
 
             /**
@@ -179,8 +204,8 @@
              * @param  {[type]} item [description]
              * @return {[type]}      [description]
              */
-            checked(item) { 
-                if(item.checked) 
+            checked(item) {
+                if(item.checked)
                     return true;
                 else
                     return false;
@@ -197,12 +222,12 @@
                 if(r){
                     this.checkedAll = true;
                     console.log("all true");
-                }else{ 
+                }else{
                     this.checkedAll = false;
                     console.log("not all true");
                 }
             },
-            
+
             /**
              * 全选商品按钮
              * @return {[type]} [description]
@@ -211,11 +236,11 @@
                 this.checkedAll = !this.checkedAll;
 
                 for (let i = 0; i < this.ishopList.length; i++) {
-                    if (this.checkedAll === true) 
+                    if (this.checkedAll === true)
                        this.ishopList[i].checked = true;
                     else
                        this.ishopList[i].checked = false;
-                } 
+                }
             },
 
             /**
@@ -229,16 +254,16 @@
                 let buyCount = item.buycount;
 
                 if (index !== -1){
-                    if (limitNum <= buyCount){ 
+                    if (limitNum <= buyCount){
                         alert("超过了限制范围");
                         return
                     }else{
-                       ++item.buycount; 
-                      this.updateCart(item.id,item.buycount) 
+                       ++item.buycount;
+                      this.updateCart(item.id,item.buycount)
                     }
-                }        
+                }
             },
-      
+
             /**
              * 当前商品添加减少数量
              * @param  {[type]} index [数组索引值]
@@ -250,10 +275,10 @@
                     if(item.buycount > 1){
                        --item.buycount;
                        this.updateCart(item.id,item.buycount);
-                    }  
-                } 
+                    }
+                }
             },
-            
+
             /**
              * 当前商品输入限制判断
              * @param  {[type]} index [数组索引值]
@@ -269,14 +294,14 @@
                         item.buycount = 0;
                         return;
                     }else{
-                        if (limitNum <= buyCount){ 
+                        if (limitNum <= buyCount){
                            item.buycount = limitNum;
                         }
                         this.updateCart(item.id,item.buycount);
                     }
-                } 
+                }
             },
-            
+
             /**
              * 计算总积分
              * @return {[type]} [description]
@@ -307,7 +332,7 @@
                    alert("请选择需要删除的商品")
                 }else{}
             },
-            
+
             // 更新清单数量
             updateCart(id,buycount){
                 console.log(id, buycount);
@@ -323,7 +348,7 @@
                 }
                 return total;
             },
-          
+
         },
         components:{
           appheader,
@@ -376,7 +401,7 @@
 
     #likeSwiper{
         padding:0 10px;
-       
+
         .swiper-slide{}
         .like-item{
             // padding: 10px;
@@ -406,6 +431,7 @@
   .cartBox{
     clear: both;
     overflow: hidden;
+    margin-bottom: 130px;
 
     .cartItem{
         padding:10px;
@@ -525,7 +551,7 @@
                 line-height: 35px;
 
             }
-        } 
+        }
       }
     }
   }
@@ -538,7 +564,7 @@
       width: 100%;
       padding:10px;
       box-sizing:border-box;
-      -moz-box-sizing:border-box; 
+      -moz-box-sizing:border-box;
       -webkit-box-sizing:border-box;
       background: #fff;
       display: -webkit-box;

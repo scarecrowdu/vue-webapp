@@ -29,13 +29,13 @@
 
 	export default {
 		 data() {
-			return { 
+			return {
 				effect       :  'next',        //用于切换过渡动画
 				isIndex      :  true,          //用于navbar导航
 				changePage   :  false,         //用于过渡设置样式
 				loadshow     :  false,         //用于全局loading
 				toast        :  {content:''}   //toast
-      
+
 			}
 		 },
 		 route:{
@@ -54,7 +54,6 @@
 </script>
 
 <style>
-	/*@import '~vux/vux.css';*/
 	[v-cloak] { 
 		display: none;
 	}

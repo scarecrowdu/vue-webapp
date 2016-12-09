@@ -73,10 +73,10 @@ input,button,select,textarea {
 a,input,textarea,select {
   outline: 0;
 }
-/* 取消滚动条 */  
+/* 取消滚动条 */
 ::-webkit-scrollbar {
   width: 0px;
-} 
+}
 /*输入提示文字*/
 ::-webkit-input-placeholder {
   font-size: 16px;
@@ -132,23 +132,23 @@ img {
 /*场景切换*/
 .next-enter {
     z-index: 1002;
-    -webkit-animation: pageFromRightToCenter 800ms forwards;
-    animation: pageFromRightToCenter 800ms forward
+    -webkit-animation: pageFromRightToCenter 500ms forwards;
+    animation: pageFromRightToCenter 500ms forward
 }
 .next-leave {
     z-index: 1001;
-    -webkit-animation: pageFromCenterToLeft 800ms forwards;
-    animation: pageFromCenterToLeft 800ms forwards
+    -webkit-animation: pageFromCenterToLeft 500ms forwards;
+    animation: pageFromCenterToLeft 500ms forwards
 }
 .prev-enter {
     z-index: 1001;
-    -webkit-animation: pageFromLeftToCenter 800ms forwards;
-    animation: pageFromLeftToCenter 800ms forward
+    -webkit-animation: pageFromLeftToCenter 500ms forwards;
+    animation: pageFromLeftToCenter 500ms forward
 }
 .prev-leave {
     z-index: 1002;
-    -webkit-animation: pageFromCenterToRight 800ms forwards;
-    animation: pageFromCenterToRight 800ms forwards;
+    -webkit-animation: pageFromCenterToRight 500ms forwards;
+    animation: pageFromCenterToRight 500ms forwards;
 }
 
 @-webkit-keyframes pageFromRightToCenter {
@@ -200,12 +200,12 @@ img {
   }
 }
 .page-from-center-to-left {
-  -webkit-animation: pageFromCenterToLeft 800ms forwards;
-          animation: pageFromCenterToLeft 800ms forwards;
+  -webkit-animation: pageFromCenterToLeft 500ms forwards;
+          animation: pageFromCenterToLeft 500ms forwards;
 }
 .page-from-left-to-center  {
-  -webkit-animation: pageFromLeftToCenter 800ms forwards;
-          animation: pageFromLeftToCenter 800ms forwards;
+  -webkit-animation: pageFromLeftToCenter 500ms forwards;
+          animation: pageFromLeftToCenter 500ms forwards;
 }
 @-webkit-keyframes pageFromCenterToLeft {
   from {
@@ -266,9 +266,9 @@ img {
   url('//at.alicdn.com/t/font_1462363585_9590943.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
   url('//at.alicdn.com/t/font_1462363585_9590943.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
-                    
-                    
-                    
+
+
+
 .icon{
   font-family:"iconfont" !important;
   font-style:normal;

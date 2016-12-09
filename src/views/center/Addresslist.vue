@@ -22,10 +22,32 @@
 </template>
 
 <script>
-
+    import Mock        from 'mockjs'
+    // 生成商品列数据
+    Mock.mock('address.json', {
+      retcode: 1,
+      retmsg: '查询成功',
+      data: {
+        'total': 1,
+        'records': 10,
+        'page': 1,
+        'addressList|3': [{
+            'aid|+1': 1,
+            'aid|+1': 88801,
+            'name':'@name()',
+            'country': 1,
+            'province': 1,
+            'city': 1,
+            'district': 1,
+            'address':'@county(true)',
+            'zipcode|+100':518000,
+            'tel+19090':"075525252522",
+            'mobile+19090':12452154822,
+            'isdefault': 0,
+        }]
+      }
+    })
     import Header from '../common/Header.vue';
-
-    
     export default {
         data() {
          return{
@@ -41,7 +63,7 @@
           data (transition) {
             var _self = this;
             _self.getAjaxData();
-            
+
           },
           deactivate (transition){
                transition.next();
@@ -50,19 +72,16 @@
         methods:{
             /*请求数据*/
             getAjaxData:function(){
-                var _self = this;
-                $.ajax({
-                    type: "GET",
-                    url:'../../src/data/address.json',
-                    data:{},
-                    dataType:"json",
-                    success :function(json){
-                        if(json.retcode == 1){
-                           _self.lists = json.data.addressList;
-                         
-                        }
+              let self = this;
+              self.$http.get('address.json').then(function (response) {
+                  let data = response.data;
+                  if(data.retcode == 1){
+                        self.lists = data.data.addressList;
                     }
-                });
+
+              }, function (response) {
+                  // error callback
+              });
             }
         }
     }
@@ -72,7 +91,7 @@
 .ads-list{
   overflow: hidden;
   font-size: 14px;
-  
+
   .adsItem{
     display: block;
     background:#fff;
@@ -97,7 +116,7 @@
         margin-right:5px;
       }
     }
-  } 
+  }
 
 }
 </style>

@@ -6,10 +6,10 @@
     </app-header>
 
 
-     <tab :line-width=2 active-color='#ff6666'>
-       <tab-item :selected="demo1 === '可使用'" @click="demo1 = '可使用'">可使用</tab-item>
-       <tab-item :selected="demo1 === '已使用/过期'" @click="demo1 = '已使用/过期'">已使用/过期</tab-item>
-    </tab>
+     <div :line-width=2 active-color='#ff6666'>
+       <div :selected="demo1 === '可使用'" @click="demo1 = '可使用'">可使用</div>
+       <div :selected="demo1 === '已使用/过期'" @click="demo1 = '已使用/过期'">已使用/过期</div>
+    </div>
 
     <section class="redNull dataNull" style="display:none">
         <div class="msg">
@@ -29,28 +29,28 @@
                         <img src="http://pic.pedaily.cn/201503/20150324100853205320.jpg">
                         <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
                         <p class="progress"><i class="ongoing"></i></p>
-                     </div> 
+                     </div>
                     </div>
                     <div class="swiper-slide">
                       <div class="like-item">
                         <img src="http://img1.gtimg.com/ninja/0/ninja141074803812010.jpg">
                         <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
                         <p class="progress"><i class="ongoing"></i></p>
-                     </div> 
+                     </div>
                     </div>
                     <div class="swiper-slide">
                       <div class="like-item">
                         <img src="http://img1.qq.com/tech/pics/6241/6241197.jpg">
                         <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
                         <p class="progress"><i class="ongoing"></i></p>
-                     </div> 
+                     </div>
                     </div>
                     <div class="swiper-slide">
                       <div class="like-item">
                         <img src="../../assets/images/logo.png">
                         <p class="title nowrap">小米电视小米电视小米电视小米电视</p>
                         <p class="progress"><i class="ongoing"></i></p>
-                     </div> 
+                     </div>
                     </div>
             </div>
         </div>
@@ -89,16 +89,15 @@
 
         </div>
     </section>
-        
+
   </div>
 </template>
 
 <script>
-    import { Tab, TabItem, Sticky, Divider } from 'vux'
     import Header from '../common/Header.vue';
     import Swiper from 'swiper';
 
-    
+
     export default {
         data() {
          return{
@@ -108,10 +107,6 @@
         },
         components:{
            appHeader:Header,
-		    Tab,
-		    TabItem,
-		    Sticky,
-		    Divider
         },
         route:{
           activate:function(transition){
@@ -137,7 +132,7 @@
 </script>
 
 <style lang="sass">
- 
+
 .dataNull{
     .msg{
      width: 100%;
@@ -181,7 +176,7 @@
 
     #likeSwiper{
         padding:0 10px;
-       
+
         .swiper-slide{}
         .like-item{
 

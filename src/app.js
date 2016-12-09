@@ -4,14 +4,13 @@ require('./assets/css/swiper.min.css');
 import Vue         from 'vue';                //vue
 import VueRouter   from 'vue-router';         //vue-router路由
 import VueResource from 'vue-resource';       //vue-router路由
-import Lazyload     from './lib/vue-lazyload/vue-lazyload';       //vue图片懒加载
+import Lazyload     from 'vue-lazyload';       //vue图片懒加载
 import RouterMap   from './routers';          //路由配置文件
 import AppVue      from './app.vue';
 import filters     from './filters';
 
 
 const App = Vue.extend(AppVue);
-
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(Lazyload, {
@@ -39,28 +38,28 @@ const restoreTouchmove = function(){
 Vue.transition('next', {
   beforeEnter: function (el) {
     router.app.changePage = true;
-    // router.app.loadshow = true;
+    router.app.loadshow = true;
     banTouchmove();
   },
   enter:function(){
   },
   afterEnter: function (el) {
     router.app.changePage = false;
-    // router.app.loadshow = false;
+    router.app.loadshow = false;
     restoreTouchmove();
   }
 });
 Vue.transition('prev', {
   beforeEnter: function (el) {
     router.app.changePage = true;
-    // router.app.loadshow = true;
+    router.app.loadshow = true;
     banTouchmove();
   },
   enter:function(){
   },
   afterEnter: function (el) {
     router.app.changePage = false;
-    // router.app.loadshow = false;
+    router.app.loadshow = false;
     restoreTouchmove();
   }
 });

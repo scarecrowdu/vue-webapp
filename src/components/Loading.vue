@@ -1,6 +1,6 @@
 <template>
   <div v-show="show"  class="loading app-content">
-   
+
     <div class="load-box">
       <div class="spinner">
         <div class="double-bounce1"></div>
@@ -8,7 +8,7 @@
       </div>
       <div>{{title}}</div>
     </div>
-      
+
   </div>
 </template>
 
@@ -40,7 +40,7 @@ export default {
 		left: 0;
 		width: 100%;
 		height: 100%;
-		// background: rgba(0, 0, 0, 0.5);
+		background: rgba(0, 0, 0, 0.5);
 		color:#fff;
 
     .load-box{
@@ -50,7 +50,7 @@ export default {
       width: 100%;
       transform: translate(-50%,-50%);
       text-align: center;
-      color:#333;
+      color:#fff;
       font-size: 12px;
     }
 	}
@@ -58,7 +58,7 @@ export default {
 .spinner {
   width: 60px;
   height: 60px;
- 
+
   position: relative;
   margin:10px auto;
 }
@@ -72,21 +72,21 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-   
+
   -webkit-animation: bounce 2.0s infinite ease-in-out;
   animation: bounce 2.0s infinite ease-in-out;
 }
- 
+
 .double-bounce2 {
   -webkit-animation-delay: -1.0s;
   animation-delay: -1.0s;
 }
- 
+
 @-webkit-keyframes bounce {
   0%, 100% { -webkit-transform: scale(0.0) }
   50% { -webkit-transform: scale(1.0) }
 }
- 
+
 @keyframes bounce {
   0%, 100% {
     transform: scale(0.0);

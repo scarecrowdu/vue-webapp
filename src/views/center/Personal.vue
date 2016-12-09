@@ -1,9 +1,9 @@
 <template>
   <div class="login">
 
-    <app-header title="个人资料">
+    <appheader title="个人资料">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
-    </app-header>
+    </appheader>
 
 
      <div class="weui_cells">
@@ -52,20 +52,20 @@
              <label class="weui_label" style="width: 4.5em;">地址管理</label>
           </p>
           <p class="weui_cell_bd weui_cell_primary">
-           
+
           </p>
            <div class="weui_cell_ft with_arrow"></div>
         </a>
 
-    </div>    
-        
+    </div>
+
   </div>
 </template>
 
 <script>
 
-    import Header from '../common/Header.vue';
-    
+    import Appheader from '../common/Header.vue';
+
     export default {
         data() {
          return{
@@ -75,7 +75,7 @@
          }
         },
         components:{
-           appHeader:Header
+           Appheader
         },
         route:{
           activate:function(transition){

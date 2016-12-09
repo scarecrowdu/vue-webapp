@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-     
+
     <!-- 头部 -->
     <appheader title="商品详情" >
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
@@ -37,7 +37,7 @@
                      <span class="remain">剩余{{list.remainmember}}<span>
                  </p>
             </div>
-            
+
             <!-- 倒计时 -->
             <div class="match v-flexbox" v-if="list.isshow == 1">
                 <div class="txt v-flexbox-item">
@@ -50,7 +50,7 @@
                     <a class="match-btn">计算详情</a>
                 </div>
             </div>
-            
+
             <!-- 已揭晓 -->
             <div class="results ui-border" v-if="list.isshow == 2">
                <div class="centent">
@@ -62,7 +62,7 @@
                     <p>本期参与：{{list.wuser.buycount}}人次</p>
                     <p>揭晓时间：{{list.publishtime | dateFormat 'yyyy-MM-dd hh:mm:ss' }}</p>
                  </div>
-                </div> 
+                </div>
 
                <div class="item v-flexbox">
                     <p class="lucknum v-flexbox-item">幸运号码：12346790</p>
@@ -114,7 +114,7 @@
                 <div class="recordmsg">
                     <div class="item">
                         <div class="Cimg">
-                            <img src="http://bs.baidu.com/dulife/562df13b07703.png">
+                            <img src="http://dummyimage.com/200x200/ff6666/333&text=user">
                         </div>
                         <div class="Cinfo">
                             <p>我的兄弟叫顺溜</p>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="item">
                         <div class="Cimg">
-                            <img src="http://bs.baidu.com/dulife/562df13b07703.png">
+                            <img src="http://dummyimage.com/200x200/ff6666/333&text=user">
                         </div>
                         <div class="Cinfo">
                             <p>我的兄弟叫顺溜</p>
@@ -149,7 +149,7 @@
             <p class="iconBox"><i class="icon">&#xe602;</i></p>
         </div>
     </div>
-    
+
     <!-- 加载层 -->
     <loading :show="loading"></loading>
 
@@ -157,6 +157,40 @@
 </template>
 
 <script>
+
+    import Mock        from 'mockjs';
+    // 生成商品列数据
+    Mock.mock('detail.json', {
+      "retcode": 1,
+      "retmsg": "查询成功",
+      "data": {
+          "id": 1,
+          "sid": 1,
+          "step": 1,
+          "periods": 100000001,
+          "title": "XooparXP61044章鱼吸盘式移动电源4000毫安",
+          "totalmember": 119,
+          "joinedmember": 119,
+          "remainmember": 80,
+          "downtime": "100",
+          "publishtime": "1464579823632",
+          "perprice": "1",
+          "isshow": "0",
+          "caipiaotype": "100",
+          "wuser": "{ \"buycount\": 119,\"bingocode\": \"10000069\", \"nickname\": \"抽奖小王子\",\"mid\": 100000, \"areaip\": \"局域网,10.1.1.51\", \"portrait\":\"/upload/igame/images/portrait/2016-03-23/8c714e38-e5a9-4117-81e1-4e3a162727f2.jpg\" }",
+          "buyInfo": {
+              "oid": 2,
+              "buycount": 2,
+              "buycodes": "10000021, 10000024"
+          },
+          "images": [
+              "http://dummyimage.com/640x400/339966/333&text=Banner1",
+              "http://dummyimage.com/640x400/337ab7/333&text=Baner2",
+              "http://dummyimage.com/640x400/ffcc33/333&text=Banner3"
+          ],
+          "content": "<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc259892e35.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc2598ac0d4.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc2598a3d73.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc2598b07d3.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc2598af7ab.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc2598ad690.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc2598c7a1a.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc25b18582d.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc259904e93.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc25993e6b3.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc25994a2b1.jpg\"><\/p>\n<p><img src=\"http:\/\/bs.baidu.com\/dulife\/56cc25995eb24.jpg\"><\/p>"
+      }
+    })
 
     import Appheader from '../common/Header.vue';
     import Loading from '../../components/Loading.vue'
@@ -173,12 +207,12 @@
               asideBottomTit  : 'right-title', //用于 aside
            }
           },
-          ready(){        
+          ready(){
           },
           route:{
             data(){
                var self = this;
-               self.getAjaxData();               
+               self.getAjaxData();
             },
             activate(transition){
               transition.next();
@@ -192,10 +226,10 @@
              */
             getAjaxData(){
                   let self = this;
-                  self.$http.get('../../src/data/detail.json').then(function (response) {
+                  self.$http.get('detail.json').then(function (response) {
                       let data = response.data;
                       if (data.retcode == 1) {
-                          self.list = data.data; 
+                          self.list = data.data;
                           self.list.wuser = JSON.parse(data.data.wuser)
                       }
                       self.loading = false;
@@ -207,7 +241,7 @@
                       // error callback
                   });
             },
-            
+
             /**
              * 轮播组件
              * @return {[type]} [description]
@@ -234,7 +268,7 @@
                     totalmember = self.list.totalmember;
 
                 totalprogress   = Math.round(remainmember/totalmember*100)+'%';
-                return  totalprogress; 
+                return  totalprogress;
             }
 
           },
@@ -276,7 +310,7 @@
         }
     }
 
-    
+
     .detailItem{ }
 
     .topInfo{
@@ -435,7 +469,7 @@
                   transform-origin: 0 0;
                }
 
-               
+
                img{
                  position: absolute;
                  z-index: 11;
@@ -463,7 +497,7 @@
                 bottom:10px;
                 font-size: 13px;
             }
-        } 
+        }
     }
 
     .bottomInfo2{
@@ -474,11 +508,11 @@
         width: 100%;
         padding:10px 15px;
         background:#fff;
-        
-          
-        a{font-size: 14px;padding:5px 0;}  
+
+
+        a{font-size: 14px;padding:5px 0;}
         p:nth-child(2){margin:0 15px;}
-        
+
         .iconBox{
             width: 40px;
 
@@ -486,7 +520,7 @@
                 font-size:30px;
             }
         }
-        
+
     }
 
     .bottomInfo{
@@ -533,7 +567,7 @@
                 height: 6px;
                 background: #ff6666;
             }
-        } 
+        }
     }
 
 

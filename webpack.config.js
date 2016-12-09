@@ -5,13 +5,13 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");   //独立样式
 var uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;  //混淆压缩
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin; //检测重用模块
 
-var prod = require('./webpack-prod');
+var utils = require('./utils');
 
-// 在命令行 输入  “set PRODUCTION=1 && webpack --progress” 就会打包压缩，并且注入md5戳 到 d.html里面
-var production = process.env.PRODUCTION;
+// 在命令行 输入  “set PRODUCTION= 1 && webpack --progress” 就会打包压缩，并且注入md5戳 到 d.html里面
+var production = process.env.PRODUCTION ==  1 ?  true : false;
+console.log(process.env.PRODUCTION ==  1 ?  "打包项目" : "开发环境");
 
 var plugins = [
-
     // Avoid publishing files when compilation fails
     new webpack.NoErrorsPlugin(),
 
@@ -21,23 +21,20 @@ var plugins = [
     }),
 
     //会将所有的样式文件打包成一个单独的style.css
-    new ExtractTextPlugin( production ? "style.[hash].css" : "style.css", {
+    new ExtractTextPlugin( production ? "css/style.[hash].css" : "style.css", {
        disable: false ,
        allChunks: true  //所有独立样式打包成一个css文件
     }),
 
-   //new ExtractTextPlugin("[name].css" )
    //自动分析重用的模块并且打包成单独的文件
-   new CommonsChunkPlugin(production ? "vendor.[hash].js" : "vendor.js" )
-
+   new CommonsChunkPlugin(production ? "js/vendor.[hash].js" : "vendor.js" )
 ];
 
 
 //发布编译时，压缩，版本控制
-if (process.env.PRODUCTION) {
-
+if (production) {
     // 清除之前的上线文件
-    prod.folder('./output/static/');
+    utils.deleteFolder(__dirname + "/output/static/");
 
     //压缩
     plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false } }));
@@ -60,9 +57,9 @@ module.exports = {
     output: {
         // 输出路径是
         path: path.join(__dirname, '/output/static'),
-        publicPath: production ? "/static/" :"static/",
-        filename: production ? "build.[hash].js" : "build.js",//[hash]MD5戳解决html的资源的定位可以使用webpack提供的HtmlWebpackPlugin插件来解决这个问题  见：http://segmentfault.com/a/1190000003499526 资源路径切换
-        chunkFilename: '[id].[chunkhash].js'
+        publicPath: production ? "/static/" :"/static/",
+        filename: production ? "js/build.[hash].js" : "build.js",//[hash]MD5戳解决html的资源的定位可以使用webpack提供的HtmlWebpackPlugin插件来解决这个问题  见：http://segmentfault.com/a/1190000003499526 资源路径切换
+        chunkFilename: 'js/[id].[chunkhash].js'
     },
 
     // 添加的module属性
@@ -101,14 +98,13 @@ module.exports = {
         ]
     },
     vue: {
-	      loaders: prod.loaders(),
+	      loaders: production  ? utils.loaders() : "",
         autoprefixer: {
-          browsers: ['last 2 versions']
+          browsers: ['last 6 versions']
         }
    },
     // 插件项
     plugins:plugins,
-
     stats: {
         // Nice colored output
         colors: true

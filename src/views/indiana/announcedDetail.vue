@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-     
+
     <!-- 头部 -->
     <app-header title="商品详情" :title-bg="true" header-bg="#fff">
         <a href="javascript:history.back();" slot="left" ><i class="icon">&#xe60b;</i></a>
@@ -38,7 +38,7 @@
                     <a class="match-btn">计算详情</a>
                 </div>
             </div>
-            
+
             <div class="results ui-border">
                <div class="centent">
                  <div class="Rimg"><img src="../../assets/images/logo.png"></div>
@@ -49,7 +49,7 @@
                     <p>本期参与：893人次</p>
                     <p>揭晓时间：2012-04-18 19:14:20</p>
                  </div>
-                </div> 
+                </div>
 
                <div class="item v-flexbox">
                     <p class="lucknum v-flexbox-item">幸运号码：12346790</p>
@@ -137,7 +137,7 @@
     import Header from '../common/Header.vue';
     import Swiper from 'swiper';
 
-	export default {
+	  export default {
         data() {
          return{
          }
@@ -199,7 +199,7 @@
         }
     }
 
-    
+
     .detailItem{ }
     .topInfo{
         background:#fff;
@@ -355,7 +355,7 @@
 
                }
 
-               
+
                img{
                  position: absolute;
                  z-index: 11;
@@ -383,7 +383,7 @@
                 bottom:10px;
                 font-size: 13px;
             }
-        } 
+        }
     }
 
     .bottomInfo{

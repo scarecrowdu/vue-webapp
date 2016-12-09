@@ -1,7 +1,6 @@
 <template>
     <div class="homepage">
         <!-- <button @click="showGlobalModal">全局弹窗自定义</button> -->
-
         <!-- 头部 -->
         <appheader title="积分购"></appheader>
 
@@ -50,27 +49,34 @@
 </template>
 
 <script>
-    const imgdata =
-    [{
-      src:"http://img.mp.itc.cn/upload/20160803/3c417c801f564e6cb166f841d05f588c_th.jpg",
-      id:'1'
-    },{
-      src:"http://img.mp.itc.cn/upload/20160803/e646358582ad47458589cbca9289b034_th.jpg",
-      id:'2'
-    },{
-      src:"http://img.mp.itc.cn/upload/20160803/3d490ff58ee647c18045e2ec03c6b865_th.jpg",
-      id:'3'
-    }]
-    const tabdata =
-    [{
-      title:"默认",key:'1'
-    },{
-      title:"销量",key:'2'
-    },{
-      title:"上新",key:'3'
-    },{
-      title:"价格",key:'4'
-    }]
+    import Mock        from 'mockjs';
+    // 生成商品列数据
+    Mock.mock('shoplist.json', {
+      retcode: 1,
+      retmsg: '查询成功',
+      data: {
+        'total': 1,
+        'records': 10,
+        'page': 1,
+        'rows|10': [{
+            'id|+1': 1,
+            'sid|+1': 1,
+            'remainmember':'@natural(100, 1000)',
+            'joinedmember':'@natural(100, 1000)',
+            'totalmember':'@natural(100, 1000)',
+            'title': '@title(6, 50)',
+            'cover': '@image(200x200, #ff6666, Hello)'
+        }]
+      }
+    })
+
+    // 生成轮播数据
+    const imgdata = Mock.mock({
+      'list|3': [{
+        'id|+1': 1,
+        'src':'@image(640x400, #ffcc33, #333,Banner)',
+      }]
+    })
 
     import Appheader    from  './common/Header.vue';
     import Loading      from  '../components/Loading.vue';
@@ -85,7 +91,7 @@
                 activeIndex  :  0,                      //用于默认active样式
                 page         :  1,                      //当前页数
                 mark         :  {up:false,down:false},  //用于判断价格升降序
-                tablist      :  [],                     //tab数据
+                tablist      :  [{title:"默认",key:'1'}, {title:"销量",key:'2'}, {title:"上新",key:'3'}, {title:"价格",key:'4'}],                     //tab数据
                 shoplist     :  [],                     //列表数据
                 imglist      :  [],                     //轮播数据
                 globalModal  :  {},                      //自定义弹层
@@ -95,7 +101,6 @@
         ready(){
             let self = this;
             self.loadshow = true;
-            self.$set('tablist', tabdata);
             // this.$parent.toast.content = 'toast  2.0s...';
         },
         route:{
@@ -123,22 +128,14 @@
              */
             getAjaxData(){
                   let self = this;
-
-                  self.$http.get('../src/data/listdata.json').then(function (response) {
-
+                  self.$http.get('shoplist.json').then(function (response) {
                       self.scroll = true;
                       let data = response.data;
-
                       if(data.retcode == 1){
                             console.log(self.page);
                             self.loading = false;
-
                             let jsonData = data.data.rows;
-                            let appW = document.querySelector("#app").style.width;
 
-                            for (var i = 0; i < jsonData.length; i++) {
-                                jsonData[i].imgwh = appW/2-20;
-                            }
                             if (self.page == 1) {
                                self.shoplist = jsonData
                             }else{
@@ -230,7 +227,7 @@
             imgSwiper(){
                let self = this;
                self.$nextTick(() =>{
-                   self.$set('imglist', imgdata);
+                   self.$set('imglist', imgdata.list);
                 });
             },
 
