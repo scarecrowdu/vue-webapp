@@ -9,18 +9,26 @@ webpack
 
 ## 说明
 ``` bash
-因该例子是以公司项目开发的，所以仅提供学习参考，请勿作为商业用途。
-望谅解。
+因该例子是以公司项目开发的，所以仅提供学习参考
 如有疑问：QQ:1085231006
+可以的话 GitHub给个star！！！
 ```
 
 ## 示例
 
-[demo传送门](https://dodov.github.io)
+[demo传送门](https://dodov.github.io/vue.html)
 <p><img src="gif/demo.gif" width="375" height="667"></p>
 
 
 ## 运行
+
+``` bash
+#github仓库url
+git clone https://github.com/vincentSea/vueWebapp.git
+ or
+git clone git@github.com:vincentSea/vueWebapp.git
+```
+
 
 ``` bash
 npm install
