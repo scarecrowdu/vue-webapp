@@ -7,18 +7,20 @@ vue-resource
 webpack
 ```
 
+
 ## 说明
 ``` bash
 因该例子是以公司项目开发的，所以仅提供学习参考
-如有疑问：QQ:1085231006
 可以的话 GitHub给个star！！！
 ```
 
 ## 示例
 
-[demo传送门](https://dodov.github.io/vue.html)
+[demo传送门](https://dodov.github.io/vueWebapp/index.html)
 <p><img src="gif/demo.gif" width="375" height="667"></p>
 
+## vue1.x 项目
+基于vue1.x已上线[积分购项目](http://m.51jfgou.com/jgouINF/weixin/index.html#!/)
 
 ## 运行
 
@@ -37,7 +39,6 @@ cnpm install [前提安装了淘宝源](http://npm.taobao.org/)
 
 ``` bash
 npm run dev   ----- localhost:8080  
-npm run ip    ----- 本机ip:9000
 npm run build ----- 打包项目
 ```
 
@@ -79,3 +80,11 @@ npm install mockjs --save
 │           
 
 </pre>
+
+
+## [vue2.x Conde社区](https://dodov.github.io/vueCnode/index.html#/)
+
+vue2.x Cnode社区是基于vue、vue-router、vuex、axios、es6开发，使用webpack构建工具编译打包项目
+
+[点击查看效果](https://dodov.github.io/vueCnode/index.html#/)
+

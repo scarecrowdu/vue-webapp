@@ -4,27 +4,26 @@
   "description": "this is a webapp",
   "main": "index.js",
   "scripts": {
-    "build":"set PRODUCTION=1 && webpack --progress",
+    "build": "set PRODUCTION=1 && webpack --progress",
     "dev": "set PRODUCTION=0 && webpack-dev-server --progress --profile --colors --inline ",
     "port": "webpack-dev-server --progress --colors --inline --port 9090 ",
     "hot": "webpack-dev-server --progress --colors --inline --hot",
     "cp": "cp -r index.html ./build/ d:/wamp/www/vue",
     "ip": "webpack-dev-server  --progress --colors --hot --host=0.0.0.0  --port 9000"
   },
-
   "author": "vincentDu",
   "license": "ISC",
   "directories": {
     "test": "test"
   },
   "dependencies": {
+    "mockjs": "^1.0.1-beta3",
+    "swiper": "^3.3.1",
     "vue": "^1.0.20",
+    "vue-lazyload": "^1.0.0-rc10",
     "vue-resource": "^0.7.0",
     "vue-router": "^0.7.11",
-    "vue-lazyload": "^0.4.2",
-    "swiper": "^3.3.1",
-    "webpack-zepto": "0.0.1",
-    "mockjs": "^1.0.1-beta3"
+    "webpack-zepto": "0.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.0.20",

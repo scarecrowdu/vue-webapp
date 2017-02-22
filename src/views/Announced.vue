@@ -10,7 +10,7 @@
             <ul class="floatBox">
                 <li v-for="item in lists" >
                   <a v-link="{name:'goods',query:{id:item.id}}">
-                     <img v-lazy="item.cover" :style="{ width:item.imgwh +'px',height:item.imgwh +'px' }" >
+                     <img :src="item.cover" :style="{ width:item.imgwh +'px',height:item.imgwh +'px' }" >
                      <div class="info">
                         <p class="title nowrap">{{item.title}}</p>
                         <p class="issue">期号：{{item.periods}}</p>
