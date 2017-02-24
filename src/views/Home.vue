@@ -86,16 +86,16 @@
     export default {
         data() {
             return {
-                isflag: false,    //用于tab切换的最后一个标识
-                scroll: true,     //用于判断是否滚动
-                activeIndex: 0,   //用于默认active样式
-                page: 1,          //当前页数
-                mark: { up: false, down: false },  //用于判断价格升降序
-                tablist: [{ title: "默认", key: '1' }, { title: "销量", key: '2' }, { title: "上新", key: '3' }, { title: "价格", key: '4' }],  //tab数据
-                shoplist: [],     //列表数据
-                imglist: [],      //轮播数据
-                globalModal: {},  //自定义弹层
-                loading: true
+                isflag        : false,   //用于tab切换的最后一个标识
+                scroll        : true,    //用于判断是否滚动
+                activeIndex   : 0,      //用于默认active样式
+                page          : 1,      //当前页数
+                mark          : { up: false, down: false },  //用于判断价格升降序
+                tablist       : [{ title: "默认", key: '1' }, { title: "销量", key: '2' }, { title: "上新", key: '3' }, { title: "价格", key: '4' }],  //tab数据
+                shoplist      : [],     //列表数据
+                imglist       : [],     //轮播数据
+                globalModal   : {},     //自定义弹层
+                loading       : true
             }
         },
         ready() {
