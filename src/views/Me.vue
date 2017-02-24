@@ -1,92 +1,92 @@
 <template>
 
 	<div class="me ">
-			
-			<div class="user-header">
-				<div class="u-top">
-					<div class="u-icon">
-						 <i class="icon">&#xe60a;</i>
-					</div>
-					<div class="u-icon">
-						 <a v-link="{ path: '/center/msg' }"><i class="icon">&#xe609;</i></a>
-					</div>
-				</div>
-				<div class="u-middle">
-					<div class="img"><img src="../assets/images/logo.png"></div>
-					<div class="content">
-						<p><a v-link="{ path: '/user/login' }">登陆</a><span></span><a v-link="{ path: '/user/register' }"> 注册</a></p>
-					</div>
-				</div>
-				<div class="u-bottom">
-					<div class="content">
-						<p>余额:<strong>200</strong>积分</p>
-					</div>
-					<div class="btn">
-						<a href="">充值</a>
-					</div>
-				</div>
-			</div> 
 
-			<div class="weui_cells">
-				<a class="weui_cell" v-link="{ path: '/center/allRecord' }">
-					<div class="weui_cell_hd">
-						<span class="icon c-icon danger">&#xe606;</span>
-					</div>
-					<div class="weui_cell_bd weui_cell_primary">
-						<p>全部参与记录</p>
-					</div>
-					<div class="weui_cell_ft with_arrow"></div>
-				</a>
-				<a class="weui_cell" v-link="{ path: '/center/winRecord' }">
-					<div class="weui_cell_hd">
-						<span class="icon c-icon warning">&#xe604;</span>
-					</div>
-					<div class="weui_cell_bd weui_cell_primary">
-						<p>中奖记录</p>
-					</div>
-					<div class="weui_cell_ft with_arrow"></div>
-				</a>
-				<a class="weui_cell" v-link="{ path: '/center/redPackets' }">
-					<div class="weui_cell_hd">
-						<span class="icon c-icon danger">&#xe605;</span>
-					</div>
-					<div class="weui_cell_bd weui_cell_primary">
-						<p>红包</p>
-					</div>
-					<div class="weui_cell_ft with_arrow"></div>
-				</a>
-				<a class="weui_cell" v-link="{ path: '/center/rechargeRecord' }">
-					<div class="weui_cell_hd">
-						<span class="icon c-icon primary">&#xe608;</span>
-					</div>
-					<div class="weui_cell_bd weui_cell_primary">
-						<p>充值记录</p>
-					</div>
-					<div class="weui_cell_ft with_arrow"></div>
-				</a>
+		<div class="user-header">
+			<div class="u-top">
+				<div class="u-icon">
+					<i class="icon">&#xe60a;</i>
+				</div>
+				<div class="u-icon">
+					<a v-link="{ path: '/center/msg' }"><i class="icon">&#xe609;</i></a>
+				</div>
 			</div>
+			<div class="u-middle">
+				<div class="img"><img src="../assets/images/logo.png"></div>
+				<div class="content">
+					<p><a v-link="{ path: '/user/login' }">登陆</a><span></span><a v-link="{ path: '/user/register' }"> 注册</a></p>
+				</div>
+			</div>
+			<div class="u-bottom">
+				<div class="content">
+					<p>余额:<strong>200</strong>积分</p>
+				</div>
+				<div class="btn">
+					<a href="">充值</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="weui_cells">
+			<a class="weui_cell" v-link="{ path: '/center/allRecord' }">
+				<div class="weui_cell_hd">
+					<span class="icon c-icon danger">&#xe606;</span>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<p>全部参与记录</p>
+				</div>
+				<div class="weui_cell_ft with_arrow"></div>
+			</a>
+			<a class="weui_cell" v-link="{ path: '/center/winRecord' }">
+				<div class="weui_cell_hd">
+					<span class="icon c-icon warning">&#xe604;</span>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<p>中奖记录</p>
+				</div>
+				<div class="weui_cell_ft with_arrow"></div>
+			</a>
+			<a class="weui_cell" v-link="{ path: '/center/redPackets' }">
+				<div class="weui_cell_hd">
+					<span class="icon c-icon danger">&#xe605;</span>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<p>红包</p>
+				</div>
+				<div class="weui_cell_ft with_arrow"></div>
+			</a>
+			<a class="weui_cell" v-link="{ path: '/center/rechargeRecord' }">
+				<div class="weui_cell_hd">
+					<span class="icon c-icon primary">&#xe608;</span>
+				</div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<p>充值记录</p>
+				</div>
+				<div class="weui_cell_ft with_arrow"></div>
+			</a>
+		</div>
 
 	</div>
 </template>
 
 <script>
-		export default {
-				data() {
-				 return{
-					 title:'个人中心',
-					 isIndex:true,
-					 content:123456
-				 }
-				},
-				components: {
-					// Flexbox
-				},
-				route:{
-					activate:function(transition){
-						transition.next();
-					}
-				},
-		}
+	export default {
+		data() {
+			return {
+				title: '个人中心',
+				isIndex: true,
+				content: 123456
+			}
+		},
+		components: {
+			// Flexbox
+		},
+		route: {
+			activate: function (transition) {
+				transition.next();
+			}
+		},
+	}
 </script>
 
 
