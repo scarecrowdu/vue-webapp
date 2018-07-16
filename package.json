@@ -1,0 +1,44 @@
+{
+  "name": "vue-webapp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "register-service-worker": "^1.0.0",
+    "vue": "^2.5.16",
+    "vue-class-component": "^6.0.0",
+    "vue-property-decorator": "^7.0.0",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-rc.4",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.4",
+    "@vue/cli-plugin-pwa": "^3.0.0-rc.4",
+    "@vue/cli-plugin-typescript": "^3.0.0-rc.4",
+    "@vue/cli-service": "^3.0.0-rc.4",
+    "@vue/eslint-config-prettier": "^3.0.0-rc.4",
+    "@vue/eslint-config-typescript": "^3.0.0-rc.4",
+    "lint-staged": "^7.2.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "vue-template-compiler": "^2.5.16"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
+}
