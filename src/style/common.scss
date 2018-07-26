@@ -1,0 +1,33 @@
+@import "reset.scss";
+
+.clear {
+  zoom: 1;
+
+  &:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: hide;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
