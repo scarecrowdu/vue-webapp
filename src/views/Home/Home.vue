@@ -10,23 +10,27 @@
       </p>
       <GoodList :data="goodslist" />
     </div>
+
+    <Footer :data="navs" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { State, Action } from 'vuex-class';
-import { Banners, Goods, QuickNav, Customs } from '@/store/state';
 
+import Footer from '@/components/Footer.vue';
 import GoodList from '@/components/GoodList.vue';
 import BannerSwiper from './components/BannerSwiper.vue';
 import QuickLinkNav from './components/QuickLinkNav.vue';
 import CustomColumn from './components/CustomColumn.vue';
+import state from '@/store/state';
 
 // const namespace: string = 'shop';
 
 @Component({
   components: {
+    Footer,
     GoodList,
     BannerSwiper,
     QuickLinkNav,
@@ -34,17 +38,19 @@ import CustomColumn from './components/CustomColumn.vue';
   },
 })
 export default class Home extends Vue {
+  @State navs!: StoreState.Navs[];
+
   @State(state => state.shop.banners)
-  banners!: Banners[];
+  banners!: StoreState.Banners[];
 
   @State(state => state.shop.quicknavlist)
-  quicknavlist!: QuickNav[];
+  quicknavlist!: StoreState.QuickNav[];
 
   @State(state => state.shop.customs)
-  customs!: Customs[];
+  customs!: StoreState.Customs[];
 
   @State(state => state.shop.goodslist)
-  goodslist!: Goods[];
+  goodslist!: StoreState.Goods[];
 
   @Action('shop/initAjaxShop') initAjaxShop: any;
   // @Action('initAjaxShop', { namespace })
@@ -53,9 +59,7 @@ export default class Home extends Vue {
   created() {
     this.initAjaxShop();
   }
-  mounted() {
-    // console.log(this.goodslist);
-  }
+  mounted() {}
 }
 </script>
 
@@ -70,6 +74,7 @@ export default class Home extends Vue {
 .guess-like-wrap {
   overflow: hidden;
   background: #f5f5f5;
+  padding-bottom: 100px;
 
   .guess-title {
     position: relative;

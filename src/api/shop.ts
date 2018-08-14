@@ -15,3 +15,7 @@ export function queryGoodsList() {
 export function queryQuickNavList() {
   return $axios.get('/shop/quicknav');
 }
+
+export function queryGoodsInfo(id: string) {
+  return $axios.post(`/shop/goods/${id}`);
+}

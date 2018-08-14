@@ -7,9 +7,8 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 
+import SvgIcon from '@/components/SvgIcon.vue';
 import FastClick from 'fastclick';
-
-Vue.config.productionTip = false;
 
 if ('addEventListener' in document) {
   document.addEventListener(
@@ -20,6 +19,10 @@ if ('addEventListener' in document) {
     false,
   );
 }
+
+// 全局注册icon图标组件
+Vue.component('icon', SvgIcon);
+Vue.config.productionTip = false;
 
 new Vue({
   router,

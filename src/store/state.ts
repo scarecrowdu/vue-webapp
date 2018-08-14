@@ -1,38 +1,11 @@
-// 广告轮播
-export interface Banners {
-  id: string | undefined;
-  activityId: string | undefined;
-  src: string;
-  desc: string;
-  isActivity: boolean;
+import config from "@/config";
+
+interface State {
+  navs: StoreState.Navs[]
 }
 
-// 自定义模块
-export interface Customs {
-  type: string;
-  title: string;
-  imglist: any;
+const state: State = {
+  navs: config.nav
 }
 
-// 商品类型
-export interface Goods {
-  id: string;
-  title: string;
-  desc: string;
-  src: string;
-  price: number;
-}
-
-// 快链导航
-export interface QuickNav {
-  id: string;
-  title: string;
-  icon: string;
-}
-
-export interface ShopState {
-  banners: Banners[];
-  customs: Customs[];
-  goodslist: Goods[];
-  quicknavlist: QuickNav[];
-}
+export default state;

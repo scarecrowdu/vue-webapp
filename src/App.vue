@@ -1,11 +1,10 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/category">Category</router-link>
-    </div>
-    <router-view/>
+    <transition name="router-fade" mode="out-in">
+    	<keep-alive>
+        <router-view/>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
@@ -16,14 +15,13 @@
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+
+.router-fade-enter-active,
+.router-fade-leave-active {
+  transition: opacity 0.5s;
+}
+.router-fade-enter,
+.router-fade-leave-active {
+  opacity: 0;
 }
 </style>
