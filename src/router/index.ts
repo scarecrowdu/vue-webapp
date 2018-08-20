@@ -10,16 +10,19 @@ export default new Router({
     {
       path: '/',
       name: 'home',
+      meta: { isNav: true },
       component: Home,
     },
     {
       path: '/category',
       name: 'category',
+      meta: { isNav: true },
       component: () => import('../views/Category/Category.vue'),
     },
     {
       path: '/cart',
       name: 'cart',
+      meta: { isNav: true },
       component: () => import('../views/Cart/Cart.vue'),
     },
     {
@@ -30,6 +33,7 @@ export default new Router({
     {
       path: '/me',
       name: 'me',
+      meta: { isNav: true },
       component: () => import('@/views/Me/Me.vue'),
     },
     // {

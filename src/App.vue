@@ -5,8 +5,42 @@
         <router-view/>
       </keep-alive>
     </transition>
+
+    <Footer :data="navs" v-show="isNav" />
   </div>
 </template>
+
+<script lang="ts">
+import { Vue, Component, Watch } from 'vue-property-decorator';
+import { State, Action } from 'vuex-class';
+
+import Footer from '@/components/Footer.vue';
+
+@Component({
+  components: {
+    Footer,
+  },
+})
+export default class Home extends Vue {
+  private isNav: boolean = false;
+
+  @State navs!: StoreState.Navs[];
+
+  @Watch('$route')
+  onRotuteChanged(val: string) {
+    const {
+      meta: { isNav },
+    } = val;
+    this.isNav = isNav || false;
+  }
+
+  created() {
+    let { isNav } = this.$route.meta;
+    this.isNav = isNav || false;
+  }
+}
+</script>
+
 
 <style lang="scss">
 #app {

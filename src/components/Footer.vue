@@ -1,7 +1,7 @@
 <template>
   <footer class="footer-container">
     <nav>
-      <router-link v-for="nav in data" :key="nav.id" :to="nav.path">
+      <router-link v-for="nav in data" :key="nav.id" :to="nav.path" exact>
         <icon :name="nav.icon"></icon>
         <p>{{ nav.name }}</p>
       </router-link>

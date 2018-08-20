@@ -119,7 +119,7 @@
         <span class="btn-text">收藏</span>
       </div>
       <div class="bottom-bar-btn cart">
-        <span class="btn-title"  @click="popupSkuVisible = true">加入购物车</span>
+        <span class="btn-title" @click="popupSkuVisible = true">加入购物车</span>
       </div>
       <div class="bottom-bar-btn buy">
         <span class="btn-title" @click="popupSkuVisible = true">立即购买</span>

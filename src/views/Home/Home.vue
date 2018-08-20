@@ -11,12 +11,12 @@
       <GoodList :data="goodslist" />
     </div>
 
-    <Footer :data="navs" />
+    <!-- <Footer :data="navs" /> -->
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator';
 import { State, Action } from 'vuex-class';
 
 import Footer from '@/components/Footer.vue';
@@ -92,7 +92,7 @@ export default class Home extends Vue {
       top: 50%;
       left: 0;
       background-color: #cbcbcb;
-      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
     }
   }
 

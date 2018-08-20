@@ -10,7 +10,7 @@ export default {
       id: 2,
       icon: 'categrory',
       name: '分类',
-      path: '/categrory',
+      path: '/category',
     },
     {
       id: 3,
