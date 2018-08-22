@@ -184,25 +184,16 @@
         </ul>
       </div>
     </section>
-
-     <!-- <Footer :data="navs" /> -->
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { State, Action } from 'vuex-class';
-
-import Footer from '@/components/Footer.vue';
 
 @Component({
-  components: {
-    Footer,
-  },
+  components: {},
 })
-export default class Me extends Vue {
-  @State navs!: StoreState.Navs[];
-}
+export default class Me extends Vue {}
 </script>
 
 

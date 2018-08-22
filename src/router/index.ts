@@ -1,11 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '../views/Home/Home.vue';
-// import About from '../views/About.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -36,10 +35,15 @@ export default new Router({
       meta: { isNav: true },
       component: () => import('@/views/Me/Me.vue'),
     },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   component: About,
-    // },
   ],
 });
+
+router.addRoutes([
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/User/Login.vue'),
+  },
+]);
+
+export default router;

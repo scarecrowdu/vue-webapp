@@ -27,11 +27,9 @@ export default class Home extends Vue {
   @State navs!: StoreState.Navs[];
 
   @Watch('$route')
-  onRotuteChanged(val: string) {
-    const {
-      meta: { isNav },
-    } = val;
-    this.isNav = isNav || false;
+  onRotuteChanged(val: any) {
+    const { meta } = val;
+    this.isNav = meta.isNav || false;
   }
 
   created() {
@@ -52,7 +50,7 @@ export default class Home extends Vue {
 
 .router-fade-enter-active,
 .router-fade-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity 0.3s;
 }
 .router-fade-enter,
 .router-fade-leave-active {

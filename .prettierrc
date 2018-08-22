@@ -21,7 +21,7 @@
       "files": "*.{css,sass,scss,less}",
       "options": {
         "parser": "scss",
-        "tabWidth": 4
+        "tabWidth": 2
       }
     },
     {
