@@ -16,6 +16,8 @@
   </a>
 </p>
 
+## 技术栈
+vue + typescript + vuex + vue-router
 
 ## 安装构建
 
@@ -53,3 +55,9 @@ npm run build
 │   └── views                            # 视图目录
 └── tsconfig.json
 ```
+
+## License
+
+[MIT](https://github.com/vincentSea/vue-webapp/tree/blob/develop/LICENSE)
+
+Copyright (c) 2018 稻草叔叔
