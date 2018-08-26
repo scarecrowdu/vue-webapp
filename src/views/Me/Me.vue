@@ -371,11 +371,11 @@ export default class Me extends Vue {}
         width: 40px;
         height: 40px;
         font-size: 20px;
-        color: #000;
-        line-height: 35px;
+        color: #fff;
+        line-height: 40px;
         border-radius: 50%;
-        background: #f5f5f5;
-        border: 2px solid red;
+        background: #f7624f;
+        // border: 2px solid f7624f;
       }
     }
   }

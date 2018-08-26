@@ -70,38 +70,4 @@ export default class Home extends Vue {
   font-size: 30px;
   padding: 30px 30px;
 }
-
-.guess-like-wrap {
-  overflow: hidden;
-  background: #f5f5f5;
-  padding-bottom: 100px;
-
-  .guess-title {
-    position: relative;
-    display: -webkit-box;
-    margin: 28px 10px;
-    color: #848689;
-    font-size: 28px;
-    -webkit-box-pack: center;
-
-    &:after {
-      content: '';
-      height: 1px;
-      width: 100%;
-      position: absolute;
-      top: 50%;
-      left: 0;
-      background-color: #cbcbcb;
-      transform: scaleY(0.5);
-    }
-  }
-
-  .guess-layout {
-    padding: 0 20px;
-    background-color: #f0f2f5;
-    z-index: 10;
-    position: relative;
-    display: block;
-  }
-}
 </style>

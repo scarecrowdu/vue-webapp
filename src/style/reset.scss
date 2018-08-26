@@ -8,13 +8,12 @@
 // Unable to preventDefault inside passive event listener
 // https://segmentfault.com/a/1190000008512184
 // html {
-  // touch-action: none
+// touch-action: none
 // }
 
-
 body {
-  font-family: "PingFang SC", -apple-system, BlinkMacSystemFont,
-    "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont,
+    'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-text-size-adjust: none;
 }
@@ -39,12 +38,13 @@ ul {
   list-style: none;
 }
 
-
-input[type="button"],
-input[type="submit"],
-input[type="search"],
-input[type="reset"] {
+input[type='button'],
+input[type='submit'],
+input[type='search'],
+input[type='reset'] {
   -webkit-appearance: none;
 }
 
-textarea { -webkit-appearance: none;}   
+textarea {
+  -webkit-appearance: none;
+}
