@@ -17,7 +17,7 @@
 </p>
 
 
-## 安装&构建
+## 安装构建
 
 ```
 # 安装依赖
@@ -30,7 +30,7 @@ npm run serve
 npm run build
 ```
 
-## 项目目标
+## 项目目录
 ```
 ├── README.md                            # 项目说明
 ├── babel.config.js                      # babel配置文件
