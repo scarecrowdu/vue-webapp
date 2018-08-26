@@ -19,7 +19,7 @@
 ## 技术栈
 vue + typescript + vuex + vue-router
 
-## 安装构建
+## 安装&构建
 
 ```
 # 安装依赖
@@ -32,7 +32,7 @@ npm run serve
 npm run build
 ```
 
-## 项目目录
+## 项目目标
 ```
 ├── README.md                            # 项目说明
 ├── babel.config.js                      # babel配置文件
@@ -54,6 +54,7 @@ npm run build
 │   ├── utils                            # 工具库
 │   └── views                            # 视图目录
 └── tsconfig.json
+<<<<<<< HEAD
 ```
 
 ## License
@@ -61,3 +62,6 @@ npm run build
 [MIT](https://github.com/vincentSea/vue-webapp/blob/develop/LICENSE)
 
 Copyright (c) 2018 稻草叔叔
+=======
+```
+>>>>>>> parent of 3446582... Update README.md
