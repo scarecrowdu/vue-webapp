@@ -58,6 +58,6 @@ npm run build
 
 ## License
 
-[MIT](https://github.com/vincentSea/vue-webapp/tree/blob/develop/LICENSE)
+[MIT](https://github.com/vincentSea/vue-webapp/blob/develop/LICENSE)
 
 Copyright (c) 2018 稻草叔叔
