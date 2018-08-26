@@ -25,7 +25,7 @@
           <div class="cart-item" v-for="i in 3" :key="i">
             <div class="item-cb">
               <p>
-                <icon name="checkbox"></icon>
+                <icon name="checkbox-right"></icon>
               </p>
             </div>
             <div class="item-detail">
@@ -104,7 +104,7 @@
         <div class="total">
           <div>
             <span>合计：</span>
-            <span class="money">2e3</span>
+            <span class="money">2000</span>
           </div>
         </div>
         <div class="btns">
@@ -134,7 +134,8 @@ export default class Cart extends Vue {
   @State(state => state.shop.goodslist)
   goodslist!: StoreState.Goods[];
 
-  @Action('shop/getGoodsList') getGoodsList: any;
+  @Action('shop/getGoodsList')
+  getGoodsList: any;
 
   created() {
     this.getGoodsList();

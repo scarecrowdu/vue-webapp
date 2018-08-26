@@ -38,7 +38,8 @@ import state from '@/store/state';
   },
 })
 export default class Home extends Vue {
-  @State navs!: StoreState.Navs[];
+  @State
+  navs!: StoreState.Navs[];
 
   @State(state => state.shop.banners)
   banners!: StoreState.Banners[];
@@ -52,7 +53,8 @@ export default class Home extends Vue {
   @State(state => state.shop.goodslist)
   goodslist!: StoreState.Goods[];
 
-  @Action('shop/initAjaxShop') initAjaxShop: any;
+  @Action('shop/initAjaxShop')
+  initAjaxShop: any;
   // @Action('initAjaxShop', { namespace })
   // initAjaxShop: any;
 
