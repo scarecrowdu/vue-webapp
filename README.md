@@ -10,7 +10,7 @@ webpack
 ## 提示
 基于vue2.0的项目正在开发中，在develop分支上
 ```
-https://github.com/vincentSea/vue-webapp/blob/develop/README.md
+https://github.com/vincentSea/vue-webapp/tree/develop
 ```
 
 ## 说明
