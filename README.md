@@ -9,10 +9,10 @@
 > 基于vue2.0 + typescript技术开发的移动端项目
 
 
-## webapp界面
+## 界面
 <p align="center">
   <a>
-    <img width="100%" src="http://opq4i8ll4.bkt.clouddn.com/app.png">
+    <img width="100%" src="http://opq4i8ll4.bkt.clouddn.com/ego_app.png">
   </a>
 </p>
 
