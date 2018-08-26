@@ -87,7 +87,7 @@ npm install mockjs --save
 </pre>
 
 
-## [vue2.x Conde社区](https://dodov.github.io/vueCnode/index.html#/)
+## [vue2.x Conde社区](https://github.com/vincentSea/vue2.x-Cnode)
 
 vue2.x Cnode社区是基于vue、vue-router、vuex、axios、es6开发，使用webpack构建工具编译打包项目
 
