@@ -5,7 +5,7 @@
         <router-link :to="'/detail/'+ good.id">
           <div class="good-product">
             <div class="good-img">
-              <img :src="good.src" />
+              <img class="lazy-img-fadein" v-lazy="good.src" />
             </div>
 
             <p class="good-text">{{ good.title }}</p>
@@ -62,9 +62,9 @@ export default class GoodList extends Vue {
 
       .good-img {
         position: relative;
+        width: 100%;
 
         img {
-          opacity: 1;
           width: 371px;
           height: 371px;
         }

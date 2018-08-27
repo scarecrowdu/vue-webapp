@@ -24,7 +24,8 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper';
   },
 })
 export default class BannerSwiper extends Vue {
-  @Prop(Array) data: any;
+  @Prop(Array)
+  data: any;
 
   swiperOption = {
     pagination: {

@@ -260,7 +260,8 @@ export default class Detail extends Vue {
   @State(state => state.shop.goodsinfo)
   private goodsInfo!: any;
 
-  @Action('shop/getGoodsInfo') getGoodsInfo: any;
+  @Action('shop/getGoodsInfo')
+  getGoodsInfo: any;
 
   created() {
     window.scroll(0, 0);
