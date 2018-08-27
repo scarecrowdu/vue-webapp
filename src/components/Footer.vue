@@ -14,7 +14,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Footer extends Vue {
-  @Prop(Array) private data!: StoreState.Navs[];
+  @Prop(Array)
+  private data!: StoreState.Navs[];
 }
 </script>
 

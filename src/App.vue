@@ -24,7 +24,8 @@ import Footer from '@/components/Footer.vue';
 export default class Home extends Vue {
   private isNav: boolean = false;
 
-  @State navs!: StoreState.Navs[];
+  @State
+  navs!: StoreState.Navs[];
 
   @Watch('$route')
   onRotuteChanged(val: any) {

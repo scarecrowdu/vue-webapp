@@ -19,7 +19,8 @@ export default class Header extends Vue {
   @Prop({ default: false })
   fixed!: boolean;
 
-  @Prop(String) title!: string;
+  @Prop(String)
+  title!: string;
 }
 </script>
 

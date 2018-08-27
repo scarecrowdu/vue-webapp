@@ -16,7 +16,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class QuickLinkNav extends Vue {
-  @Prop(Array) data: any;
+  @Prop(Array)
+  data: any;
 }
 </script>
 

@@ -9,6 +9,9 @@ import './registerServiceWorker';
 
 import SvgIcon from '@/components/SvgIcon.vue';
 import FastClick from 'fastclick';
+import VueLazyload from 'vue-lazyload';
+
+// import loadingPic from './assets/images/load_default.png';
 
 if ('addEventListener' in document) {
   document.addEventListener(
@@ -19,6 +22,14 @@ if ('addEventListener' in document) {
     false,
   );
 }
+
+// or with options
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  // error: 'dist/error.png',
+  loading: require('./assets/images/load_default.png'),
+  attempt: 1,
+});
 
 // 全局注册icon图标组件
 Vue.component('icon', SvgIcon);
