@@ -11,7 +11,6 @@ import SvgIcon from '@/components/SvgIcon.vue';
 import FastClick from 'fastclick';
 import VueLazyload from 'vue-lazyload';
 
-
 if ('addEventListener' in document) {
   document.addEventListener(
     'DOMContentLoaded',
