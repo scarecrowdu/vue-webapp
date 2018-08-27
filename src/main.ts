@@ -24,7 +24,7 @@ if ('addEventListener' in document) {
 // or with options
 Vue.use(VueLazyload, {
   preLoad: 1.3,
-  // error: require('./assets/images/load_default.png'),
+  error: require('./assets/images/load_default.png'),
   loading: require('./assets/images/load_default.png'),
   attempt: 1,
 });
