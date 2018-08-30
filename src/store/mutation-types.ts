@@ -7,3 +7,7 @@ export const SET_CUSTOMS = 'SET_CUSTOMS';
 export const SET_GOODSLIST = 'SET_GOODSLIST';
 
 export const SET_GOODSINFO = 'SET_GOODSINFO';
+
+export const SET_MENULIST = 'SET_MENULIST';
+
+export const SET_CATEGORYLIST = 'SET_CATEGORYLIST';
