@@ -7,11 +7,13 @@
 
 # Ego 移动端购物商城
 > 基于vue2.0 + typescript技术开发的移动端项目, 使用官方推荐最新的脚手架搭[vue-cli 3.x](https://cli.vuejs.org/)搭建
+
 > 开发者：稻草叔叔
+
 > 项目地址：https://github.com/vincentSea/vue-webapp
 
 ## 界面
-**项目所有的界面都是自己设计的， 当然肯定有参考因素存在。**
+**项目所有的界面都是自己设计的， 当然肯定有参考因素存在。**
 
 <p align="center">
   <a>
