@@ -29,6 +29,7 @@ const actions: ActionTree<any, any> = {
     }
   },
 
+  // 根据菜单id获取分类列表
   async getCategoryList({ commit }, id) {
     const res: Ajax.AjaxResponse = await queryCategoryList(id);
     if (res && res.code === 200)

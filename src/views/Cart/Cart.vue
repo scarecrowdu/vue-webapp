@@ -8,72 +8,105 @@
 
     <div class="cart-area">
       <div class="cart-list">
-        <div class="cart-group">
+        <div
+          class="cart-group"
+          v-if="goods.length > 0"
+          v-for="(goods, key) in cartInfo.gorups"
+          :key="key">
+
+
           <div class="shop-item border-bottom">
             <div class="shopcb">
-              <icon name="checkbox-right"></icon>
+              <p @click="selectShop(cartInfo.shops[key])">
+                <icon name="checkbox-right" v-if="cartInfo.shops[key].fields.checked === true" ></icon>
+                <icon name="checkbox" v-else></icon>
+              </p>
             </div>
             <div class="shopicon">
               <icon name="shop"></icon>
             </div>
             <div class="contact">
-              <a href="">子俊男装 ></a>
+              <a href="">{{ cartInfo.shops[key].fields.title }} ></a>
             </div>
-            <div class="state"></div>
-          </div>
-          <!-- single good -->
-          <div class="cart-item" v-for="i in 3" :key="i">
-            <div class="item-cb">
-              <p>
-                <icon name="checkbox-right"></icon>
+            <div class="state">
+              <p @click="editBuyEditStatus(key)">
+                <span v-if="cartInfo.shops[key].fields.is11">完成</span>
+                <span v-else>编辑</span>
               </p>
             </div>
-            <div class="item-detail">
-              <div>
-                <div class="item-img">
-                  <a>
-                    <img class="" src="https://gw.alicdn.com/bao/uploaded/i2/66695381/TB2hMi8mXuWBuNjSspnXXX1NVXa_!!66695381.jpg_200x200q50s150.jpg_.webp">
-                  </a>
-                </div>
+          </div>
 
-                <div class="item-info">
-                  <a href="">
-                    <h3 class="title">港风夏季薄款男士长袖衬衣文艺小清新条纹宽松衬衫韩版chic衬衫潮港风夏季薄款男士长袖衬衣文艺小清新条纹宽松衬衫韩版chic衬衫潮</h3>
-                    <div class="edit-sku ">
-                      <div>红色;M合适28-29
-                        <icon name="arrow-down"></icon>
+          <!-- single good -->
+          <div
+            v-if="cartInfo.goods"
+            class="cart-item"
+            v-for="item in goods"
+            :key="item">
+
+            <div class="cart-item-box" :class="{ 'act-edit' : cartInfo.shops[key].fields.is11}">
+              <div class="item-cb">
+                <p @click="selectGood(cartInfo.goods[item])">
+                  <icon name="checkbox-right" v-if="cartInfo.goods[item].fields.checked  === true"></icon>
+                  <icon name="checkbox" v-else></icon>
+                </p>
+              </div>
+
+              <div class="item-detail">
+                <div>
+                  <div class="item-img">
+                    <a>
+                      <img :src="cartInfo.goods[item].fields.pic">
+                    </a>
+                  </div>
+
+                  <div class="item-info">
+                    <a href="">
+                      <h3 class="title">{{ cartInfo.goods[item].fields.title }}</h3>
+                      <div class="edit-sku">
+                        <div>
+                          {{ cartInfo.goods[item].fields.sku.title }}
+                          <icon name="arrow-down"></icon>
+                        </div>
                       </div>
-                    </div>
-                  </a>
+                    </a>
 
-                  <div class="pay">
-                    <div class="pay-price">
-                      <div class="price">
-                        <p class="o-t-price">
-                          <span class="major">68</span>
+                    <div class="pay">
+                      <div class="pay-price">
+                        <div class="price">
+                          <p class="o-t-price">
+                            <span class="major">{{ cartInfo.goods[item].fields.pay.now | filterPrice }}</span>
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="edit-quantity">
+                        <p class="btn-minus" @click.prevent="actionBuyQuantity(cartInfo.goods[item], 'minus')">
+                          <a class="sbtn minus off">
+                            <icon name="minus"></icon>
+                          </a>
+                        </p>
+                        <p class="btn-input">
+                          <input
+                            type="number"
+                            v-model.number="cartInfo.goods[item].fields.quantity.quantity"
+                            :min="cartInfo.goods[item].fields.quantity.min"
+                            :max="cartInfo.goods[item].fields.quantity.max"
+                            @blur="actionBuyQuantity(cartInfo.goods[item], 'input')">
+                        </p>
+                        <p class="btn-plus" @click.prevent="actionBuyQuantity(cartInfo.goods[item], 'plus')">
+                          <a class="sbtn plus">
+                            <icon name="plus"></icon>
+                          </a>
                         </p>
                       </div>
                     </div>
-
-                    <div class="edit-quantity">
-                      <p class="btn-minus">
-                        <a class="sbtn minus off" min="1">
-                          <icon name="minus"></icon>
-                        </a>
-                      </p>
-                      <p class="btn-input">
-                        <input type="number" max="7625" min="1" value="1">
-                      </p>
-                      <p class="btn-plus">
-                        <a class="sbtn plus" max="7626">
-                          <icon name="plus"></icon>
-                        </a>
-                      </p>
-                    </div>
                   </div>
                 </div>
-
               </div>
+            </div>
+
+            <div class="cart-item-del" :class="{ 'act-del' : cartInfo.shops[key].fields.is11}" @click="delCartGood(cartInfo.goods[item])">
+              <div>删除</div>
             </div>
           </div>
         </div>
@@ -96,20 +129,21 @@
     <div class="cart-fixed">
       <div class="cart-settlement">
         <div class="allcb">
-          <div>
-            <icon name="checkbox-right"></icon>
+          <div @click="selectAll">
+            <icon name="checkbox-right" v-if="cartInfo.footer && cartInfo.footer.fields.checkAll.checked === true"></icon>
+            <icon name="checkbox" v-else></icon>
             <span>全选</span>
           </div>
         </div>
         <div class="total">
           <div>
             <span>合计：</span>
-            <span class="money">2000</span>
+            <span class="money">{{ payInfo.totalprice }}</span>
           </div>
         </div>
         <div class="btns">
           <span>结算</span>
-          <span>(0)</span>
+          <span>({{ payInfo.quantity }})</span>
         </div>
       </div>
     </div>
@@ -119,30 +153,69 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { State, Action } from 'vuex-class';
+import { State, Action, Getter } from 'vuex-class';
 
 import Header from '@/components/Header.vue';
 import GoodList from '@/components/GoodList.vue';
+
+const namespace: string = 'cart';
 
 @Component({
   components: {
     Header,
     GoodList,
   },
+  filters: {
+    filterPrice(num: number) {
+      return num / 100;
+    },
+  },
 })
 export default class Cart extends Vue {
   @State(state => state.shop.goodslist)
   goodslist!: StoreState.Goods[];
 
+  @Getter('cartInfo', { namespace })
+  cartInfo!: any;
+
+  @Getter('payInfo', { namespace })
+  payInfo!: any;
+
+  @Action('getCartList', { namespace })
+  getCartList: any;
+
+  @Action('selectGood', { namespace })
+  selectGood: any;
+
+  @Action('selectShop', { namespace })
+  selectShop: any;
+
+  @Action('selectAll', { namespace })
+  selectAll: any;
+
+  @Action('editBuyQuantity', { namespace })
+  editBuyQuantity: any;
+
+  @Action('editBuyEditStatus', { namespace })
+  editBuyEditStatus: any;
+
+  @Action('delCartGood', { namespace })
+  delCartGood: any;
+
   @Action('shop/getGoodsList')
   getGoodsList: any;
 
   created() {
+    this.getCartList();
     this.getGoodsList();
   }
 
   private goBack() {
     this.$router.go(-1);
+  }
+
+  private actionBuyQuantity(item: any, type: string) {
+    this.editBuyQuantity({ item, type });
   }
 }
 </script>
@@ -227,16 +300,26 @@ export default class Cart extends Vue {
     .state {
       margin-left: 16px;
       display: flex;
+
+      p {
+        margin-right: 20px;
+        font-size: 24px;
+      }
     }
   }
 
   .cart-item {
+    position: relative;
     display: flex;
     font-size: 24px;
   }
 
-  @at-root .cart-item {
+  @at-root .cart-item-box {
+    position: relative;
+    z-index: 10;
+    display: flex;
     background: #fff;
+    transition: transform 0.2s ease-in 0s;
 
     .o-t-price {
       color: #f60;
@@ -256,7 +339,6 @@ export default class Cart extends Vue {
       -webkit-box-pack: center;
       -ms-box-pack: center;
       -o-box-pack: center;
-      box-pack: center;
       display: -webkit-box;
       width: 80px;
       margin-right: 10p;
@@ -401,6 +483,36 @@ export default class Cart extends Vue {
       }
     }
   }
+
+  .cart-item-del {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 1;
+    color: #fff;
+    background: #f7624f;
+    border-top: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
+
+    div {
+      display: flex;
+      margin: auto;
+      text-align: center;
+      align-items: center;
+      -webkit-box-align: center;
+    }
+  }
+
+  .act-edit {
+    transform: translate3d(-120px, 0px, 0px);
+  }
+
+  .act-del {
+    z-index: 1;
+  }
 }
 
 .cart-empty {
@@ -478,6 +590,11 @@ export default class Cart extends Vue {
 
       .money {
         color: #f7624f;
+
+        &:before {
+          content: '￥';
+          display: inline-block;
+        }
       }
     }
 
