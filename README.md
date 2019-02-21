@@ -1,7 +1,7 @@
 
 <p align="center">
   <a>
-    <!-- <img width="220" src="http://opq4i8ll4.bkt.clouddn.com/ego.png"> -->
+    <img width="220" src="./preview/ego.png">
   </a>
 </p>
 
