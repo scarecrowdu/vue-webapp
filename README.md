@@ -1,7 +1,7 @@
 
 <p align="center">
   <a>
-    <img width="220" src="http://opq4i8ll4.bkt.clouddn.com/ego.png">
+    <!-- <img width="220" src="http://opq4i8ll4.bkt.clouddn.com/ego.png"> -->
   </a>
 </p>
 
@@ -17,7 +17,7 @@
 
 <p align="center">
   <a>
-    <img width="100%" src="http://opq4i8ll4.bkt.clouddn.com/ego_app.png">
+    <img width="100%" src="./preview/app.png">
   </a>
 </p>
 
