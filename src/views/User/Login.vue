@@ -7,19 +7,29 @@
 
     <div class="login-form">
       <div class="input-cell">
-        <input class="input" type="text" name="username" v-model="form.username" placeholder="请输入用户名/手机" />
+        <input
+          class="input"
+          type="text"
+          name="username"
+          v-model="form.username"
+          placeholder="请输入用户名/手机"
+        />
       </div>
 
       <div class="input-cell">
         <input
-         class="input"
-         :type="isVisablePwd ? 'text' : 'password'"
-         name="password"
-         v-model="form.password"
-         placeholder="请输入密码" />
+          class="input"
+          :type="isVisablePwd ? 'text' : 'password'"
+          name="password"
+          v-model="form.password"
+          placeholder="请输入密码"
+        />
 
         <span @click="toggleEye">
-          <icon :class="[isVisablePwd ? 'on-eye' : '', 'icon']" name="yanjing" ></icon>
+          <icon
+            :class="[isVisablePwd ? 'on-eye' : '', 'icon']"
+            name="yanjing"
+          ></icon>
         </span>
       </div>
 
@@ -31,7 +41,6 @@
       <div class="btn-cell">
         <button class="btn">登录</button>
       </div>
-
     </div>
   </div>
 </template>
@@ -57,7 +66,6 @@ export default class Login extends Vue {
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
 .login-header {

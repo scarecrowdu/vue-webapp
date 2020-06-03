@@ -42,9 +42,11 @@ const mutations: MutationTree<any> = {
     // 检查当前店铺是否选中
     shops[`shop_${id}`].fields.checked = !curShopChecked;
     // 设置商品是否选中
-    gorups[`shop_${id}`].map((id: number) => goods[id]).forEach((item: any) => {
-      item.fields.checked = !curShopChecked;
-    });
+    gorups[`shop_${id}`]
+      .map((id: number) => goods[id])
+      .forEach((item: any) => {
+        item.fields.checked = !curShopChecked;
+      });
     // 检查是否全选
     footer.fields.checkAll.checked = isEveryRight(
       Object.keys(shops),

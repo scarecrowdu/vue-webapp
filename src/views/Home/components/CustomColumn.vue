@@ -1,13 +1,17 @@
 <template>
   <div class="custom-wrap">
     <div class="custom-box" v-for="item in data" :key="item.id">
-      <p class="column-title">{{item.title}}</p>
+      <p class="column-title">{{ item.title }}</p>
 
       <div class="activity-column-box" v-if="item.type === 'activity'">
         <ul class="activity-column-content">
-          <li class="activity-column-item" v-for="img in item.imglist" :key="img.id">
+          <li
+            class="activity-column-item"
+            v-for="img in item.imglist"
+            :key="img.id"
+          >
             <a href="">
-              <img :src="img.src">
+              <img :src="img.src" />
             </a>
           </li>
         </ul>
@@ -15,7 +19,11 @@
 
       <div class="recommend-column-box" v-if="item.type === 'recommend'">
         <div class="recommend-box">
-          <a class="recommend-item recommend-item-col02" v-for="img in item.imglist.slice(0,2)" :key="img.id">
+          <a
+            class="recommend-item recommend-item-col02"
+            v-for="img in item.imglist.slice(0, 2)"
+            :key="img.id"
+          >
             <div class="recommend-text">
               <strong class="recommend-title">{{ img.title }}</strong>
               <p class="recommend-desc ellipsis">{{ img.desc }}</p>
@@ -27,14 +35,18 @@
           </a>
         </div>
         <div class="recommend-box">
-          <a class="recommend-item recommend-item-col04" v-for="img in item.imglist.slice(2,6)" :key="img.id">
+          <a
+            class="recommend-item recommend-item-col04"
+            v-for="img in item.imglist.slice(2, 6)"
+            :key="img.id"
+          >
             <div class="recommend-text">
               <strong class="recommend-title">{{ img.title }}</strong>
               <p class="recommend-desc ellipsis">{{ img.desc }}</p>
             </div>
 
             <div class="recommend-img">
-               <img :src="img.src" />
+              <img :src="img.src" />
             </div>
           </a>
         </div>
@@ -42,7 +54,6 @@
     </div>
   </div>
 </template>
-
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
@@ -53,7 +64,6 @@ export default class CustomColumn extends Vue {
   private data: any;
 }
 </script>
-
 
 <style lang="scss" scoped>
 .column-title {

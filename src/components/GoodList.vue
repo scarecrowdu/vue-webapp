@@ -2,7 +2,7 @@
   <div class="good-list-wrap">
     <ul class="good-list-box">
       <li class="good-list-item" v-for="good in data" :key="good.id">
-        <router-link :to="'/detail/'+ good.id">
+        <router-link :to="'/detail/' + good.id">
           <div class="good-product">
             <div class="good-img">
               <img class="lazy-img-fadein" v-lazy="good.src" />

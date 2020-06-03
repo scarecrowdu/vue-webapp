@@ -3,7 +3,7 @@
     <nav class="quick-link-nav">
       <a href="#/" class="quick-link-item" v-for="item in data" :key="item.id">
         <span class="quick-box">
-          <img :src="item.icon">
+          <img :src="item.icon" />
           <span class="ellipsis">{{ item.title }}</span>
         </span>
       </a>

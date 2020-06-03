@@ -16,10 +16,12 @@
 
     <!-- 价格 -->
     <div class="goods-price">
-      <p class="goods-sales-price">¥
+      <p class="goods-sales-price">
+        ¥
         <em>{{ goodsInfo.price }}</em>
       </p>
-      <p class="goods-original-price">价格
+      <p class="goods-original-price">
+        价格
         <del>{{ goodsInfo.shop_price }}</del>
       </p>
     </div>
@@ -47,7 +49,7 @@
         <p>规格</p>
       </div>
       <div class="goods-cell-content">
-        <p>请选择 层数 颜色分类 </p>
+        <p>请选择 层数 颜色分类</p>
       </div>
       <div class="goods-cell-icon">
         <p>></p>
@@ -72,20 +74,23 @@
     <!-- 店铺 -->
     <div class="goods-shop" v-if="goodsInfo.shop">
       <div class="goods-shop-name">
-        <img class="shop-logo" :src="goodsInfo.shop.logo">
+        <img class="shop-logo" :src="goodsInfo.shop.logo" />
         <p class="shop-name ellipsis">{{ goodsInfo.shop.name }}</p>
       </div>
 
       <div class="goods-shop-evaluation">
-        <p class="gs-desc">商品描述：
+        <p class="gs-desc">
+          商品描述：
           <span>{{ goodsInfo.shop.descScore }}</span>
           <span>{{ getGrade(goodsInfo.shop.descScore) }}</span>
         </p>
-        <p class="gs-sales">卖家服务：
+        <p class="gs-sales">
+          卖家服务：
           <span>{{ goodsInfo.shop.serviceScore }}</span>
           <span>{{ getGrade(goodsInfo.shop.serviceScore) }}</span>
         </p>
-        <p class="gs-express">物流服务：
+        <p class="gs-express">
+          物流服务：
           <span>{{ goodsInfo.shop.expressScore }}</span>
           <span>{{ getGrade(goodsInfo.shop.expressScore) }}</span>
         </p>
@@ -119,7 +124,9 @@
         <span class="btn-text">收藏</span>
       </div>
       <div class="bottom-bar-btn cart">
-        <span class="btn-title" @click="popupSkuVisible = true">加入购物车</span>
+        <span class="btn-title" @click="popupSkuVisible = true"
+          >加入购物车</span
+        >
       </div>
       <div class="bottom-bar-btn buy">
         <span class="btn-title" @click="popupSkuVisible = true">立即购买</span>
@@ -134,11 +141,17 @@
               <div class="sku-pro">
                 <div>
                   <div class="sku-img">
-                    <p><img src="//img.alicdn.com/imgextra/i4/120976213/TB2E80DeXXXXXb5XXXXXXXXXXXX_!!120976213.jpg_640x640q85s150_.webp"></p>
+                    <p>
+                      <img
+                        src="//img.alicdn.com/imgextra/i4/120976213/TB2E80DeXXXXXb5XXXXXXXXXXXX_!!120976213.jpg_640x640q85s150_.webp"
+                      />
+                    </p>
                   </div>
                   <div class="sku-pro-info">
                     <div>
-                      <h3 class="sku-title">电脑椅折叠椅子家用塑料椅子餐椅家用折叠凳办公椅休闲椅便携椅</h3>
+                      <h3 class="sku-title">
+                        电脑椅折叠椅子家用塑料椅子餐椅家用折叠凳办公椅休闲椅便携椅
+                      </h3>
                       <p class="h">￥31-88</p>
                       <p class="quantity">库存:296318</p>
                       <p class="sku-txt">
@@ -147,7 +160,9 @@
                       </p>
                     </div>
                   </div>
-                  <div class="sku-closed" @click="popupSkuVisible = false">x</div>
+                  <div class="sku-closed" @click="popupSkuVisible = false">
+                    x
+                  </div>
                 </div>
               </div>
 
@@ -177,13 +192,14 @@
                 </div>
                 <div class="quantity-info">
                   <div class="sku-quantity">
-                    <h2>购买数量
+                    <h2>
+                      购买数量
                       <span></span>
                     </h2>
                     <p class="btn-minus off">
                       <a class="btn minus" min=""></a>
                     </p>
-                    <p class="btn-input"><input type="tel" value="1"></p>
+                    <p class="btn-input"><input type="tel" value="1" /></p>
                     <p class="btn-plus">
                       <a class="btn plus" max=""></a>
                     </p>
@@ -201,13 +217,20 @@
       </div>
     </mt-popup>
 
-    <mt-popup v-model="popupProductVisible" position="bottom" class="mint-popup">
+    <mt-popup
+      v-model="popupProductVisible"
+      position="bottom"
+      class="mint-popup"
+    >
       <div class="dialog">
         <div class="dialog-title ">产品参数</div>
         <div class="dialog-content">
           <div class="dialog-product-params">
             <ul class="product-param-list">
-              <li v-for="info in goodsInfo.product_extra_infos" :key="info.product_id">
+              <li
+                v-for="info in goodsInfo.product_extra_infos"
+                :key="info.product_id"
+              >
                 <div class="param-name">{{ info.field_name }}</div>
                 <div class="param-value">{{ info.field_value }}</div>
               </li>
@@ -216,7 +239,9 @@
         </div>
 
         <div class="dialog-button-group">
-          <button class="btn-close" @click="popupProductVisible = false">完成</button>
+          <button class="btn-close" @click="popupProductVisible = false">
+            完成
+          </button>
         </div>
       </div>
     </mt-popup>
@@ -349,7 +374,6 @@ export default class Detail extends Vue {
   }
 }
 </style>
-
 
 <style lang="scss" scoped>
 .goods-swiper {

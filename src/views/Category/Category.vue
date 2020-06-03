@@ -5,10 +5,11 @@
         <li
           ref="menuList"
           class="menu-item"
-          :class="{'current':currentIndex === index}"
+          :class="{ current: currentIndex === index }"
           v-for="(item, index) in industryList"
           :key="item.id"
-          @click="selectMenu(index,$event)">
+          @click="selectMenu(index, $event)"
+        >
           <span> {{ item.name }} </span>
         </li>
       </ul>
@@ -20,18 +21,15 @@
           class="recommend"
           ref="goodList"
           v-for="(module, index) in moduleList"
-          :key="index">
-
+          :key="index"
+        >
           <p class="title">{{ module.title }}</p>
-          <div 
-            class="item"
-            v-for="(item, key) in module.items"
-            :key="key">
+          <div class="item" v-for="(item, key) in module.items" :key="key">
             <a class="link-box">
-              <img :src="item.pic">
+              <img :src="item.pic" />
               <p>{{ item.name }}</p>
             </a>
-           </div>
+          </div>
         </li>
       </ul>
     </div>

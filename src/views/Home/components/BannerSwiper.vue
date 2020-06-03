@@ -2,7 +2,13 @@
   <swiper :options="swiperOption" ref="bannerSwiper" class="banner-swiper">
     <!-- slides -->
     <swiper-slide v-for="item in data" :key="item.id || item.activityId">
-      <router-link :to="item.isActivity ? '/detail/'+ item.id : '/activity/' + item.activityId">
+      <router-link
+        :to="
+          item.isActivity
+            ? '/detail/' + item.id
+            : '/activity/' + item.activityId
+        "
+      >
         <img :src="item.src" :alt="item.desc" />
       </router-link>
     </swiper-slide>

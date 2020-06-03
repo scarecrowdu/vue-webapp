@@ -3,8 +3,10 @@
     <div class="me-header">
       <div class="me-header-main">
         <div class="m-header-avatar">
-          <img src="//img11.360buyimg.com/jdphoto/s120x122_jfs/t5683/191/7076936752/5123/834e5571/596dd62bN7a8affc5.png">
-        </div> 
+          <img
+            src="//img11.360buyimg.com/jdphoto/s120x122_jfs/t5683/191/7076936752/5123/834e5571/596dd62bN7a8affc5.png"
+          />
+        </div>
 
         <div class="m-header-msg">
           <div class="mh-user-name">Vincent Du</div>
@@ -38,9 +40,7 @@
       </div>
     </div>
 
-    <section class="me-act">
-
-    </section>
+    <section class="me-act"></section>
 
     <section class="block-area me-order">
       <div class="block-area-box">
@@ -195,7 +195,6 @@ import { Component, Vue } from 'vue-property-decorator';
 })
 export default class Me extends Vue {}
 </script>
-
 
 <style lang="scss" scoped>
 .me-wrap {

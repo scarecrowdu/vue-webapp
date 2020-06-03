@@ -65,7 +65,6 @@ export default class Home extends Vue {
 }
 </script>
 
-
 <style lang="scss" scoped>
 .column-title {
   text-align: left;

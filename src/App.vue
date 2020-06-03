@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <transition name="router-fade" mode="out-in">
-    	<keep-alive>
-        <router-view/>
+      <keep-alive>
+        <router-view />
       </keep-alive>
     </transition>
 
@@ -39,7 +39,6 @@ export default class Home extends Vue {
   }
 }
 </script>
-
 
 <style lang="scss">
 #app {
